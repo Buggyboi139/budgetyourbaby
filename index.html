@@ -532,9 +532,6 @@
                     }
                 ]
             };
-            
-            const productDatabase = {}; 
-            // ========================================================================
 
             // Initialize Setup Toggles
             Object.keys(initialCategoryWeights).forEach(cat => {
@@ -610,13 +607,12 @@
 
                 goToResults();
                 
-                // Wrap render calls in try/catch to log errors instead of silent failing
                 try {
                     renderDonutChart(kitData);
                     generateKitList(totalBudget, gender, kitData);
                 } catch (error) {
                     console.error("Rendering Error:", error);
-                    categoriesContainer.innerHTML = `<div style="text-align: center; color: #ef4444; padding: 40px;"><h3>Error generating kit.</h3><p>Please ensure the product database is pasted correctly.</p></div>`;
+                    categoriesContainer.innerHTML = `<div style="text-align: center; color: #ef4444; padding: 40px;"><h3>Error generating kit.</h3><p>Make sure the product database is pasted correctly.</p></div>`;
                 }
             });
 
@@ -696,9 +692,9 @@
                     let itemsHTML = '';
                     let actualCategorySubtotal = 0; 
 
-                    // If items array is empty, show a small warning in the UI
+                    // If items array is empty, show a small warning in the UI so the app doesn't just crash
                     if (items.length === 0) {
-                        itemsHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1;">No items found in database for this category.</p>`;
+                        itemsHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1;">No items found in database for this category. Please check your database paste.</p>`;
                     }
 
                     items.forEach(item => {
@@ -732,7 +728,7 @@
 
                         const crashTestHTML = selectedProduct.crashTest ? `
                             <div style="background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 12px; display: inline-block;">
-                                🛡️ <strong>Safety Check:</strong> ${selectedProduct.crashTest}
+                                🛡️ <strong>Safety Rating:</strong> ${selectedProduct.crashTest}
                             </div>
                         ` : '';
 
