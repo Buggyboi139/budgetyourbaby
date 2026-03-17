@@ -84,26 +84,18 @@
         }
         .gender-radio { display: none; }
         
-        /* --- NEW DYNAMIC GENDER COLORS --- */
-        
-        /* Boy (Soft Blue) */
         input[value="boy"]:checked + .gender-label {
             background: rgba(161, 196, 253, 0.1); border-color: #a1c4fd; color: #a1c4fd;
             box-shadow: 0 10px 20px rgba(161, 196, 253, 0.1); transform: translateY(-2px);
         }
-        
-        /* Girl (Soft Pink) */
         input[value="girl"]:checked + .gender-label {
             background: rgba(251, 194, 235, 0.1); border-color: #fbc2eb; color: #fbc2eb;
             box-shadow: 0 10px 20px rgba(251, 194, 235, 0.1); transform: translateY(-2px);
         }
-        
-        /* Neutral (Soft Yellow) */
         input[value="neutral"]:checked + .gender-label {
             background: rgba(251, 211, 141, 0.1); border-color: #fbd38d; color: #fbd38d;
             box-shadow: 0 10px 20px rgba(251, 211, 141, 0.1); transform: translateY(-2px);
         }
-        /* --------------------------------- */
 
         .category-selector { margin-bottom: 40px; }
         .category-title-label { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
@@ -178,7 +170,53 @@
         .category-section { margin-bottom: 60px; }
         .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border-glass); padding-bottom: 15px;}
         .category-title { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px; }
-        .category-allocation { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; }
+        
+        /* Subtotal Tooltip CSS */
+        .category-allocation-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        .category-allocation { 
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); 
+            padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; 
+            transition: all 0.2s;
+        }
+        .category-allocation-wrapper:hover .category-allocation {
+            background: rgba(255,255,255,0.1) !important;
+            transform: translateY(-2px);
+        }
+        .subtotal-tooltip {
+            visibility: hidden;
+            width: 340px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            color: #f8fafc;
+            text-align: left;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border-highlight);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: absolute;
+            z-index: 100;
+            bottom: 130%;
+            right: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        /* The invisible hover bridge so the tooltip doesn't disappear when moving mouse to it */
+        .subtotal-tooltip::after {
+            content: ''; position: absolute; top: 100%; right: 0; width: 100%; height: 30%;
+        }
+        .category-allocation-wrapper:hover .subtotal-tooltip {
+            visibility: visible; opacity: 1; transform: translateY(0);
+        }
+
         .cat-target-note { font-size: 0.8rem; font-weight: 500; opacity: 0.6; display: block; margin-top: 4px; color: var(--text-muted); }
 
         .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
@@ -192,15 +230,9 @@
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
 
-        @keyframes slideInRight {
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes popIn {
-            to { transform: scale(1); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+        @keyframes popIn { to { transform: scale(1); } }
+        @keyframes fadeIn { to { opacity: 1; } }
 
         .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
         .product-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1; }
@@ -306,14 +338,36 @@
             const chartLegend = document.getElementById('chartLegend');
             const grandTotalContainer = document.getElementById('grand-total-container');
 
+            // Category Data with new Explanation Text
             const initialCategoryWeights = {
-                "Nursery & Furniture": { weight: 0.25, color: "#bfa2db" }, 
-                "Travel & Gear": { weight: 0.20, color: "#ffb7b2" }, 
-                "Feeding & Nursing": { weight: 0.15, color: "#a1c4fd" }, 
-                "Diapering Needs": { weight: 0.15, color: "#fbd38d" }, 
-                "Clothing & Basics": { weight: 0.10, color: "#b6eacb" }, 
-                "Bath & Health": { weight: 0.10, color: "#ffdac1" }, 
-                "Play & Soothing": { weight: 0.05, color: "#c1c8e4" } 
+                "Nursery & Furniture": { 
+                    weight: 0.25, color: "#bfa2db", 
+                    explanation: "Nursery & Furniture accounts for a major portion of the budget because it includes foundational, heavy-duty items. High-ticket necessities like a durable crib, a quality mattress, and a comfortable glider quickly consume funds. Investing here ensures long-term comfort and safety for your newborn's sleep environment."
+                }, 
+                "Travel & Gear": { 
+                    weight: 0.20, color: "#ffb7b2",
+                    explanation: "Travel & Gear utilizes a large share of the budget due to the strict safety requirements and complex engineering of infant transport. An infant car seat and a reliable travel stroller are absolute necessities that cannot be compromised on quality. These items protect your baby during transit and provide essential mobility."
+                }, 
+                "Feeding & Nursing": { 
+                    weight: 0.15, color: "#a1c4fd",
+                    explanation: "Feeding & Nursing requires a dedicated allocation to cover the continuous, daily nutritional needs of your growing baby. Whether nursing or bottle-feeding, you will need a robust rotation of bottles, cleaning supplies, pillows, and eventually a high chair. Building a solid inventory prevents constant washing and late-night stress."
+                }, 
+                "Diapering Needs": { 
+                    weight: 0.15, color: "#fbd38d",
+                    explanation: "Diapering commands this allocation because babies go through an astonishing number of diapers and wipes in their first year. A proper setup requires a reliable diaper pail, changing pad, and a massive initial stockpile of newborn and size 1 diapers. Securing these funds prevents frantic late-night pharmacy runs."
+                }, 
+                "Clothing & Basics": { 
+                    weight: 0.10, color: "#b6eacb",
+                    explanation: "Clothing & Basics takes up a smaller but vital portion because newborns grow out of their initial sizes incredibly fast. Your focus here is on volume and comfort, requiring multiple daily changes of sleep-and-plays and bodysuits due to frequent messes. This ensures you have enough clean rotation without doing laundry daily."
+                }, 
+                "Bath & Health": { 
+                    weight: 0.10, color: "#ffdac1",
+                    explanation: "Bath & Health is allocated to safely manage your baby's hygiene and unexpected early illnesses. Specialized infant bathtubs, gentle skin care, and accurate healthcare tools like a reliable thermometer are vital but relatively affordable. Having these items on hand before your baby gets sick is crucial for peace of mind."
+                }, 
+                "Play & Soothing": { 
+                    weight: 0.05, color: "#c1c8e4",
+                    explanation: "Play & Soothing focuses on essential developmental tools and calming mechanisms for a relatively low cost. Items like a bouncer, a tummy-time mat, and pacifiers offer immense value for soothing a fussy baby. While babies don't need expensive toys early on, these basic items provide safe spots for them to rest."
+                } 
             };
 
             const bundleTemplates = {
@@ -430,7 +484,12 @@
 
                 const kitData = activeCategoryNames.map(name => {
                     const normalizedWeight = initialCategoryWeights[name].weight / totalActiveWeight;
-                    return { name, color: initialCategoryWeights[name].color, normalizedWeight: normalizedWeight }
+                    return { 
+                        name, 
+                        color: initialCategoryWeights[name].color, 
+                        explanation: initialCategoryWeights[name].explanation,
+                        normalizedWeight: normalizedWeight 
+                    }
                 });
 
                 renderDonutChart(kitData);
@@ -539,15 +598,26 @@
                     });
 
                     actualGrandTotal += actualCategorySubtotal;
+                    
+                    // The dynamic fractional text for the tooltip
+                    const fractionDisplay = `${cat.name} utilizes ${(cat.normalizedWeight * 100).toFixed(0)}% of your active budget.`;
 
                     const sectionHTML = `
                         <div class="category-section">
                             <div class="category-header">
                                 <div class="category-title" style="color: ${cat.color}; text-shadow: 0 0 20px ${cat.color}40;">${cat.name}</div>
                                 <div style="text-align: right;">
-                                    <div class="category-allocation" style="color: ${cat.color}; border-color: ${cat.color}50; background: ${cat.color}15;">
-                                        Subtotal: $${actualCategorySubtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                    
+                                    <div class="category-allocation-wrapper">
+                                        <div class="category-allocation" style="color: ${cat.color}; border-color: ${cat.color}50; background: ${cat.color}15;">
+                                            Subtotal: $${actualCategorySubtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                        </div>
+                                        <div class="subtotal-tooltip">
+                                            <strong style="color: ${cat.color}; display: block; margin-bottom: 8px; font-size: 1rem;">${fractionDisplay}</strong>
+                                            ${cat.explanation}
+                                        </div>
                                     </div>
+                                    
                                     <span class="cat-target-note">Target: $${categoryTargetBudget.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                                 </div>
                             </div>
