@@ -91,7 +91,6 @@
 
         .budget-display { font-size: 5rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -2px; }
         
-        /* Bulletproof Slider CSS */
         .slider-wrapper { position: relative; margin: 30px 0 40px; width: 100%; }
         input[type=range] { -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 100%; background: transparent; outline: none; margin: 0; }
         
@@ -169,14 +168,12 @@
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
         
-        /* New Bulletproof CSS Thumbnail Placeholder */
-        .product-thumb-container {
-            height: 180px; width: 100%; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-glass);
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2));
-            display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px;
+        /* Improved Image Handling */
+        .product-thumb { 
+            height: 180px; width: 100%; border-radius: 12px; background-color: #0f172a; 
+            background-size: cover; background-position: center; margin-bottom: 20px; border: 1px solid var(--border-glass);
+            display: flex; align-items: center; justify-content: center;
         }
-        .product-thumb-text { font-size: 1.1rem; font-weight: 700; color: rgba(255,255,255,0.3); line-height: 1.2; }
-
         .tier-badge {
             display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; 
             font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
@@ -318,33 +315,33 @@
                     { 
                         name: "Crib or Bassinet", weight: 0.40, 
                         tiers: [
-                            { tier: "Budget", title: "Delta Children Mini Crib", price: 99.99, rating: 4.6, reviews: 4218, img: "" },
-                            { tier: "Standard", title: "Graco Benton 5-in-1 Convertible Crib", price: 169.99, rating: 4.8, reviews: 12543, img: "" },
-                            { tier: "Premium", title: "Babyletto Hudson 3-in-1 Convertible Crib", price: 399.99, rating: 4.9, reviews: 8312, img: "" }
+                            { tier: "Budget", title: "Delta Children Mini Crib", price: 99.99, rating: 4.6, reviews: 4218, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Mini+Crib" },
+                            { tier: "Standard", title: "Graco Benton 5-in-1 Convertible Crib", price: 169.99, rating: 4.8, reviews: 12543, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Graco+Crib" },
+                            { tier: "Premium", title: "Babyletto Hudson 3-in-1 Convertible Crib", price: 399.99, rating: 4.9, reviews: 8312, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Babyletto+Crib" }
                         ]
                     },
                     { 
                         name: "Nursery Glider", weight: 0.30, 
                         tiers: [
-                            { tier: "Budget", title: "Storkcraft Premium Hoop Glider", price: 149.99, rating: 4.5, reviews: 18274, img: "" },
-                            { tier: "Standard", title: "Delta Children Blair Slim Glider", price: 269.99, rating: 4.7, reviews: 3188, img: "" },
-                            { tier: "Premium", title: "DaVinci Olive Upholstered Swivel Glider", price: 349.99, rating: 4.8, reviews: 5491, img: "" }
+                            { tier: "Budget", title: "Storkcraft Premium Hoop Glider", price: 149.99, rating: 4.5, reviews: 18274, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Hoop+Glider" },
+                            { tier: "Standard", title: "Delta Children Blair Slim Glider", price: 269.99, rating: 4.7, reviews: 3188, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Upholstered+Glider" },
+                            { tier: "Premium", title: "DaVinci Olive Upholstered Swivel Glider", price: 349.99, rating: 4.8, reviews: 5491, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Swivel+Glider" }
                         ]
                     },
                     { 
                         name: "Mattress & Sheets", weight: 0.15, 
                         tiers: [
-                            { tier: "Budget", title: "Safety 1st Heavenly Dreams Mattress", price: 49.99, rating: 4.6, reviews: 22045, img: "" },
-                            { tier: "Standard", title: "Sealy Baby Firm Rest Mattress", price: 89.99, rating: 4.8, reviews: 9532, img: "" },
-                            { tier: "Premium", title: "Newton Baby Wovenaire Crib Mattress", price: 299.99, rating: 4.9, reviews: 6821, img: "" }
+                            { tier: "Budget", title: "Safety 1st Heavenly Dreams Mattress", price: 49.99, rating: 4.6, reviews: 22045, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Crib+Mattress" },
+                            { tier: "Standard", title: "Sealy Baby Firm Rest Mattress", price: 89.99, rating: 4.8, reviews: 9532, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Sealy+Mattress" },
+                            { tier: "Premium", title: "Newton Baby Wovenaire Crib Mattress", price: 299.99, rating: 4.9, reviews: 6821, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Breathable+Mattress" }
                         ]
                     },
                     { 
                         name: "Baby Monitor", weight: 0.15, 
                         tiers: [
-                            { tier: "Budget", title: "VTech Audio Baby Monitor", price: 29.99, rating: 4.5, reviews: 15482, img: "" },
-                            { tier: "Standard", title: "HelloBaby Video Monitor", price: 69.99, rating: 4.6, reviews: 31056, img: "" },
-                            { tier: "Premium", title: "Infant Optics DXR-8 PRO Video Monitor", price: 199.99, rating: 4.8, reviews: 45129, img: "" }
+                            { tier: "Budget", title: "VTech Audio Baby Monitor", price: 29.99, rating: 4.5, reviews: 15482, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Audio+Monitor" },
+                            { tier: "Standard", title: "HelloBaby Video Monitor", price: 69.99, rating: 4.6, reviews: 31056, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Video+Monitor" },
+                            { tier: "Premium", title: "Infant Optics DXR-8 PRO Video Monitor", price: 199.99, rating: 4.8, reviews: 45129, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Infant+Optics" }
                         ]
                     }
                 ],
@@ -352,25 +349,25 @@
                     { 
                         name: "Infant Car Seat", weight: 0.45, 
                         tiers: [
-                            { tier: "Budget", title: "Evenflo Nurture Infant Car Seat", price: 69.99, rating: 4.5, reviews: 6241, crashTest: "Meets US FMVSS 213 Standards", img: "" },
-                            { tier: "Standard", title: "Graco SnugRide 35 Lite LX", price: 119.99, rating: 4.8, reviews: 28104, crashTest: "ProtectPlus Engineered (Side, Rear, Rollover)", img: "" },
-                            { tier: "Premium", title: "Chicco KeyFit 30 Infant Car Seat", price: 229.99, rating: 4.9, reviews: 35492, crashTest: "EPS Energy-Absorbing Foam & SuperCinch Tightener", img: "" }
+                            { tier: "Budget", title: "Evenflo Nurture Infant Car Seat", price: 69.99, rating: 4.5, reviews: 6241, crashTest: "Meets US FMVSS 213 Standards", img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Evenflo+Seat" },
+                            { tier: "Standard", title: "Graco SnugRide 35 Lite LX", price: 119.99, rating: 4.8, reviews: 28104, crashTest: "ProtectPlus Engineered (Side, Rear, Rollover)", img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Graco+SnugRide" },
+                            { tier: "Premium", title: "Chicco KeyFit 30 Infant Car Seat", price: 229.99, rating: 4.9, reviews: 35492, crashTest: "EPS Energy-Absorbing Foam & SuperCinch Tightener", img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Chicco+KeyFit" }
                         ]
                     },
                     { 
                         name: "Travel Stroller", weight: 0.45, 
                         tiers: [
-                            { tier: "Budget", title: "Kolcraft Cloud Plus Stroller", price: 79.99, rating: 4.5, reviews: 14588, img: "" },
-                            { tier: "Standard", title: "Baby Jogger City Mini GT2 Stroller", price: 299.99, rating: 4.8, reviews: 4219, img: "" },
-                            { tier: "Premium", title: "UPPAbaby Vista V3 Stroller", price: 999.99, rating: 4.9, reviews: 2845, img: "" }
+                            { tier: "Budget", title: "Kolcraft Cloud Plus Stroller", price: 79.99, rating: 4.5, reviews: 14588, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Compact+Stroller" },
+                            { tier: "Standard", title: "Baby Jogger City Mini GT2 Stroller", price: 299.99, rating: 4.8, reviews: 4219, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=City+Mini+GT2" },
+                            { tier: "Premium", title: "UPPAbaby Vista V3 Stroller", price: 999.99, rating: 4.9, reviews: 2845, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=UPPAbaby+Vista" }
                         ]
                     },
                     { 
                         name: "Baby Carrier", weight: 0.10, 
                         tiers: [
-                            { tier: "Budget", title: "Infantino Flip Advanced Carrier", price: 29.99, rating: 4.6, reviews: 45032, img: "" },
-                            { tier: "Standard", title: "Moby Wrap Classic Baby Carrier", price: 49.99, rating: 4.5, reviews: 12084, img: "" },
-                            { tier: "Premium", title: "Ergobaby Omni 360 Carrier", price: 139.99, rating: 4.8, reviews: 8911, img: "" }
+                            { tier: "Budget", title: "Infantino Flip Advanced Carrier", price: 29.99, rating: 4.6, reviews: 45032, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Infantino+Carrier" },
+                            { tier: "Standard", title: "Moby Wrap Classic Baby Carrier", price: 49.99, rating: 4.5, reviews: 12084, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Moby+Wrap" },
+                            { tier: "Premium", title: "Ergobaby Omni 360 Carrier", price: 139.99, rating: 4.8, reviews: 8911, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Ergobaby" }
                         ]
                     }
                 ],
@@ -378,33 +375,33 @@
                     { 
                         name: "Bottle Starter Set", weight: 0.35, 
                         tiers: [
-                            { tier: "Budget", title: "Parent's Choice 3-Pack Bottles", price: 14.99, rating: 4.4, reviews: 1243, img: "" },
-                            { tier: "Standard", title: "Philips Avent Natural Response Set", price: 39.99, rating: 4.7, reviews: 15682, img: "" },
-                            { tier: "Premium", title: "Dr. Brown's Anti-Colic Glass Set", price: 59.99, rating: 4.8, reviews: 22091, img: "" }
+                            { tier: "Budget", title: "Parent's Choice 3-Pack Bottles", price: 14.99, rating: 4.4, reviews: 1243, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Budget+Bottles" },
+                            { tier: "Standard", title: "Philips Avent Natural Response Set", price: 39.99, rating: 4.7, reviews: 15682, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Avent+Bottles" },
+                            { tier: "Premium", title: "Dr. Brown's Anti-Colic Glass Set", price: 59.99, rating: 4.8, reviews: 22091, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Dr+Browns" }
                         ]
                     },
                     { 
                         name: "Nursing Pillow", weight: 0.25, 
                         tiers: [
-                            { tier: "Budget", title: "Boppy Original Support Pillow", price: 39.99, rating: 4.8, reviews: 38045, img: "" },
-                            { tier: "Standard", title: "My Brest Friend Nursing Pillow", price: 44.99, rating: 4.7, reviews: 12467, img: "" },
-                            { tier: "Premium", title: "Snuggle Me Organic Pillow", price: 74.99, rating: 4.9, reviews: 9214, img: "" }
+                            { tier: "Budget", title: "Boppy Original Support Pillow", price: 39.99, rating: 4.8, reviews: 38045, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Boppy+Pillow" },
+                            { tier: "Standard", title: "My Brest Friend Nursing Pillow", price: 44.99, rating: 4.7, reviews: 12467, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=My+Brest+Friend" },
+                            { tier: "Premium", title: "Snuggle Me Organic Pillow", price: 74.99, rating: 4.9, reviews: 9214, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Snuggle+Me" }
                         ]
                     },
                     { 
                         name: "High Chair", weight: 0.25, 
                         tiers: [
-                            { tier: "Budget", title: "Cosco Simple Fold High Chair", price: 39.99, rating: 4.6, reviews: 16088, img: "" },
-                            { tier: "Standard", title: "Graco Slim Snacker High Chair", price: 69.99, rating: 4.8, reviews: 14521, img: "" },
-                            { tier: "Premium", title: "Stokke Tripp Trapp High Chair", price: 239.99, rating: 4.9, reviews: 6894, img: "" }
+                            { tier: "Budget", title: "Cosco Simple Fold High Chair", price: 39.99, rating: 4.6, reviews: 16088, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Fold+High+Chair" },
+                            { tier: "Standard", title: "Graco Slim Snacker High Chair", price: 69.99, rating: 4.8, reviews: 14521, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Graco+High+Chair" },
+                            { tier: "Premium", title: "Stokke Tripp Trapp High Chair", price: 239.99, rating: 4.9, reviews: 6894, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Stokke+Tripp+Trapp" }
                         ]
                     },
                     { 
                         name: "Burp Cloths", weight: 0.15, 
                         tiers: [
-                            { tier: "Budget", title: "Luvable Friends Flannel Cloths", price: 9.99, rating: 4.6, reviews: 31056, img: "" },
-                            { tier: "Standard", title: "Burt's Bees Organic Burp Cloths", price: 22.99, rating: 4.8, reviews: 18032, img: "" },
-                            { tier: "Premium", title: "Copper Pearl Muslin Burp Cloths", price: 34.99, rating: 4.9, reviews: 11284, img: "" }
+                            { tier: "Budget", title: "Luvable Friends Flannel Cloths", price: 9.99, rating: 4.6, reviews: 31056, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Flannel+Cloths" },
+                            { tier: "Standard", title: "Burt's Bees Organic Burp Cloths", price: 22.99, rating: 4.8, reviews: 18032, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Organic+Cloths" },
+                            { tier: "Premium", title: "Copper Pearl Muslin Burp Cloths", price: 34.99, rating: 4.9, reviews: 11284, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Muslin+Cloths" }
                         ]
                     }
                 ],
@@ -412,33 +409,33 @@
                     { 
                         name: "Diapers (1-Week Supply)", weight: 0.40, 
                         tiers: [
-                            { tier: "Budget", title: "Parent's Choice Dry/Gentle Diapers", price: 15.99, rating: 4.3, reviews: 8521, img: "" },
-                            { tier: "Standard", title: "Pampers Swaddlers (1-Week Box)", price: 28.99, rating: 4.8, reviews: 65098, img: "" },
-                            { tier: "Premium", title: "The Honest Company Clean Diapers", price: 45.99, rating: 4.7, reviews: 14265, img: "" }
+                            { tier: "Budget", title: "Parent's Choice Dry/Gentle Diapers", price: 15.99, rating: 4.3, reviews: 8521, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Budget+Diapers" },
+                            { tier: "Standard", title: "Pampers Swaddlers (1-Week Box)", price: 28.99, rating: 4.8, reviews: 65098, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Pampers" },
+                            { tier: "Premium", title: "The Honest Company Clean Diapers", price: 45.99, rating: 4.7, reviews: 14265, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Honest+Diapers" }
                         ]
                     },
                     { 
                         name: "Baby Wipes", weight: 0.25, 
                         tiers: [
-                            { tier: "Budget", title: "Parent's Choice Fragrance-Free Wipes", price: 14.99, rating: 4.5, reviews: 11043, img: "" },
-                            { tier: "Standard", title: "Huggies Natural Care Wipes", price: 22.99, rating: 4.8, reviews: 82012, img: "" },
-                            { tier: "Premium", title: "WaterWipes Original Baby Wipes", price: 34.99, rating: 4.8, reviews: 45076, img: "" }
+                            { tier: "Budget", title: "Parent's Choice Fragrance-Free Wipes", price: 14.99, rating: 4.5, reviews: 11043, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Value+Wipes" },
+                            { tier: "Standard", title: "Huggies Natural Care Wipes", price: 22.99, rating: 4.8, reviews: 82012, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Huggies+Wipes" },
+                            { tier: "Premium", title: "WaterWipes Original Baby Wipes", price: 34.99, rating: 4.8, reviews: 45076, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=WaterWipes" }
                         ]
                     },
                     { 
                         name: "Diaper Pail", weight: 0.20, 
                         tiers: [
-                            { tier: "Budget", title: "Safety 1st Easy Saver Pail", price: 24.99, rating: 4.2, reviews: 3154, img: "" },
-                            { tier: "Standard", title: "Munchkin Step Diaper Pail", price: 49.99, rating: 4.7, reviews: 18532, img: "" },
-                            { tier: "Premium", title: "Ubbi Steel Odor Locking Pail", price: 79.99, rating: 4.8, reviews: 21088, img: "" }
+                            { tier: "Budget", title: "Safety 1st Easy Saver Pail", price: 24.99, rating: 4.2, reviews: 3154, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Pail" },
+                            { tier: "Standard", title: "Munchkin Step Diaper Pail", price: 49.99, rating: 4.7, reviews: 18532, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Munchkin+Pail" },
+                            { tier: "Premium", title: "Ubbi Steel Odor Locking Pail", price: 79.99, rating: 4.8, reviews: 21088, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Ubbi+Pail" }
                         ]
                     },
                     { 
                         name: "Changing Pad", weight: 0.15, 
                         tiers: [
-                            { tier: "Budget", title: "Munchkin Secure Grip Pad", price: 19.99, rating: 4.7, reviews: 15021, img: "" },
-                            { tier: "Standard", title: "Summer Infant Contoured Pad", price: 34.99, rating: 4.8, reviews: 29084, img: "" },
-                            { tier: "Premium", title: "Skip Hop Wipe-Clean Changing Pad", price: 79.99, rating: 4.8, reviews: 9231, img: "" }
+                            { tier: "Budget", title: "Munchkin Secure Grip Pad", price: 19.99, rating: 4.7, reviews: 15021, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Grip+Pad" },
+                            { tier: "Standard", title: "Summer Infant Contoured Pad", price: 34.99, rating: 4.8, reviews: 29084, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Contour+Pad" },
+                            { tier: "Premium", title: "Skip Hop Wipe-Clean Changing Pad", price: 79.99, rating: 4.8, reviews: 9231, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Wipe-Clean+Pad" }
                         ]
                     }
                 ],
@@ -446,33 +443,33 @@
                     { 
                         name: "Sleep & Plays (1-Week Supply)", weight: 0.40, 
                         tiers: [
-                            { tier: "Budget", title: "Wonder Nation 3-Pack Sleep 'n Play", price: 12.99, rating: 4.6, reviews: 3218, img: "" },
-                            { tier: "Standard", title: "Carter's 4-Pack Sleep 'n Play", price: 24.99, rating: 4.8, reviews: 18562, img: "" },
-                            { tier: "Premium", title: "Kyte Baby Bamboo Zip Rompers", price: 69.99, rating: 4.9, reviews: 5419, img: "" }
+                            { tier: "Budget", title: "Wonder Nation 3-Pack Sleep 'n Play", price: 12.99, rating: 4.6, reviews: 3218, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Budget+Sleepers" },
+                            { tier: "Standard", title: "Carter's 4-Pack Sleep 'n Play", price: 24.99, rating: 4.8, reviews: 18562, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Carters+Sleepers" },
+                            { tier: "Premium", title: "Kyte Baby Bamboo Zip Rompers", price: 69.99, rating: 4.9, reviews: 5419, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Kyte+Baby" }
                         ]
                     },
                     { 
                         name: "Bodysuits", weight: 0.30, 
                         tiers: [
-                            { tier: "Budget", title: "Wonder Nation 5-Pack Bodysuits", price: 9.99, rating: 4.5, reviews: 4123, img: "" },
-                            { tier: "Standard", title: "Carter's 5-Pack Onesies", price: 18.99, rating: 4.9, reviews: 42088, img: "" },
-                            { tier: "Premium", title: "Honest Baby 5-Pack Organic", price: 29.99, rating: 4.7, reviews: 8354, img: "" }
+                            { tier: "Budget", title: "Wonder Nation 5-Pack Bodysuits", price: 9.99, rating: 4.5, reviews: 4123, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Value+Bodysuits" },
+                            { tier: "Standard", title: "Carter's 5-Pack Onesies", price: 18.99, rating: 4.9, reviews: 42088, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Carters+Onesies" },
+                            { tier: "Premium", title: "Honest Baby 5-Pack Organic", price: 29.99, rating: 4.7, reviews: 8354, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Organic+Bodysuits" }
                         ]
                     },
                     { 
                         name: "Swaddle Blankets", weight: 0.20, 
                         tiers: [
-                            { tier: "Budget", title: "Luvable Friends 3-Pack Swaddles", price: 12.99, rating: 4.6, reviews: 12591, img: "" },
-                            { tier: "Standard", title: "SwaddleMe Original 3-Pack", price: 29.99, rating: 4.7, reviews: 29045, img: "" },
-                            { tier: "Premium", title: "Aden + Anais Muslin 4-Pack", price: 49.99, rating: 4.8, reviews: 15421, img: "" }
+                            { tier: "Budget", title: "Luvable Friends 3-Pack Swaddles", price: 12.99, rating: 4.6, reviews: 12591, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Cotton+Swaddles" },
+                            { tier: "Standard", title: "SwaddleMe Original 3-Pack", price: 29.99, rating: 4.7, reviews: 29045, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=SwaddleMe" },
+                            { tier: "Premium", title: "Aden + Anais Muslin 4-Pack", price: 49.99, rating: 4.8, reviews: 15421, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Aden+Anais" }
                         ]
                     },
                     { 
                         name: "Socks & Mittens", weight: 0.10, 
                         tiers: [
-                            { tier: "Budget", title: "Luvable Friends Mittens & Socks", price: 6.99, rating: 4.5, reviews: 6812, img: "" },
-                            { tier: "Standard", title: "Gerber Mittens & Caps Set", price: 12.99, rating: 4.7, reviews: 11043, img: "" },
-                            { tier: "Premium", title: "Burt's Bees Booties & Mitts", price: 18.99, rating: 4.8, reviews: 9288, img: "" }
+                            { tier: "Budget", title: "Luvable Friends Mittens & Socks", price: 6.99, rating: 4.5, reviews: 6812, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Socks" },
+                            { tier: "Standard", title: "Gerber Mittens & Caps Set", price: 12.99, rating: 4.7, reviews: 11043, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Gerber+Socks" },
+                            { tier: "Premium", title: "Burt's Bees Booties & Mitts", price: 18.99, rating: 4.8, reviews: 9288, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Organic+Socks" }
                         ]
                     }
                 ],
@@ -480,33 +477,33 @@
                     { 
                         name: "Baby Bathtub", weight: 0.30, 
                         tiers: [
-                            { tier: "Budget", title: "The First Years Sure Comfort Tub", price: 19.99, rating: 4.8, reviews: 31054, img: "" },
-                            { tier: "Standard", title: "Fisher-Price 4-in-1 Sling Tub", price: 39.99, rating: 4.8, reviews: 25012, img: "" },
-                            { tier: "Premium", title: "FridaBaby Grow-With-Me Tub", price: 49.99, rating: 4.7, reviews: 4291, img: "" }
+                            { tier: "Budget", title: "The First Years Sure Comfort Tub", price: 19.99, rating: 4.8, reviews: 31054, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Bathtub" },
+                            { tier: "Standard", title: "Fisher-Price 4-in-1 Sling Tub", price: 39.99, rating: 4.8, reviews: 25012, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Sling+Tub" },
+                            { tier: "Premium", title: "FridaBaby Grow-With-Me Tub", price: 49.99, rating: 4.7, reviews: 4291, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=FridaBaby+Tub" }
                         ]
                     },
                     { 
                         name: "Healthcare Kit", weight: 0.30, 
                         tiers: [
-                            { tier: "Budget", title: "Safety 1st Healthcare Set", price: 14.99, rating: 4.5, reviews: 38045, img: "" },
-                            { tier: "Standard", title: "FridaBaby Bitty Bundle of Joy", price: 34.99, rating: 4.8, reviews: 19021, img: "" },
-                            { tier: "Premium", title: "Braun ThermoScan 7 Ear Thermometer", price: 59.99, rating: 4.8, reviews: 21084, img: "" }
+                            { tier: "Budget", title: "Safety 1st Healthcare Set", price: 14.99, rating: 4.5, reviews: 38045, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Health+Kit" },
+                            { tier: "Standard", title: "FridaBaby Bitty Bundle of Joy", price: 34.99, rating: 4.8, reviews: 19021, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=FridaBaby+Kit" },
+                            { tier: "Premium", title: "Braun ThermoScan 7 Ear Thermometer", price: 59.99, rating: 4.8, reviews: 21084, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Ear+Thermometer" }
                         ]
                     },
                     { 
                         name: "Towels & Washcloths", weight: 0.25, 
                         tiers: [
-                            { tier: "Budget", title: "Luvable Friends Hooded Towel", price: 9.99, rating: 4.6, reviews: 14032, img: "" },
-                            { tier: "Standard", title: "Hudson Baby Animal Face Towel", price: 16.99, rating: 4.8, reviews: 32091, img: "" },
-                            { tier: "Premium", title: "Burt's Bees Organic Towel Set", price: 29.99, rating: 4.8, reviews: 12543, img: "" }
+                            { tier: "Budget", title: "Luvable Friends Hooded Towel", price: 9.99, rating: 4.6, reviews: 14032, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Hooded+Towel" },
+                            { tier: "Standard", title: "Hudson Baby Animal Face Towel", price: 16.99, rating: 4.8, reviews: 32091, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Animal+Towel" },
+                            { tier: "Premium", title: "Burt's Bees Organic Towel Set", price: 29.99, rating: 4.8, reviews: 12543, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Organic+Towel" }
                         ]
                     },
                     { 
                         name: "Baby Wash", weight: 0.15, 
                         tiers: [
-                            { tier: "Budget", title: "Johnson's Head-to-Toe Wash", price: 6.99, rating: 4.7, reviews: 29012, img: "" },
-                            { tier: "Standard", title: "Aveeno Baby Wash & Shampoo", price: 11.99, rating: 4.8, reviews: 34088, img: "" },
-                            { tier: "Premium", title: "Tubby Todd Hair & Body Wash", price: 19.99, rating: 4.9, reviews: 8143, img: "" }
+                            { tier: "Budget", title: "Johnson's Head-to-Toe Wash", price: 6.99, rating: 4.7, reviews: 29012, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Johnsons+Wash" },
+                            { tier: "Standard", title: "Aveeno Baby Wash & Shampoo", price: 11.99, rating: 4.8, reviews: 34088, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Aveeno+Wash" },
+                            { tier: "Premium", title: "Tubby Todd Hair & Body Wash", price: 19.99, rating: 4.9, reviews: 8143, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Tubby+Todd" }
                         ]
                     }
                 ],
@@ -514,25 +511,25 @@
                     { 
                         name: "Bouncer or Swing", weight: 0.60, 
                         tiers: [
-                            { tier: "Budget", title: "Bright Starts Playful Pinwheels", price: 29.99, rating: 4.6, reviews: 18054, img: "" },
-                            { tier: "Standard", title: "Fisher-Price Snugapuppy Swing", price: 69.99, rating: 4.7, reviews: 14582, img: "" },
-                            { tier: "Premium", title: "BabyBjorn Bouncer Balance Soft", price: 199.99, rating: 4.9, reviews: 11231, img: "" }
+                            { tier: "Budget", title: "Bright Starts Playful Pinwheels", price: 29.99, rating: 4.6, reviews: 18054, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Bouncer" },
+                            { tier: "Standard", title: "Fisher-Price Snugapuppy Swing", price: 69.99, rating: 4.7, reviews: 14582, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Fisher+Price+Swing" },
+                            { tier: "Premium", title: "BabyBjorn Bouncer Balance Soft", price: 199.99, rating: 4.9, reviews: 11231, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=BabyBjorn" }
                         ]
                     },
                     { 
                         name: "Play Mat", weight: 0.30, 
                         tiers: [
-                            { tier: "Budget", title: "Infantino Pond Pals Playmat", price: 19.99, rating: 4.6, reviews: 8412, img: "" },
-                            { tier: "Standard", title: "Fisher-Price Deluxe Kick & Play", price: 39.99, rating: 4.9, reviews: 52088, img: "" },
-                            { tier: "Premium", title: "Lovevery The Play Gym", price: 139.99, rating: 4.9, reviews: 6845, img: "" }
+                            { tier: "Budget", title: "Infantino Pond Pals Playmat", price: 19.99, rating: 4.6, reviews: 8412, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Pond+Pals+Mat" },
+                            { tier: "Standard", title: "Fisher-Price Deluxe Kick & Play", price: 39.99, rating: 4.9, reviews: 52088, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Kick+and+Play" },
+                            { tier: "Premium", title: "Lovevery The Play Gym", price: 139.99, rating: 4.9, reviews: 6845, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Lovevery+Gym" }
                         ]
                     },
                     { 
                         name: "Pacifier Pack", weight: 0.10, 
                         tiers: [
-                            { tier: "Budget", title: "Tommee Tippee Happy Pacifiers", price: 5.99, rating: 4.6, reviews: 12054, img: "" },
-                            { tier: "Standard", title: "Philips Avent Soothie 4-Pack", price: 11.99, rating: 4.8, reviews: 65021, img: "" },
-                            { tier: "Premium", title: "BIBS Natural Rubber Pacifiers", price: 15.99, rating: 4.7, reviews: 18092, img: "" }
+                            { tier: "Budget", title: "Tommee Tippee Happy Pacifiers", price: 5.99, rating: 4.6, reviews: 12054, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Tommee+Tippee" },
+                            { tier: "Standard", title: "Philips Avent Soothie 4-Pack", price: 11.99, rating: 4.8, reviews: 65021, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Avent+Soothie" },
+                            { tier: "Premium", title: "BIBS Natural Rubber Pacifiers", price: 15.99, rating: 4.7, reviews: 18092, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=BIBS+Pacifiers" }
                         ]
                     }
                 ]
@@ -562,14 +559,12 @@
                 }
                 buildBtn.disabled = false;
 
-                // Base floor is 800 if 100% categories selected, drops if categories are unchecked. Max is 10k.
                 const newMin = Math.max(100, Math.floor(800 * activeWeight));
                 const newMax = Math.max(500, Math.floor(10000 * activeWeight));
 
                 budgetSlider.min = newMin;
                 budgetSlider.max = newMax;
 
-                // Ensure current val doesn't break limits
                 let currentVal = parseInt(budgetSlider.value);
                 if (currentVal < newMin) budgetSlider.value = newMin;
                 if (currentVal > newMax) budgetSlider.value = newMax;
@@ -636,8 +631,14 @@
                 });
 
                 goToResults();
-                renderDonutChart(kitData);
-                generateKitList(totalBudget, gender, kitData);
+                
+                try {
+                    renderDonutChart(kitData);
+                    generateKitList(totalBudget, gender, kitData);
+                } catch (error) {
+                    console.error("Rendering Error:", error);
+                    categoriesContainer.innerHTML = `<div style="text-align: center; color: #ef4444; padding: 40px;"><h3>Error generating kit.</h3><p>Make sure the product database is pasted correctly.</p></div>`;
+                }
             });
 
             function renderDonutChart(kitData) {
@@ -693,7 +694,6 @@
                     return { tier: "Fallback", title: "Database Item Missing", price: allocatedItemBudget, rating: 0, reviews: 0 };
                 }
                 
-                // 15% Stretch Factor: Allows the algo to reach premium items if budget is close
                 const stretchBudget = allocatedItemBudget * 1.15;
                 const affordableTiers = itemTiers.filter(t => t.price <= stretchBudget);
                 
@@ -718,7 +718,7 @@
                     let actualCategorySubtotal = 0; 
 
                     if (items.length === 0) {
-                        itemsHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1;">No items found in database for this category. Please check your database paste.</p>`;
+                        itemsHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1;">No items found in database for this category.</p>`;
                     }
 
                     items.forEach(item => {
@@ -738,7 +738,9 @@
                         }
 
                         const searchQuery = `${displayTitle} ${genderStr}`;
-                        const walmartLink = `https://www.walmart.com/search?q=${encodeURIComponent(searchQuery)}`;
+                        
+                        // NEW: Universal Google Shopping Query
+                        const googleShoppingLink = `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(searchQuery)}`;
 
                         const cardDelay = 0.2 + (globalItemIndex * 0.08);
 
@@ -756,7 +758,7 @@
                             </div>
                         ` : '';
 
-                        // CSS-only Fallback Thumbnail if no actual image URL is provided in the DB
+                        // CSS-only Fallback Thumbnail or dummyimage link
                         const imageHTML = selectedProduct.img 
                             ? `<div class="product-thumb" style="background-image: url('${selectedProduct.img}');"></div>` 
                             : `<div class="product-thumb-container"><div class="product-thumb-text">${displayTitle}</div></div>`;
@@ -773,7 +775,7 @@
                                 <div class="product-desc">Selected to maximize your allocated budget.</div>
                                 <div class="product-footer">
                                     <div class="product-price">$${selectedProduct.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
-                                    <a href="${walmartLink}" target="_blank" class="buy-btn">View on Walmart</a>
+                                    <a href="${googleShoppingLink}" target="_blank" class="buy-btn">View Deals</a>
                                 </div>
                             </div>
                         `;
