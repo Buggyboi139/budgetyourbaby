@@ -393,12 +393,10 @@
             document.getElementById('closeModalBtn').addEventListener('click', () => document.getElementById('email-modal').classList.remove('show-modal'));
             document.getElementById('skipModalBtn').addEventListener('click', () => document.getElementById('email-modal').classList.remove('show-modal'));
 
-            // Set up AJAX form submission to store info externally (e.g., via Formspree, Web3Forms, etc.)
             document.getElementById('emailCaptureForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const emailInput = document.getElementById('userEmailAddress').value;
                 
-                // Replace this URL with your actual endpoint from Formspree.io or similar service
                 fetch("https://formspree.io/f/YOUR_ENDPOINT_ID_HERE", {
                     method: "POST",
                     headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -677,7 +675,7 @@
                         const directLink = product.link || "#"; 
                         const cardDelay = 0.2 + (globalItemIndex * 0.08);
 
-                        // Bypasses ad-blockers by using the main media server
+                        // Fallback image handling
                         let imgSrc = product.img; 
                         let asinMatch = directLink.match(/\/dp\/([A-Z0-9]{10})/);
                         if (asinMatch && asinMatch[1]) {
@@ -699,7 +697,6 @@
                             </div>
                         ` : '';
 
-                        // Includes a dual-fallback to catch 1x1 invisible pixels from Amazon or network errors
                         itemsHTML += `
                             <div class="product-card" style="animation: slideInRight 0.6s ${cardDelay}s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
                                 <img src="${imgSrc}" alt="" class="product-thumb" 
@@ -713,7 +710,7 @@
                                 ${crashTestHTML}
                                 <div class="product-desc">Maximized for your budget.</div>
                                 <div class="product-footer">
-                                    <div class="product-price">$${product.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                    <div class="product-price"><span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">est.</span> $${product.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                                     <a href="${directLink}" target="_blank" class="buy-btn">View on Amazon</a>
                                 </div>
                             </div>
