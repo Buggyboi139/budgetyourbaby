@@ -22,6 +22,44 @@
             --radius-md: 20px;
         }
 
+        /* =========================================
+           EMAIL MODAL STYLES
+           ========================================= */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(7, 9, 15, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        .modal-overlay.show-modal {
+            opacity: 1; pointer-events: all;
+        }
+        .modal-content {
+            background: var(--surface-glass); border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-lg); padding: 40px; max-width: 450px; width: 90%;
+            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); position: relative;
+            transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.show-modal .modal-content {
+            transform: translateY(0);
+        }
+        .close-btn {
+            position: absolute; top: 15px; right: 20px; background: transparent; border: none;
+            color: var(--text-muted); font-size: 1.8rem; cursor: pointer; transition: 0.2s;
+        }
+        .close-btn:hover { color: var(--text-main); transform: scale(1.1); }
+        .email-input {
+            width: 100%; padding: 16px 20px; border-radius: 30px; border: 1px solid var(--border-glass);
+            background: rgba(0,0,0,0.4); color: var(--text-main); font-family: inherit;
+            font-size: 1rem; outline: none; transition: 0.3s; text-align: center;
+        }
+        .email-input:focus { border-color: #a1c4fd; box-shadow: 0 0 15px rgba(161, 196, 253, 0.2); }
+        .skip-btn {
+            background: transparent; border: none; color: var(--text-muted); margin-top: 20px;
+            font-size: 0.85rem; cursor: pointer; text-decoration: underline; transition: 0.2s;
+        }
+        .skip-btn:hover { color: var(--text-main); }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -371,6 +409,21 @@
         </div>
     </div>
 
+    <div id="email-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="close-btn">&times;</button>
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Save this list & track price drops.</h3>
+            <p style="color: var(--text-muted); margin-bottom: 25px; line-height: 1.5;">Enter your email to get a copy of this exact breakdown, plus alerts if any of your recommended items go on sale.</p>
+            
+            <form id="emailCaptureForm" onsubmit="event.preventDefault(); this.innerHTML = '<h4 style=\'color: #34d399; margin-top: 20px; font-size: 1.2rem;\'>Saved! Check your inbox shortly.</h4>'; setTimeout(() => document.getElementById('email-modal').classList.remove('show-modal'), 2000);">
+                <input type="email" placeholder="Your best email address" required class="email-input">
+                <button type="submit" class="primary-btn" style="padding: 15px; margin-top: 15px; font-size: 1rem; width: 100%;">Send My List</button>
+            </form>
+            
+            <button id="skipModalBtn" class="skip-btn">No thanks, I'll just browse</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const setupView = document.getElementById('setup-view');
@@ -386,6 +439,9 @@
             const pieChartCanvas = document.getElementById('pieChartCanvas');
             const chartLegend = document.getElementById('chartLegend');
             const grandTotalContainer = document.getElementById('grand-total-container');
+
+            document.getElementById('closeModalBtn').addEventListener('click', () => document.getElementById('email-modal').classList.remove('show-modal'));
+            document.getElementById('skipModalBtn').addEventListener('click', () => document.getElementById('email-modal').classList.remove('show-modal'));
 
             const categoryColors = {
                 "Nursery & Furniture": "#bfa2db", 
@@ -795,6 +851,15 @@
                 generateKitListHTML(finalKit, gender, activeCategoryNames, totalBudget);
             });
 
+                const finalKit = calculateOptimalKit(totalBudget, activeCategoryNames);
+                
+                renderDonutChart(finalKit.catTotals, activeCategoryNames);
+                generateKitListHTML(finalKit, gender, activeCategoryNames, totalBudget);
+
+                setTimeout(() => {
+                    document.getElementById('email-modal').classList.add('show-modal');
+                }, 2000);
+
             function renderDonutChart(catTotals, activeCategoryNames) {
                 pieChartCanvas.innerHTML = ''; 
                 chartLegend.innerHTML = ''; 
@@ -950,6 +1015,6 @@
                 }, 400);
             }
         });
-    </script>
+    </script>    
 </body>
 </html>
