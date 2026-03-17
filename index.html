@@ -5,247 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby Kit Builder | Prep for Arrival</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
         :root {
-            --bg-dark: #0f1115;
-            --surface-dark: #1a1d24;
-            --surface-light: #2a2e39;
-            --text-main: #f8f9fa;
-            --text-muted: #9ca3af;
-            --pastel-gradient: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-            --accent-color: #fbc2eb;
-            --success-color: #34d399;
-            --border-radius: 16px;
+            var(--text-main): #1e293b;
+            --text-muted: #64748b;
+            --surface-glass: rgba(255, 255, 255, 0.75);
+            --surface-solid: #ffffff;
+            --border-glass: rgba(255, 255, 255, 0.6);
+            --shadow-soft: 0 20px 40px rgba(148, 163, 184, 0.15);
+            --shadow-hover: 0 30px 60px rgba(148, 163, 184, 0.25);
+            
+            --gradient-primary: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            
+            --radius-lg: 32px;
+            --radius-md: 20px;
+            --radius-sm: 12px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1e293b;
             line-height: 1.6;
             padding-bottom: 90px;
+            min-height: 100vh;
+            background-color: #fcf8f2;
+            background: linear-gradient(120deg, #fdfbfb 0%, #eaedee 100%);
+            position: relative;
+            overflow-x: hidden;
         }
 
+        body::before, body::after {
+            content: ''; position: absolute; border-radius: 50%; z-index: -1; filter: blur(80px); opacity: 0.6;
+        }
+        body::before { width: 500px; height: 500px; background: #ffe4e6; top: -100px; left: -100px; }
+        body::after { width: 600px; height: 600px; background: #e0f2fe; bottom: -100px; right: -100px; }
+
         nav {
-            padding: 24px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(26, 29, 36, 0.8);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass); position: sticky; top: 0; z-index: 50;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--pastel-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;
+            background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
-        /* Setup View */
-        #setup-view {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
-        .subtitle { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; }
+        #setup-view { text-align: center; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -1.5px; }
+        .subtitle { color: var(--text-muted); font-size: 1.25rem; margin-bottom: 3rem; font-weight: 500; }
 
         .control-panel {
-            background-color: var(--surface-dark);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: var(--surface-glass); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            padding: 50px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-soft);
         }
 
-        /* Gender Selector */
-        .gender-selector {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
+        .gender-selector { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; }
         .gender-label {
-            background: var(--surface-light);
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            border: 2px solid transparent;
-            transition: all 0.2s;
-            user-select: none;
+            background: rgba(255,255,255,0.5); padding: 14px 32px; border-radius: 40px;
+            cursor: pointer; font-weight: 600; font-size: 1.05rem; border: 2px solid transparent;
+            transition: all 0.3s ease; color: var(--text-muted);
         }
-
         .gender-radio { display: none; }
         .gender-radio:checked + .gender-label {
-            border-color: var(--accent-color);
-            background: rgba(251, 194, 235, 0.1);
-            color: var(--accent-color);
+            background: #ffffff; border-color: #ff9a9e; color: #ff9a9e;
+            box-shadow: 0 10px 20px rgba(255, 154, 158, 0.15); transform: translateY(-2px);
         }
 
-        /* Category Selector */
-        .category-selector {
-            margin-bottom: 40px;
-        }
-
-        .category-title-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .toggles-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-
+        .category-selector { margin-bottom: 40px; }
+        .category-title-label { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        
+        .toggles-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .cat-label {
-            background: var(--surface-light);
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            border: 1px solid transparent;
-            transition: all 0.2s;
-            user-select: none;
+            background: rgba(255,255,255,0.6); padding: 12px 24px; border-radius: 30px;
+            cursor: pointer; font-size: 0.95rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.2s; color: var(--text-muted);
         }
-
         .cat-checkbox { display: none; }
-        .cat-checkbox:checked + .cat-label {
-            background: rgba(161, 140, 209, 0.15);
-            border-color: #a18cd1;
-            color: #f8f9fa;
-        }
-        .cat-checkbox:not(:checked) + .cat-label {
-            opacity: 0.6;
-            text-decoration: line-through;
-        }
+        .cat-checkbox:checked + .cat-label { background: #1e293b; color: #ffffff; border-color: #1e293b; }
+        .cat-checkbox:not(:checked) + .cat-label { opacity: 0.5; }
 
-        /* Budget Slider */
-        .budget-display {
-            font-size: 4.5rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 10px;
-        }
-
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            background: transparent;
-            margin: 30px 0;
-        }
+        .budget-display { font-size: 5rem; font-weight: 800; color: #1e293b; margin-bottom: 10px; letter-spacing: -2px; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; margin: 30px 0 40px; }
         input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 32px; width: 32px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            cursor: pointer;
-            margin-top: -12px;
-            box-shadow: 0 0 20px rgba(251, 194, 235, 0.4);
+            -webkit-appearance: none; height: 36px; width: 36px; border-radius: 50%;
+            background: var(--gradient-primary); cursor: pointer; margin-top: -14px;
+            box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4); transition: transform 0.2s; border: 4px solid white;
         }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 8px; cursor: pointer;
-            background: var(--surface-light); border-radius: 4px;
-        }
+        input[type=range]::-webkit-slider-thumb:active { transform: scale(1.1); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: rgba(0,0,0,0.05); border-radius: 10px; }
 
         .primary-btn {
-            background: var(--pastel-gradient);
-            color: #000;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            width: 100%;
-            max-width: 300px;
-            margin-top: 20px;
+            background: #1e293b; color: #ffffff; border: none; padding: 20px 48px;
+            font-size: 1.15rem; font-weight: 700; border-radius: 40px; cursor: pointer;
+            transition: all 0.3s ease; width: 100%; max-width: 320px;
+            box-shadow: 0 15px 30px rgba(30, 41, 59, 0.15);
         }
-        .primary-btn:hover { transform: translateY(-2px); }
+        .primary-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(30, 41, 59, 0.25); background: #0f172a; }
+        .primary-btn:disabled { opacity: 0.5; transform: none; box-shadow: none; cursor: not-allowed; }
 
         .secondary-btn {
-            background: transparent; color: var(--text-muted); border: 1px solid var(--surface-light);
-            padding: 10px 24px; border-radius: 20px; cursor: pointer;
+            background: var(--surface-solid); color: #1e293b; border: 1px solid rgba(0,0,0,0.05);
+            padding: 12px 28px; border-radius: 30px; cursor: pointer; font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.2s;
         }
+        .secondary-btn:hover { background: #f8fafc; transform: translateY(-2px); }
 
-        /* Results View */
-        #results-view { display: none; }
-        .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+        #results-view { display: none; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
 
-        /* NEW: Pie Chart Styles */
         .pie-chart-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            display: flex; align-items: center; gap: 30px; margin-bottom: 50px;
+            background: var(--surface-glass); padding: 30px; border-radius: var(--radius-lg);
+            border: 1px solid var(--border-glass); box-shadow: var(--shadow-soft);
         }
-
-        .pie-chart {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--surface-dark); /* Fallback */
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .chart-legend {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 5px 15px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .legend-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-        }
+        .pie-chart { width: 120px; height: 120px; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.05)); }
+        .chart-legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 24px; font-weight: 500; }
+        .legend-item { display: flex; align-items: center; gap: 10px; color: #1e293b; font-size: 0.95rem; }
+        .legend-color { width: 14px; height: 14px; border-radius: 50%; }
 
         .category-section { margin-bottom: 60px; }
-        .category-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px; border-bottom: 1px solid var(--surface-light); padding-bottom: 10px;
-        }
-        .category-title { font-size: 1.5rem; font-weight: 700; }
-        .category-allocation { color: var(--accent-color); font-weight: 600; }
+        .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .category-title { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px; }
+        .category-allocation { background: rgba(0,0,0,0.03); padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; }
+        .cat-target-note { font-size: 0.8rem; font-weight: 500; opacity: 0.6; display: block; margin-top: 4px; }
 
-        .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
         
         .product-card {
-            background-color: var(--surface-dark); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px; padding: 20px; display: flex; flex-direction: column;
+            background: var(--surface-solid); border: 1px solid rgba(0,0,0,0.03);
+            border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02); transition: all 0.3s ease;
         }
+        .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: rgba(0,0,0,0.08); }
 
-        .product-name { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; line-height: 1.3; }
-        .product-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+        .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .product-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1; }
         
-        .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--surface-light); padding-top: 15px; }
-        .product-price { font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; }
+        .product-price { font-size: 1.4rem; font-weight: 800; color: #1e293b; }
         
         .buy-btn {
-            background-color: var(--surface-light); color: var(--text-main); text-decoration: none;
-            padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-align: center;
+            background: var(--gradient-primary); color: #fff; text-decoration: none;
+            padding: 10px 20px; border-radius: 20px; font-size: 0.95rem; font-weight: 700;
+            box-shadow: 0 4px 10px rgba(255, 154, 158, 0.3); transition: transform 0.2s;
         }
-        .buy-btn:hover { background-color: var(--text-main); color: #000; }
+        .buy-btn:hover { transform: scale(1.05); }
+
+        /* NEW: Grand Total Card Styles */
+        .grand-total-card {
+            background: var(--surface-glass); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-soft); text-align: center; margin-top: 60px;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gt-label { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .gt-value { font-size: 4.5rem; font-weight: 800; color: #1e293b; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
+        .gt-target { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
+        .gt-target span { font-weight: 700; color: #1e293b; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -257,11 +185,10 @@
     <div class="container">
         
         <div id="setup-view">
-            <h1>Build your prep kit.</h1>
-            <p class="subtitle">Set your budget, uncheck what you already have, and we'll handle the rest.</p>
+            <h1>Curate your baby's world.</h1>
+            <p class="subtitle">Set your budget, deselect what you already own, and we'll perfectly balance the rest.</p>
             
             <div class="control-panel">
-                
                 <div class="gender-selector">
                     <label>
                         <input type="radio" name="gender" value="boy" class="gender-radio">
@@ -273,14 +200,13 @@
                     </label>
                     <label>
                         <input type="radio" name="gender" value="neutral" class="gender-radio" checked>
-                        <div class="gender-label">Unknown / Neutral</div>
+                        <div class="gender-label">Neutral</div>
                     </label>
                 </div>
 
                 <div class="category-selector">
-                    <div class="category-title-label">Select Categories Needed</div>
-                    <div class="toggles-grid" id="categoryTogglesContainer">
-                        </div>
+                    <div class="category-title-label">Select Your Needs</div>
+                    <div class="toggles-grid" id="categoryTogglesContainer"></div>
                 </div>
 
                 <div class="budget-display" id="budgetDisplay">$1,000</div>
@@ -292,10 +218,10 @@
         <div id="results-view">
             <div class="results-header">
                 <div>
-                    <h2>Your Curated Kit</h2>
-                    <p style="color: var(--text-muted);">Optimized based on your selections.</p>
+                    <h2>Your Personalized Kit</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 5px;">Populated with realistic estimated item prices.</p>
                 </div>
-                <button class="secondary-btn" id="startOverBtn">← Edit Selections</button>
+                <button class="secondary-btn" id="startOverBtn">← Edit Setup</button>
             </div>
 
             <div class="pie-chart-container" id="pieChartSection">
@@ -303,8 +229,9 @@
                 <div class="chart-legend" id="chartLegend"></div>
             </div>
 
-            <div id="categories-container">
-                </div>
+            <div id="categories-container"></div>
+            
+            <div id="grand-total-container"></div>
         </div>
 
     </div>
@@ -322,16 +249,16 @@
             const categoryTogglesContainer = document.getElementById('categoryTogglesContainer');
             const pieChartCanvas = document.getElementById('pieChartCanvas');
             const chartLegend = document.getElementById('chartLegend');
+            const grandTotalContainer = document.getElementById('grand-total-container');
 
-            // --- Updated Data Structure: 7 core categories with colors ---
             const initialCategoryWeights = {
-                "Nursery & Furniture": { weight: 0.25, color: "#a18cd1" }, // Purple
-                "Travel & Gear": { weight: 0.20, color: "#fbc2eb" }, // Pink
-                "Feeding & Nursing": { weight: 0.15, color: "#aed9e0" }, // Light Blue
-                "Diapering Needs": { weight: 0.15, color: "#f7d9a3" }, // Yellow
-                "Clothing & Basics": { weight: 0.10, color: "#c5fadb" }, // Light Green
-                "Bath, Health & Safety": { weight: 0.10, color: "#fdcfbc" }, // Peach
-                "Play & Soothing": { weight: 0.05, color: "#b6eacb" } // Mint Green
+                "Nursery & Furniture": { weight: 0.25, color: "#bfa2db" }, 
+                "Travel & Gear": { weight: 0.20, color: "#ffb7b2" }, 
+                "Feeding & Nursing": { weight: 0.15, color: "#a1c4fd" }, 
+                "Diapering Needs": { weight: 0.15, color: "#fbd38d" }, 
+                "Clothing & Basics": { weight: 0.10, color: "#b6eacb" }, 
+                "Bath & Health": { weight: 0.10, color: "#ffdac1" }, 
+                "Play & Soothing": { weight: 0.05, color: "#c1c8e4" } 
             };
 
             const bundleTemplates = {
@@ -350,77 +277,72 @@
                     { name: "Bottle Starter Set", weight: 0.35, search: "baby bottle starter set" },
                     { name: "Nursing Pillow & Pads", weight: 0.25, search: "nursing pillow breast pads" },
                     { name: "High Chair", weight: 0.25, search: "baby high chair" },
-                    { name: "Burp Cloths (10-Pack)", weight: 0.15, search: "cotton burp cloths" }
+                    { name: "Burp Cloths", weight: 0.15, search: "cotton burp cloths" }
                 ],
                 "Diapering Needs": [
-                    { name: "Diaper Stockpile (NB & Size 1)", weight: 0.40, search: "newborn size 1 diapers" },
+                    { name: "Diaper Stockpile", weight: 0.40, search: "newborn size 1 diapers" },
                     { name: "Baby Wipes Bulk Box", weight: 0.25, search: "water baby wipes bulk" },
                     { name: "Diaper Pail & Refills", weight: 0.20, search: "diaper pail" },
-                    { name: "Changing Pad & Creams", weight: 0.15, search: "changing pad diaper cream" }
+                    { name: "Changing Pad", weight: 0.15, search: "changing pad diaper cream" }
                 ],
                 "Clothing & Basics": [
-                    { name: "Sleep & Plays (5-Pack)", weight: 0.40, search: "sleep and play footies" },
-                    { name: "Bodysuits (7-Pack)", weight: 0.30, search: "bodysuits pack" },
-                    { name: "Swaddle Blankets (3-Pack)", weight: 0.20, search: "swaddle blankets" },
+                    { name: "Sleep & Plays", weight: 0.40, search: "sleep and play footies" },
+                    { name: "Bodysuits", weight: 0.30, search: "bodysuits pack" },
+                    { name: "Swaddle Blankets", weight: 0.20, search: "swaddle blankets" },
                     { name: "Socks & Mittens", weight: 0.10, search: "socks and mittens set" }
                 ],
-                "Bath, Health & Safety": [
+                "Bath & Health": [
                     { name: "Baby Bathtub", weight: 0.30, search: "baby bathtub" },
-                    { name: "Healthcare Kit & Thermometer", weight: 0.30, search: "baby grooming kit thermometer" },
-                    { name: "Hooded Towels & Washcloths", weight: 0.25, search: "baby hooded towel washcloths" },
+                    { name: "Healthcare Kit", weight: 0.30, search: "baby grooming kit thermometer" },
+                    { name: "Towels & Washcloths", weight: 0.25, search: "baby hooded towel washcloths" },
                     { name: "Gentle Wash & Lotion", weight: 0.15, search: "gentle baby wash shampoo" }
                 ],
                 "Play & Soothing": [
-                    { name: "Baby Bouncer or Swing", weight: 0.60, search: "baby bouncer swing" },
+                    { name: "Bouncer or Swing", weight: 0.60, search: "baby bouncer swing" },
                     { name: "Tummy Time Play Mat", weight: 0.30, search: "baby play mat gym" },
-                    { name: "Pacifier Variety Pack", weight: 0.10, search: "newborn pacifiers" }
+                    { name: "Pacifier Pack", weight: 0.10, search: "newborn pacifiers" }
                 ]
             };
 
-            // Inject Checkboxes dynamically
             Object.keys(bundleTemplates).forEach(cat => {
                 const labelHtml = `
                     <label>
                         <input type="checkbox" value="${cat}" class="cat-checkbox" checked>
-                        <div class="cat-label">${cat} <span style="font-size: 0.75rem; opacity: 0.7;">(${(initialCategoryWeights[cat].weight * 100).toFixed(0)}%)</span></div>
+                        <div class="cat-label">${cat}</div>
                     </label>
                 `;
                 categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
             });
 
-            // Failsafe: Ensure at least one category is checked
             categoryTogglesContainer.addEventListener('change', () => {
                 const checkedCount = document.querySelectorAll('.cat-checkbox:checked').length;
-                if (checkedCount === 0) {
-                    buildBtn.disabled = true;
-                    buildBtn.style.opacity = "0.5";
-                } else {
-                    buildBtn.disabled = false;
-                    buildBtn.style.opacity = "1";
-                }
+                buildBtn.disabled = checkedCount === 0;
             });
 
             budgetSlider.addEventListener('input', (e) => {
                 budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
             });
 
+            // Helper to make prices look real (e.g. $45.99 instead of $45.32)
+            function makeRealisticPrice(rawPrice) {
+                // If the item is very cheap, just add .99
+                if (rawPrice < 5) return Math.floor(rawPrice) + 0.99;
+                // Otherwise make it end in .99 for retail realism
+                return Math.floor(rawPrice) + 0.99;
+            }
+
             buildBtn.addEventListener('click', () => {
                 if(buildBtn.disabled) return;
 
                 const totalBudget = parseInt(budgetSlider.value);
-                
-                // Get selected gender
                 const selectedGenderInput = document.querySelector('input[name="gender"]:checked');
                 const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
-
-                // Get selected categories
                 const activeCategoryNames = Array.from(document.querySelectorAll('.cat-checkbox:checked')).map(cb => cb.value);
                 
                 setupView.style.display = 'none';
                 resultsView.style.display = 'block';
-                window.scrollTo(0, 0);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
 
-                // --- Calculate Normalized Weights and Total Active Weight ---
                 let totalActiveWeight = 0;
                 activeCategoryNames.forEach(cat => totalActiveWeight += initialCategoryWeights[cat].weight);
 
@@ -433,83 +355,78 @@
                     }
                 });
 
-                // Generate Pie Chart and Legend
-                renderPieChart(kitData);
-
-                // Generate Item List
+                renderDonutChart(kitData);
                 generateKitList(totalBudget, gender, kitData);
             });
 
             startOverBtn.addEventListener('click', () => {
                 resultsView.style.display = 'none';
                 setupView.style.display = 'block';
-                window.scrollTo(0, 0);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // --- NEW: Generate SVG Pie Chart and Legend ---
-            function renderPieChart(kitData) {
-                pieChartCanvas.innerHTML = ''; // Clear old chart
-                chartLegend.innerHTML = ''; // Clear old legend
+            function renderDonutChart(kitData) {
+                pieChartCanvas.innerHTML = ''; 
+                chartLegend.innerHTML = ''; 
 
                 let currentAngle = 0;
                 const radius = 40;
                 const centerX = 40;
                 const centerY = 40;
+                let svgHtml = `<svg width="100%" height="100%" viewBox="0 0 80 80">`;
 
-                let svgHtml = `<svg width="80" height="80" viewBox="0 0 80 80">`;
-
-                // Render Slices
                 kitData.forEach(cat => {
                     const sliceAngle = cat.normalizedWeight * 360;
-                    
-                    // Large arc flag is 1 if angle > 180 degrees
                     const largeArcFlag = sliceAngle > 180 ? 1 : 0;
-
-                    // Calculate start and end coordinates of the arc
-                    const startRadians = (currentAngle - 90) * (Math.PI / 180);
-                    const endRadians = (currentAngle + sliceAngle - 90) * (Math.PI / 180);
+                    const gap = 1; 
+                    const startRadians = (currentAngle + gap - 90) * (Math.PI / 180);
+                    const endRadians = (currentAngle + sliceAngle - gap - 90) * (Math.PI / 180);
 
                     const startX = centerX + radius * Math.cos(startRadians);
                     const startY = centerY + radius * Math.sin(startRadians);
                     const endX = centerX + radius * Math.cos(endRadians);
                     const endY = centerY + radius * Math.sin(endRadians);
 
-                    // Move to center, draw line to start, draw arc to end, close path back to center
                     svgHtml += `
                         <path d="M${centerX},${centerY} L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z" 
-                              fill="${cat.color}" stroke="var(--surface-dark)" stroke-width="0.5"/>
+                              fill="${cat.color}" />
                     `;
 
-                    // Render Legend Item
                     const legendItemHtml = `
                         <div class="legend-item">
                             <div class="legend-color" style="background-color: ${cat.color};"></div>
-                            <span>${cat.name} (${(cat.normalizedWeight * 100).toFixed(0)}%)</span>
+                            <span>${cat.name}</span>
                         </div>
                     `;
                     chartLegend.insertAdjacentHTML('beforeend', legendItemHtml);
-
                     currentAngle += sliceAngle;
                 });
 
-                svgHtml += `</svg>`;
+                svgHtml += `<circle cx="40" cy="40" r="24" fill="#ffffff" /></svg>`;
                 pieChartCanvas.insertAdjacentHTML('beforeend', svgHtml);
             }
 
-            function generateKitList(totalBudget, gender, kitData) {
+            function generateKitList(totalTargetBudget, gender, kitData) {
                 categoriesContainer.innerHTML = ''; 
+                grandTotalContainer.innerHTML = ''; 
                 
                 const genderStr = gender === "neutral" ? "gender neutral" : "baby " + gender;
+                let actualGrandTotal = 0; // Tracks the sum of all realistic prices
 
                 kitData.forEach(cat => {
-                    // Recalibrate budget based on normalized weight
-                    const categoryBudget = totalBudget * cat.normalizedWeight;
-                    
+                    const categoryTargetBudget = totalTargetBudget * cat.normalizedWeight;
                     const items = bundleTemplates[cat.name];
+                    
                     let itemsHTML = '';
+                    let actualCategorySubtotal = 0; // Tracks sum for this specific category
 
                     items.forEach(item => {
-                        const itemPrice = categoryBudget * item.weight;
+                        const rawItemPrice = categoryTargetBudget * item.weight;
+                        
+                        // Convert exact float to a realistic retail price (e.g. $45.99)
+                        const retailItemPrice = makeRealisticPrice(rawItemPrice);
+                        actualCategorySubtotal += retailItemPrice;
+
                         const searchQuery = encodeURIComponent(`${genderStr} ${item.search}`);
                         const amazonLink = `https://www.amazon.com/s?k=${searchQuery}`;
 
@@ -520,20 +437,28 @@
                         itemsHTML += `
                             <div class="product-card">
                                 <div class="product-name">${displayTitle}</div>
-                                <div class="product-desc">Calculated based on your updated parameters.</div>
+                                <div class="product-desc">Proportionally balanced estimate.</div>
                                 <div class="product-footer">
-                                    <div class="product-price">$${itemPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
-                                    <a href="${amazonLink}" target="_blank" class="buy-btn">Search Amazon</a>
+                                    <div class="product-price">$${retailItemPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                    <a href="${amazonLink}" target="_blank" class="buy-btn">Search</a>
                                 </div>
                             </div>
                         `;
                     });
 
+                    // Add category subtotal to the overall grand total
+                    actualGrandTotal += actualCategorySubtotal;
+
                     const sectionHTML = `
                         <div class="category-section">
                             <div class="category-header">
                                 <div class="category-title" style="color: ${cat.color}">${cat.name}</div>
-                                <div class="category-allocation">Budget: $${categoryBudget.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                <div style="text-align: right;">
+                                    <div class="category-allocation" style="color: ${cat.color}; background: ${cat.color}20;">
+                                        Subtotal: $${actualCategorySubtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                    </div>
+                                    <span class="cat-target-note">Target: $${categoryTargetBudget.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                                </div>
                             </div>
                             <div class="product-list">
                                 ${itemsHTML}
@@ -543,6 +468,16 @@
                     
                     categoriesContainer.insertAdjacentHTML('beforeend', sectionHTML);
                 });
+
+                // Render the Grand Total Checkout Card
+                const grandTotalHTML = `
+                    <div class="grand-total-card">
+                        <div class="gt-label">Total Estimated Kit Value</div>
+                        <div class="gt-value">$${actualGrandTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                        <div class="gt-target">Based on your target budget of <span>$${totalTargetBudget.toLocaleString()}</span></div>
+                    </div>
+                `;
+                grandTotalContainer.innerHTML = grandTotalHTML;
             }
         });
     </script>
