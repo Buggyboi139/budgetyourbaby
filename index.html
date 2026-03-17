@@ -34,6 +34,24 @@
             min-height: 100vh;
             overflow-x: hidden;
             padding-bottom: 90px;
+            
+            /* ADDED: Extra left padding on desktop to clear the new line */
+            padding-left: 20px; 
+        }
+
+        /* =========================================
+           NEW: The Full-Height Left Gradient Line
+           ========================================= */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px; /* Thickness of the line */
+            background: var(--gradient-primary);
+            z-index: 200; /* Stays on top of background grids */
+            box-shadow: 2px 0 15px rgba(161, 140, 209, 0.5); /* Matching glow */
         }
 
         nav {
@@ -226,7 +244,9 @@
                 background-image: none !important; 
                 -webkit-print-color-adjust: exact; 
                 padding-bottom: 0 !important;
+                padding-left: 0 !important; /* Remove line padding */
             }
+            body::before { display: none !important; } /* Hide the left line on paper */
             * {
                 filter: none !important;
                 backdrop-filter: none !important;
@@ -270,6 +290,8 @@
         }
 
         @media (max-width: 768px) {
+            body { padding-left: 10px; } /* Slimmer line on mobile */
+            body::before { width: 3px; }
             nav { padding: 15px 20px; }
             .container { padding: 30px 15px; }
             h1 { font-size: 2.2rem; letter-spacing: -0.5px; }
@@ -691,8 +713,6 @@
 
             startOverBtn.addEventListener('click', goToSetup);
             logoBtn.addEventListener('click', goToSetup);
-            
-            // --- NEW: Print Event Listener ---
             exportPdfBtn.addEventListener('click', () => {
                 window.print();
             });
