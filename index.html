@@ -22,44 +22,6 @@
             --radius-md: 20px;
         }
 
-        /* =========================================
-           EMAIL MODAL STYLES
-           ========================================= */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(7, 9, 15, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-        }
-        .modal-overlay.show-modal {
-            opacity: 1; pointer-events: all;
-        }
-        .modal-content {
-            background: var(--surface-glass); border: 1px solid var(--border-highlight);
-            border-radius: var(--radius-lg); padding: 40px; max-width: 450px; width: 90%;
-            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); position: relative;
-            transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .modal-overlay.show-modal .modal-content {
-            transform: translateY(0);
-        }
-        .close-btn {
-            position: absolute; top: 15px; right: 20px; background: transparent; border: none;
-            color: var(--text-muted); font-size: 1.8rem; cursor: pointer; transition: 0.2s;
-        }
-        .close-btn:hover { color: var(--text-main); transform: scale(1.1); }
-        .email-input {
-            width: 100%; padding: 16px 20px; border-radius: 30px; border: 1px solid var(--border-glass);
-            background: rgba(0,0,0,0.4); color: var(--text-main); font-family: inherit;
-            font-size: 1rem; outline: none; transition: 0.3s; text-align: center;
-        }
-        .email-input:focus { border-color: #a1c4fd; box-shadow: 0 0 15px rgba(161, 196, 253, 0.2); }
-        .skip-btn {
-            background: transparent; border: none; color: var(--text-muted); margin-top: 20px;
-            font-size: 0.85rem; cursor: pointer; text-decoration: underline; transition: 0.2s;
-        }
-        .skip-btn:hover { color: var(--text-main); }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -72,24 +34,19 @@
             min-height: 100vh;
             overflow-x: hidden;
             padding-bottom: 90px;
-            
-            /* ADDED: Extra left padding on desktop to clear the new line */
             padding-left: 20px; 
         }
 
-        /* =========================================
-           NEW: The Full-Height Left Gradient Line
-           ========================================= */
         body::before {
             content: "";
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
-            width: 4px; /* Thickness of the line */
+            width: 4px; 
             background: var(--gradient-primary);
-            z-index: 200; /* Stays on top of background grids */
-            box-shadow: 2px 0 15px rgba(161, 140, 209, 0.5); /* Matching glow */
+            z-index: 200; 
+            box-shadow: 2px 0 15px rgba(161, 140, 209, 0.5); 
         }
 
         nav {
@@ -214,7 +171,6 @@
         }
         .subtotal-tooltip::after { content: ''; position: absolute; top: 100%; right: 0; width: 100%; height: 30%; }
         .category-allocation-wrapper:hover .subtotal-tooltip { visibility: visible; opacity: 1; transform: translateY(0); }
-        .cat-target-note { font-size: 0.8rem; font-weight: 500; opacity: 0.6; display: block; margin-top: 4px; color: var(--text-muted); }
 
         .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
         .product-card {
@@ -225,12 +181,6 @@
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
         
-        .product-thumb-container {
-            height: 180px; width: 100%; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-glass);
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2));
-            display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px;
-        }
-        .product-thumb-text { font-size: 1.1rem; font-weight: 700; color: rgba(255,255,255,0.3); line-height: 1.2; }
         .product-thumb { 
             height: 180px; width: 100%; border-radius: 12px; background-color: #1e293b; 
             object-fit: cover; margin-bottom: 20px; border: 1px solid var(--border-glass); display: block;
@@ -272,63 +222,63 @@
             opacity: 0; animation: fadeIn 1s 0.5s forwards;
         }
 
-        /* =========================================
-           PRINT STYLES (PDF EXPORT FIX)
-           ========================================= */
+        /* Email Modal Styles */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(7, 9, 15, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        .modal-overlay.show-modal { opacity: 1; pointer-events: all; }
+        .modal-content {
+            background: var(--surface-glass); border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-lg); padding: 40px; max-width: 450px; width: 90%;
+            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); position: relative;
+            transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.show-modal .modal-content { transform: translateY(0); }
+        .close-btn {
+            position: absolute; top: 15px; right: 20px; background: transparent; border: none;
+            color: var(--text-muted); font-size: 1.8rem; cursor: pointer; transition: 0.2s;
+        }
+        .close-btn:hover { color: var(--text-main); transform: scale(1.1); }
+        .email-input {
+            width: 100%; padding: 16px 20px; border-radius: 30px; border: 1px solid var(--border-glass);
+            background: rgba(0,0,0,0.4); color: var(--text-main); font-family: inherit;
+            font-size: 1rem; outline: none; transition: 0.3s; text-align: center;
+        }
+        .email-input:focus { border-color: #a1c4fd; box-shadow: 0 0 15px rgba(161, 196, 253, 0.2); }
+        .skip-btn {
+            background: transparent; border: none; color: var(--text-muted); margin-top: 20px;
+            font-size: 0.85rem; cursor: pointer; text-decoration: underline; transition: 0.2s;
+        }
+        .skip-btn:hover { color: var(--text-main); }
+
+        /* Print Styles */
         @media print {
-            body { 
-                background: #ffffff !important; 
-                color: #000000 !important; 
-                background-image: none !important; 
-                -webkit-print-color-adjust: exact; 
-                padding-bottom: 0 !important;
-                padding-left: 0 !important; /* Remove line padding */
-            }
-            body::before { display: none !important; } /* Hide the left line on paper */
-            * {
-                filter: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                text-shadow: none !important;
-            }
-            /* Hide UI clutter */
-            nav, .header-actions, .engine-disclaimer, #setup-view { display: none !important; }
-            
+            body { background: #ffffff !important; color: #000000 !important; background-image: none !important; -webkit-print-color-adjust: exact; padding-bottom: 0 !important; padding-left: 0 !important; }
+            body::before { display: none !important; }
+            * { filter: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; text-shadow: none !important; }
+            nav, .header-actions, .engine-disclaimer, #setup-view, #email-modal { display: none !important; }
             .container { padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
             h2, p { color: #000 !important; }
-            
-            /* Reformat the grid for paper */
             .product-list { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 15px !important; }
-            
-            .product-card { 
-                background: #fff !important; border: 1px solid #ccc !important; 
-                box-shadow: none !important; color: #000 !important; 
-                page-break-inside: avoid !important; break-inside: avoid !important;
-                padding: 15px !important;
-                opacity: 1 !important; transform: none !important; /* Kill animations */
-            }
-            
+            .product-card { background: #fff !important; border: 1px solid #ccc !important; box-shadow: none !important; color: #000 !important; page-break-inside: avoid !important; break-inside: avoid !important; padding: 15px !important; opacity: 1 !important; transform: none !important; }
             .product-name, .product-price { color: #000 !important; }
             .tier-badge { background: #f1f5f9 !important; color: #475569 !important; border: 1px solid #cbd5e1; }
             .product-desc { color: #333 !important; }
-            .buy-btn { display: none !important; } /* Hide link buttons */
-            
+            .buy-btn { display: none !important; }
             .category-section { page-break-inside: avoid !important; break-inside: avoid !important; }
             .category-header { border-bottom: 2px solid #ccc !important; }
             .category-title { color: #000 !important; }
             .category-allocation { background: #f8fafc !important; color: #000 !important; border: 1px solid #ccc !important; }
-            
-            .pie-chart-container { display: none !important; } /* Usually broken in print, better to hide */
-            
-            .grand-total-card { 
-                background: #f8fafc !important; border: 2px solid #000 !important; 
-                box-shadow: none !important; page-break-inside: avoid !important;
-            }
+            .pie-chart-container { display: none !important; }
+            .grand-total-card { background: #f8fafc !important; border: 2px solid #000 !important; box-shadow: none !important; page-break-inside: avoid !important; }
             .gt-label, .gt-value, .gt-target, .gt-target span { color: #000 !important; }
         }
 
         @media (max-width: 768px) {
-            body { padding-left: 10px; } /* Slimmer line on mobile */
+            body { padding-left: 10px; }
             body::before { width: 3px; }
             nav { padding: 15px 20px; }
             .container { padding: 30px 15px; }
@@ -849,16 +799,11 @@
                 
                 renderDonutChart(finalKit.catTotals, activeCategoryNames);
                 generateKitListHTML(finalKit, gender, activeCategoryNames, totalBudget);
-            });
-
-                const finalKit = calculateOptimalKit(totalBudget, activeCategoryNames);
-                
-                renderDonutChart(finalKit.catTotals, activeCategoryNames);
-                generateKitListHTML(finalKit, gender, activeCategoryNames, totalBudget);
 
                 setTimeout(() => {
                     document.getElementById('email-modal').classList.add('show-modal');
                 }, 2000);
+            });
 
             function renderDonutChart(catTotals, activeCategoryNames) {
                 pieChartCanvas.innerHTML = ''; 
@@ -1015,6 +960,6 @@
                 }, 400);
             }
         });
-    </script>    
+    </script>
 </body>
 </html>
