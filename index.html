@@ -184,6 +184,42 @@
         #results-view { display: none; }
         .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
 
+        /* NEW: Pie Chart Styles */
+        .pie-chart-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .pie-chart {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--surface-dark); /* Fallback */
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .chart-legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
         .category-section { margin-bottom: 60px; }
         .category-header {
             display: flex; justify-content: space-between; align-items: center;
@@ -262,6 +298,11 @@
                 <button class="secondary-btn" id="startOverBtn">← Edit Selections</button>
             </div>
 
+            <div class="pie-chart-container" id="pieChartSection">
+                <div class="pie-chart" id="pieChartCanvas"></div>
+                <div class="chart-legend" id="chartLegend"></div>
+            </div>
+
             <div id="categories-container">
                 </div>
         </div>
@@ -279,57 +320,78 @@
             const startOverBtn = document.getElementById('startOverBtn');
             const categoriesContainer = document.getElementById('categories-container');
             const categoryTogglesContainer = document.getElementById('categoryTogglesContainer');
+            const pieChartCanvas = document.getElementById('pieChartCanvas');
+            const chartLegend = document.getElementById('chartLegend');
 
-            // Bundle Templates
+            // --- Updated Data Structure: 7 core categories with colors ---
+            const initialCategoryWeights = {
+                "Nursery & Furniture": { weight: 0.25, color: "#a18cd1" }, // Purple
+                "Travel & Gear": { weight: 0.20, color: "#fbc2eb" }, // Pink
+                "Feeding & Nursing": { weight: 0.15, color: "#aed9e0" }, // Light Blue
+                "Diapering Needs": { weight: 0.15, color: "#f7d9a3" }, // Yellow
+                "Clothing & Basics": { weight: 0.10, color: "#c5fadb" }, // Light Green
+                "Bath, Health & Safety": { weight: 0.10, color: "#fdcfbc" }, // Peach
+                "Play & Soothing": { weight: 0.05, color: "#b6eacb" } // Mint Green
+            };
+
             const bundleTemplates = {
-                "Sleeping & Nursery": [
-                    { name: "Crib or Bassinet", weight: 0.50, search: "crib bassinet" },
-                    { name: "Crib Mattress", weight: 0.25, search: "crib mattress" },
-                    { name: "Fitted Sheets (3-Pack)", weight: 0.15, search: "fitted crib sheets" },
-                    { name: "Waterproof Mattress Protector", weight: 0.10, search: "waterproof crib mattress pad" }
+                "Nursery & Furniture": [
+                    { name: "Crib or Bassinet", weight: 0.40, search: "crib bassinet" },
+                    { name: "Nursery Glider", weight: 0.30, search: "nursery glider chair" },
+                    { name: "Crib Mattress & Sheets", weight: 0.15, search: "crib mattress sheets" },
+                    { name: "Video Baby Monitor", weight: 0.15, search: "video baby monitor" }
                 ],
                 "Travel & Gear": [
-                    { name: "Infant Car Seat", weight: 0.55, search: "infant car seat" },
-                    { name: "Travel Stroller", weight: 0.35, search: "baby stroller" },
-                    { name: "Baby Carrier or Wrap", weight: 0.10, search: "baby carrier wrap" }
-                ],
-                "Clothing & Basics": [
-                    { name: "Bodysuits (7-Pack)", weight: 0.30, search: "bodysuits pack" },
-                    { name: "Sleep & Plays (4-Pack)", weight: 0.30, search: "sleep and play footies" },
-                    { name: "Swaddle Blankets (3-Pack)", weight: 0.25, search: "swaddle blankets" },
-                    { name: "Socks & Mittens Set", weight: 0.15, search: "socks and mittens set" }
+                    { name: "Infant Car Seat", weight: 0.45, search: "infant car seat" },
+                    { name: "Travel Stroller", weight: 0.45, search: "baby stroller" },
+                    { name: "Baby Carrier", weight: 0.10, search: "baby carrier wrap" }
                 ],
                 "Feeding & Nursing": [
-                    { name: "Bottle Starter Set", weight: 0.45, search: "baby bottle starter set" },
-                    { name: "Bottle Cleaning Brush & Rack", weight: 0.20, search: "bottle brush drying rack" },
-                    { name: "Burp Cloths (10-Pack)", weight: 0.20, search: "cotton burp cloths" },
-                    { name: "Nursing Pillow", weight: 0.15, search: "nursing pillow" }
+                    { name: "Bottle Starter Set", weight: 0.35, search: "baby bottle starter set" },
+                    { name: "Nursing Pillow & Pads", weight: 0.25, search: "nursing pillow breast pads" },
+                    { name: "High Chair", weight: 0.25, search: "baby high chair" },
+                    { name: "Burp Cloths (10-Pack)", weight: 0.15, search: "cotton burp cloths" }
                 ],
-                "Bath & Health": [
-                    { name: "Baby Bathtub", weight: 0.35, search: "baby bathtub" },
-                    { name: "Baby Healthcare & Grooming Kit", weight: 0.30, search: "baby grooming kit thermometer" },
-                    { name: "Washcloths & Towel Set", weight: 0.20, search: "baby hooded towel washcloths" },
-                    { name: "Gentle Baby Wash & Lotion", weight: 0.15, search: "gentle baby wash shampoo" }
+                "Diapering Needs": [
+                    { name: "Diaper Stockpile (NB & Size 1)", weight: 0.40, search: "newborn size 1 diapers" },
+                    { name: "Baby Wipes Bulk Box", weight: 0.25, search: "water baby wipes bulk" },
+                    { name: "Diaper Pail & Refills", weight: 0.20, search: "diaper pail" },
+                    { name: "Changing Pad & Creams", weight: 0.15, search: "changing pad diaper cream" }
+                ],
+                "Clothing & Basics": [
+                    { name: "Sleep & Plays (5-Pack)", weight: 0.40, search: "sleep and play footies" },
+                    { name: "Bodysuits (7-Pack)", weight: 0.30, search: "bodysuits pack" },
+                    { name: "Swaddle Blankets (3-Pack)", weight: 0.20, search: "swaddle blankets" },
+                    { name: "Socks & Mittens", weight: 0.10, search: "socks and mittens set" }
+                ],
+                "Bath, Health & Safety": [
+                    { name: "Baby Bathtub", weight: 0.30, search: "baby bathtub" },
+                    { name: "Healthcare Kit & Thermometer", weight: 0.30, search: "baby grooming kit thermometer" },
+                    { name: "Hooded Towels & Washcloths", weight: 0.25, search: "baby hooded towel washcloths" },
+                    { name: "Gentle Wash & Lotion", weight: 0.15, search: "gentle baby wash shampoo" }
+                ],
+                "Play & Soothing": [
+                    { name: "Baby Bouncer or Swing", weight: 0.60, search: "baby bouncer swing" },
+                    { name: "Tummy Time Play Mat", weight: 0.30, search: "baby play mat gym" },
+                    { name: "Pacifier Variety Pack", weight: 0.10, search: "newborn pacifiers" }
                 ]
             };
 
-            // Inject Category Checkboxes dynamically
+            // Inject Checkboxes dynamically
             Object.keys(bundleTemplates).forEach(cat => {
-                const safeId = cat.replace(/[^a-zA-Z0-9]/g, '');
                 const labelHtml = `
                     <label>
                         <input type="checkbox" value="${cat}" class="cat-checkbox" checked>
-                        <div class="cat-label">${cat}</div>
+                        <div class="cat-label">${cat} <span style="font-size: 0.75rem; opacity: 0.7;">(${(initialCategoryWeights[cat].weight * 100).toFixed(0)}%)</span></div>
                     </label>
                 `;
                 categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
             });
 
-            // Make sure at least one category is checked
+            // Failsafe: Ensure at least one category is checked
             categoryTogglesContainer.addEventListener('change', () => {
                 const checkedCount = document.querySelectorAll('.cat-checkbox:checked').length;
                 if (checkedCount === 0) {
-                    alert("Please select at least one category to generate a kit.");
                     buildBtn.disabled = true;
                     buildBtn.style.opacity = "0.5";
                 } else {
@@ -352,13 +414,30 @@
                 const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
 
                 // Get selected categories
-                const activeCategories = Array.from(document.querySelectorAll('.cat-checkbox:checked')).map(cb => cb.value);
+                const activeCategoryNames = Array.from(document.querySelectorAll('.cat-checkbox:checked')).map(cb => cb.value);
                 
                 setupView.style.display = 'none';
                 resultsView.style.display = 'block';
                 window.scrollTo(0, 0);
 
-                generateKitList(totalBudget, gender, activeCategories);
+                // --- Calculate Normalized Weights and Total Active Weight ---
+                let totalActiveWeight = 0;
+                activeCategoryNames.forEach(cat => totalActiveWeight += initialCategoryWeights[cat].weight);
+
+                const kitData = activeCategoryNames.map(name => {
+                    const normalizedWeight = initialCategoryWeights[name].weight / totalActiveWeight;
+                    return {
+                        name,
+                        color: initialCategoryWeights[name].color,
+                        normalizedWeight: normalizedWeight
+                    }
+                });
+
+                // Generate Pie Chart and Legend
+                renderPieChart(kitData);
+
+                // Generate Item List
+                generateKitList(totalBudget, gender, kitData);
             });
 
             startOverBtn.addEventListener('click', () => {
@@ -367,15 +446,66 @@
                 window.scrollTo(0, 0);
             });
 
-            function generateKitList(totalBudget, gender, activeCategories) {
+            // --- NEW: Generate SVG Pie Chart and Legend ---
+            function renderPieChart(kitData) {
+                pieChartCanvas.innerHTML = ''; // Clear old chart
+                chartLegend.innerHTML = ''; // Clear old legend
+
+                let currentAngle = 0;
+                const radius = 40;
+                const centerX = 40;
+                const centerY = 40;
+
+                let svgHtml = `<svg width="80" height="80" viewBox="0 0 80 80">`;
+
+                // Render Slices
+                kitData.forEach(cat => {
+                    const sliceAngle = cat.normalizedWeight * 360;
+                    
+                    // Large arc flag is 1 if angle > 180 degrees
+                    const largeArcFlag = sliceAngle > 180 ? 1 : 0;
+
+                    // Calculate start and end coordinates of the arc
+                    const startRadians = (currentAngle - 90) * (Math.PI / 180);
+                    const endRadians = (currentAngle + sliceAngle - 90) * (Math.PI / 180);
+
+                    const startX = centerX + radius * Math.cos(startRadians);
+                    const startY = centerY + radius * Math.sin(startRadians);
+                    const endX = centerX + radius * Math.cos(endRadians);
+                    const endY = centerY + radius * Math.sin(endRadians);
+
+                    // Move to center, draw line to start, draw arc to end, close path back to center
+                    svgHtml += `
+                        <path d="M${centerX},${centerY} L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z" 
+                              fill="${cat.color}" stroke="var(--surface-dark)" stroke-width="0.5"/>
+                    `;
+
+                    // Render Legend Item
+                    const legendItemHtml = `
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: ${cat.color};"></div>
+                            <span>${cat.name} (${(cat.normalizedWeight * 100).toFixed(0)}%)</span>
+                        </div>
+                    `;
+                    chartLegend.insertAdjacentHTML('beforeend', legendItemHtml);
+
+                    currentAngle += sliceAngle;
+                });
+
+                svgHtml += `</svg>`;
+                pieChartCanvas.insertAdjacentHTML('beforeend', svgHtml);
+            }
+
+            function generateKitList(totalBudget, gender, kitData) {
                 categoriesContainer.innerHTML = ''; 
                 
-                // Recalibrate budget based ONLY on the number of active categories
-                const categoryBudget = totalBudget / activeCategories.length;
                 const genderStr = gender === "neutral" ? "gender neutral" : "baby " + gender;
 
-                activeCategories.forEach(categoryName => {
-                    const items = bundleTemplates[categoryName];
+                kitData.forEach(cat => {
+                    // Recalibrate budget based on normalized weight
+                    const categoryBudget = totalBudget * cat.normalizedWeight;
+                    
+                    const items = bundleTemplates[cat.name];
                     let itemsHTML = '';
 
                     items.forEach(item => {
@@ -383,7 +513,7 @@
                         const searchQuery = encodeURIComponent(`${genderStr} ${item.search}`);
                         const amazonLink = `https://www.amazon.com/s?k=${searchQuery}`;
 
-                        const displayTitle = categoryName === "Clothing & Basics" 
+                        const displayTitle = cat.name === "Clothing & Basics" 
                             ? `${gender === 'neutral' ? 'Neutral' : gender.charAt(0).toUpperCase() + gender.slice(1)} ${item.name}` 
                             : item.name;
 
@@ -402,7 +532,7 @@
                     const sectionHTML = `
                         <div class="category-section">
                             <div class="category-header">
-                                <div class="category-title">${categoryName}</div>
+                                <div class="category-title" style="color: ${cat.color}">${cat.name}</div>
                                 <div class="category-allocation">Budget: $${categoryBudget.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                             </div>
                             <div class="product-list">
