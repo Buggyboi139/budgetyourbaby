@@ -27,7 +27,6 @@
             padding-bottom: 90px;
         }
 
-        /* Navigation */
         nav {
             padding: 24px 40px;
             display: flex;
@@ -64,6 +63,33 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
+        /* Gender Selector Styles */
+        .gender-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .gender-label {
+            background: var(--surface-light);
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .gender-radio { display: none; }
+        
+        .gender-radio:checked + .gender-label {
+            border-color: var(--accent-color);
+            background: rgba(251, 194, 235, 0.1);
+            color: var(--accent-color);
+        }
+
         .budget-display {
             font-size: 4.5rem;
             font-weight: 800;
@@ -71,7 +97,6 @@
             margin-bottom: 10px;
         }
 
-        /* Slider CSS */
         input[type=range] {
             -webkit-appearance: none;
             width: 100%;
@@ -92,7 +117,6 @@
             background: var(--surface-light); border-radius: 4px;
         }
 
-        /* Buttons */
         .primary-btn {
             background: var(--pastel-gradient);
             color: #000;
@@ -118,7 +142,6 @@
         #results-view { display: none; }
         .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
 
-        /* Product Cards */
         .category-section { margin-bottom: 60px; }
         .category-header {
             display: flex; justify-content: space-between; align-items: center;
@@ -127,28 +150,24 @@
         .category-title { font-size: 1.5rem; font-weight: 700; }
         .category-allocation { color: var(--accent-color); font-weight: 600; }
 
-        .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
         
         .product-card {
             background-color: var(--surface-dark); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: var(--border-radius); padding: 20px; display: flex; flex-direction: column;
+            border-radius: 12px; padding: 20px; display: flex; flex-direction: column;
         }
 
-        .product-image {
-            width: 100%; height: 200px; background-color: var(--surface-light);
-            border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);
-        }
-
-        .product-name { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
-        .product-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+        .product-name { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; line-height: 1.3; }
+        .product-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
         
         .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--surface-light); padding-top: 15px; }
-        .product-price { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
+        .product-price { font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
         
         .buy-btn {
             background-color: var(--surface-light); color: var(--text-main); text-decoration: none;
-            padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+            padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-align: center;
         }
+        .buy-btn:hover { background-color: var(--text-main); color: #000; }
     </style>
 </head>
 <body>
@@ -160,12 +179,28 @@
     <div class="container">
         
         <div id="setup-view">
-            <h1>Build your perfect prep kit.</h1>
-            <p class="subtitle">Set your budget, and we'll handle the math.</p>
+            <h1>Build your prep kit.</h1>
+            <p class="subtitle">Set your budget and preferences, and we'll configure the best items.</p>
             
             <div class="control-panel">
+                
+                <div class="gender-selector">
+                    <label>
+                        <input type="radio" name="gender" value="boy" class="gender-radio">
+                        <div class="gender-label">Boy</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="girl" class="gender-radio">
+                        <div class="gender-label">Girl</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="neutral" class="gender-radio" checked>
+                        <div class="gender-label">Unknown / Neutral</div>
+                    </label>
+                </div>
+
                 <div class="budget-display" id="budgetDisplay">$1,000</div>
-                <input type="range" id="budgetSlider" min="200" max="4000" step="50" value="1000">
+                <input type="range" id="budgetSlider" min="300" max="4000" step="50" value="1000">
                 <button class="primary-btn" id="buildBtn">Generate My Kit</button>
             </div>
         </div>
@@ -174,7 +209,7 @@
             <div class="results-header">
                 <div>
                     <h2>Your Curated Kit</h2>
-                    <p style="color: var(--text-muted);">Optimized based on your budget.</p>
+                    <p style="color: var(--text-muted);">Optimized based on your budget and preferences.</p>
                 </div>
                 <button class="secondary-btn" id="startOverBtn">← Start Over</button>
             </div>
@@ -186,10 +221,8 @@
     </div>
 
     <script>
-        // Wait for the entire HTML document to load before running scripts
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. Grab HTML Elements
             const setupView = document.getElementById('setup-view');
             const resultsView = document.getElementById('results-view');
             const budgetSlider = document.getElementById('budgetSlider');
@@ -198,87 +231,114 @@
             const startOverBtn = document.getElementById('startOverBtn');
             const categoriesContainer = document.getElementById('categories-container');
 
-            // 2. Define Core Categories (Evenly split 20% each)
-            const categories = [
-                { name: "Sleeping & Nursery", split: 0.20 },
-                { name: "Travel & Gear", split: 0.20 },
-                { name: "Feeding & Nursing", split: 0.20 },
-                { name: "Bath & Health", split: 0.20 },
-                { name: "Clothing & Basics", split: 0.20 }
-            ];
+            // Bundle Templates: Defines what makes up a category and how much of the category budget it takes
+            const bundleTemplates = {
+                "Sleeping & Nursery": [
+                    { name: "Crib or Bassinet", weight: 0.50, search: "crib bassinet" },
+                    { name: "Crib Mattress", weight: 0.25, search: "crib mattress" },
+                    { name: "Fitted Sheets (3-Pack)", weight: 0.15, search: "fitted crib sheets" },
+                    { name: "Waterproof Mattress Protector", weight: 0.10, search: "waterproof crib mattress pad" }
+                ],
+                "Travel & Gear": [
+                    { name: "Infant Car Seat", weight: 0.55, search: "infant car seat" },
+                    { name: "Travel Stroller", weight: 0.35, search: "baby stroller" },
+                    { name: "Baby Carrier or Wrap", weight: 0.10, search: "baby carrier wrap" }
+                ],
+                "Clothing & Basics": [
+                    { name: "Bodysuits (7-Pack)", weight: 0.30, search: "bodysuits pack" },
+                    { name: "Sleep & Plays (4-Pack)", weight: 0.30, search: "sleep and play footies" },
+                    { name: "Swaddle Blankets (3-Pack)", weight: 0.25, search: "swaddle blankets" },
+                    { name: "Socks & Mittens Set", weight: 0.15, search: "socks and mittens set" }
+                ],
+                "Feeding & Nursing": [
+                    { name: "Bottle Starter Set", weight: 0.45, search: "baby bottle starter set" },
+                    { name: "Bottle Cleaning Brush & Rack", weight: 0.20, search: "bottle brush drying rack" },
+                    { name: "Burp Cloths (10-Pack)", weight: 0.20, search: "cotton burp cloths" },
+                    { name: "Nursing Pillow", weight: 0.15, search: "nursing pillow" }
+                ],
+                "Bath & Health": [
+                    { name: "Baby Bathtub", weight: 0.35, search: "baby bathtub" },
+                    { name: "Baby Healthcare & Grooming Kit", weight: 0.30, search: "baby grooming kit thermometer" },
+                    { name: "Washcloths & Towel Set", weight: 0.20, search: "baby hooded towel washcloths" },
+                    { name: "Gentle Baby Wash & Lotion", weight: 0.15, search: "gentle baby wash shampoo" }
+                ]
+            };
 
-            // 3. Make the Slider Responsive
             budgetSlider.addEventListener('input', (e) => {
-                const value = parseInt(e.target.value);
-                budgetDisplay.textContent = '$' + value.toLocaleString();
+                budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
             });
 
-            // 4. Handle "Generate My Kit" Button Click
             buildBtn.addEventListener('click', () => {
                 const totalBudget = parseInt(budgetSlider.value);
                 
-                // Switch pages
+                // Get selected gender
+                const selectedGenderInput = document.querySelector('input[name="gender"]:checked');
+                const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
+                
                 setupView.style.display = 'none';
                 resultsView.style.display = 'block';
                 window.scrollTo(0, 0);
 
-                // Build the list
-                generateKitList(totalBudget);
+                generateKitList(totalBudget, gender);
             });
 
-            // 5. Handle "Start Over" Button Click
             startOverBtn.addEventListener('click', () => {
                 resultsView.style.display = 'none';
                 setupView.style.display = 'block';
                 window.scrollTo(0, 0);
             });
 
-            // 6. Logic to generate the HTML for the items
-            function generateKitList(totalBudget) {
-                // Clear out old results
+            function generateKitList(totalBudget, gender) {
                 categoriesContainer.innerHTML = ''; 
+                
+                // Even 20% split across 5 categories
+                const categories = Object.keys(bundleTemplates);
+                const categoryBudget = totalBudget / categories.length;
 
-                categories.forEach(cat => {
-                    const categoryBudget = totalBudget * cat.split;
-                    
-                    // Generate mock prices that add up to the category budget
-                    const item1Price = categoryBudget * 0.60;
-                    const item2Price = categoryBudget * 0.40;
+                // Format gender string for display and search
+                const genderStr = gender === "neutral" ? "gender neutral" : "baby " + gender;
 
-                    // Build the HTML for this category block
+                categories.forEach(categoryName => {
+                    const items = bundleTemplates[categoryName];
+                    let itemsHTML = '';
+
+                    items.forEach(item => {
+                        // Calculate price based on item weight within the category budget
+                        const itemPrice = categoryBudget * item.weight;
+                        
+                        // Construct an Amazon Search URL simulating the API parameters
+                        const searchQuery = encodeURIComponent(`${genderStr} ${item.search}`);
+                        const amazonLink = `https://www.amazon.com/s?k=${searchQuery}`;
+
+                        // If clothing, explicitly mention gender in the title
+                        const displayTitle = categoryName === "Clothing & Basics" 
+                            ? `${gender === 'neutral' ? 'Neutral' : gender.charAt(0).toUpperCase() + gender.slice(1)} ${item.name}` 
+                            : item.name;
+
+                        itemsHTML += `
+                            <div class="product-card">
+                                <div class="product-name">${displayTitle}</div>
+                                <div class="product-desc">Target allocation based on overall budget constraints.</div>
+                                <div class="product-footer">
+                                    <div class="product-price">$${itemPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                    <a href="${amazonLink}" target="_blank" class="buy-btn">Search Amazon</a>
+                                </div>
+                            </div>
+                        `;
+                    });
+
                     const sectionHTML = `
                         <div class="category-section">
                             <div class="category-header">
-                                <div class="category-title">${cat.name}</div>
-                                <div class="category-allocation">Budget: $${categoryBudget.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                                <div class="category-title">${categoryName}</div>
+                                <div class="category-allocation">Budget: $${categoryBudget.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                             </div>
                             <div class="product-list">
-                                
-                                <div class="product-card">
-                                    <div class="product-image">Primary Item</div>
-                                    <div class="product-name">Premium ${cat.name} Essential</div>
-                                    <div class="product-desc">The main necessity for this category.</div>
-                                    <div class="product-footer">
-                                        <div class="product-price">$${item1Price.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                                        <a href="#" class="buy-btn">Amazon Link</a>
-                                    </div>
-                                </div>
-
-                                <div class="product-card">
-                                    <div class="product-image">Secondary Item</div>
-                                    <div class="product-name">Standard ${cat.name} Tool</div>
-                                    <div class="product-desc">A highly rated everyday item.</div>
-                                    <div class="product-footer">
-                                        <div class="product-price">$${item2Price.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                                        <a href="#" class="buy-btn">Amazon Link</a>
-                                    </div>
-                                </div>
-
+                                ${itemsHTML}
                             </div>
                         </div>
                     `;
                     
-                    // Inject into the page
                     categoriesContainer.insertAdjacentHTML('beforeend', sectionHTML);
                 });
             }
