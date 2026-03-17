@@ -3,60 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Kit Builder | Prep for Arrival</title>
+    <title>BabyBudget | Prep for Arrival</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
         :root {
-            var(--text-main): #1e293b;
-            --text-muted: #64748b;
-            --surface-glass: rgba(255, 255, 255, 0.75);
-            --surface-solid: #ffffff;
-            --border-glass: rgba(255, 255, 255, 0.6);
-            --shadow-soft: 0 20px 40px rgba(148, 163, 184, 0.15);
-            --shadow-hover: 0 30px 60px rgba(148, 163, 184, 0.25);
+            var(--text-main): #f8fafc;
+            --text-muted: #94a3b8;
+            --surface-glass: rgba(30, 41, 59, 0.4);
+            --surface-solid: rgba(15, 23, 42, 0.6);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.2);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.6);
             
-            --gradient-primary: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            --gradient-primary: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            --gradient-hover: linear-gradient(135deg, #b5a3df 0%, #fcd3f2 100%);
             
             --radius-lg: 32px;
             --radius-md: 20px;
-            --radius-sm: 12px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: #1e293b;
+            color: #f8fafc;
             line-height: 1.6;
             padding-bottom: 90px;
             min-height: 100vh;
-            background-color: #fcf8f2;
-            background: linear-gradient(120deg, #fdfbfb 0%, #eaedee 100%);
+            background-color: #07090f;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(161, 140, 209, 0.1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(251, 194, 235, 0.05) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, rgba(132, 250, 176, 0.05) 0, transparent 50%);
             position: relative;
             overflow-x: hidden;
         }
 
         body::before, body::after {
-            content: ''; position: absolute; border-radius: 50%; z-index: -1; filter: blur(80px); opacity: 0.6;
+            content: ''; position: absolute; border-radius: 50%; z-index: -1; filter: blur(100px); opacity: 0.3;
         }
-        body::before { width: 500px; height: 500px; background: #ffe4e6; top: -100px; left: -100px; }
-        body::after { width: 600px; height: 600px; background: #e0f2fe; bottom: -100px; right: -100px; }
+        body::before { width: 600px; height: 600px; background: #5b21b6; top: -150px; left: -150px; }
+        body::after { width: 700px; height: 700px; background: #be185d; bottom: -150px; right: -150px; }
 
         nav {
             padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass); position: sticky; top: 0; z-index: 50;
         }
 
         .logo {
-            font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;
+            font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;
             background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            cursor: pointer; transition: opacity 0.2s; user-select: none;
         }
+        .logo:hover { opacity: 0.8; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
-        #setup-view { text-align: center; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        /* Smooth View Transitions */
+        .view-section {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .hidden-view {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            position: absolute;
+            visibility: hidden;
+        }
+        .active-view {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+            position: relative;
+            visibility: visible;
+        }
+
+        #setup-view { text-align: center; }
         h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -1.5px; }
         .subtitle { color: var(--text-muted); font-size: 1.25rem; margin-bottom: 3rem; font-weight: 500; }
 
@@ -68,14 +93,14 @@
 
         .gender-selector { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; }
         .gender-label {
-            background: rgba(255,255,255,0.5); padding: 14px 32px; border-radius: 40px;
+            background: rgba(255,255,255,0.05); padding: 14px 32px; border-radius: 40px;
             cursor: pointer; font-weight: 600; font-size: 1.05rem; border: 2px solid transparent;
-            transition: all 0.3s ease; color: var(--text-muted);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); color: var(--text-muted);
         }
         .gender-radio { display: none; }
         .gender-radio:checked + .gender-label {
-            background: #ffffff; border-color: #ff9a9e; color: #ff9a9e;
-            box-shadow: 0 10px 20px rgba(255, 154, 158, 0.15); transform: translateY(-2px);
+            background: rgba(251, 194, 235, 0.1); border-color: #fbc2eb; color: #fbc2eb;
+            box-shadow: 0 10px 20px rgba(251, 194, 235, 0.1); transform: translateY(-2px);
         }
 
         .category-selector { margin-bottom: 40px; }
@@ -83,108 +108,138 @@
         
         .toggles-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .cat-label {
-            background: rgba(255,255,255,0.6); padding: 12px 24px; border-radius: 30px;
-            cursor: pointer; font-size: 0.95rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.8);
-            transition: all 0.2s; color: var(--text-muted);
+            background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px;
+            cursor: pointer; font-size: 0.95rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease; color: var(--text-muted);
         }
         .cat-checkbox { display: none; }
-        .cat-checkbox:checked + .cat-label { background: #1e293b; color: #ffffff; border-color: #1e293b; }
-        .cat-checkbox:not(:checked) + .cat-label { opacity: 0.5; }
+        .cat-checkbox:checked + .cat-label { background: #f8fafc; color: #0f172a; border-color: #f8fafc; }
+        .cat-checkbox:not(:checked) + .cat-label { opacity: 0.4; text-decoration: line-through; }
 
-        .budget-display { font-size: 5rem; font-weight: 800; color: #1e293b; margin-bottom: 10px; letter-spacing: -2px; }
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; margin: 30px 0 40px; }
+        .budget-display { font-size: 5rem; font-weight: 800; color: #f8fafc; margin-bottom: 10px; letter-spacing: -2px; }
+        
+        /* Animated Slider UI */
+        .slider-wrapper { position: relative; margin: 30px 0 40px; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; outline: none; }
+        
+        /* Thumb default */
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none; height: 36px; width: 36px; border-radius: 50%;
-            background: var(--gradient-primary); cursor: pointer; margin-top: -14px;
-            box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4); transition: transform 0.2s; border: 4px solid white;
+            background: var(--gradient-primary); cursor: grab; margin-top: -14px;
+            box-shadow: 0 0 20px rgba(161, 140, 209, 0.5); border: 4px solid #0f172a;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
         }
-        input[type=range]::-webkit-slider-thumb:active { transform: scale(1.1); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: rgba(0,0,0,0.05); border-radius: 10px; }
+        
+        /* Thumb Grabbed (Enlarge) */
+        input[type=range]:active::-webkit-slider-thumb {
+            transform: scale(1.3); cursor: grabbing; box-shadow: 0 0 30px rgba(161, 140, 209, 0.8);
+        }
+
+        /* Thumb Shake Animation applied via JS class */
+        @keyframes jellyShake {
+            0% { transform: scale(1.3) translateX(0); }
+            25% { transform: scale(1.05) translateX(-4px); }
+            50% { transform: scale(1.1) translateX(4px); }
+            75% { transform: scale(0.95) translateX(-2px); }
+            100% { transform: scale(1) translateX(0); }
+        }
+        input[type=range].shake-effect::-webkit-slider-thumb {
+            animation: jellyShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 10px; }
 
         .primary-btn {
-            background: #1e293b; color: #ffffff; border: none; padding: 20px 48px;
-            font-size: 1.15rem; font-weight: 700; border-radius: 40px; cursor: pointer;
-            transition: all 0.3s ease; width: 100%; max-width: 320px;
-            box-shadow: 0 15px 30px rgba(30, 41, 59, 0.15);
+            background: var(--gradient-primary); color: #0f172a; border: none; padding: 20px 48px;
+            font-size: 1.15rem; font-weight: 800; border-radius: 40px; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; max-width: 320px;
+            box-shadow: 0 10px 30px rgba(161, 140, 209, 0.3); position: relative; overflow: hidden;
         }
-        .primary-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(30, 41, 59, 0.25); background: #0f172a; }
+        .primary-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(161, 140, 209, 0.5); background: var(--gradient-hover); }
+        .primary-btn:active { transform: translateY(2px); }
         .primary-btn:disabled { opacity: 0.5; transform: none; box-shadow: none; cursor: not-allowed; }
 
         .secondary-btn {
-            background: var(--surface-solid); color: #1e293b; border: 1px solid rgba(0,0,0,0.05);
-            padding: 12px 28px; border-radius: 30px; cursor: pointer; font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.2s;
+            background: transparent; color: #f8fafc; border: 1px solid var(--border-glass);
+            padding: 12px 28px; border-radius: 30px; cursor: pointer; font-weight: 600; transition: all 0.2s;
         }
-        .secondary-btn:hover { background: #f8fafc; transform: translateY(-2px); }
+        .secondary-btn:hover { background: rgba(255,255,255,0.05); border-color: var(--border-highlight); transform: translateY(-2px); }
 
-        #results-view { display: none; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
 
         .pie-chart-container {
             display: flex; align-items: center; gap: 30px; margin-bottom: 50px;
-            background: var(--surface-glass); padding: 30px; border-radius: var(--radius-lg);
-            border: 1px solid var(--border-glass); box-shadow: var(--shadow-soft);
+            background: var(--surface-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass); box-shadow: var(--shadow-soft);
         }
-        .pie-chart { width: 120px; height: 120px; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.05)); }
+        .pie-chart { width: 120px; height: 120px; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); transform: scale(0); animation: popIn 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .chart-legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 24px; font-weight: 500; }
-        .legend-item { display: flex; align-items: center; gap: 10px; color: #1e293b; font-size: 0.95rem; }
-        .legend-color { width: 14px; height: 14px; border-radius: 50%; }
+        .legend-item { display: flex; align-items: center; gap: 10px; color: #f8fafc; font-size: 0.95rem; opacity: 0; animation: fadeIn 0.4s ease forwards; }
+        .legend-color { width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 10px currentColor; }
 
         .category-section { margin-bottom: 60px; }
-        .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border-glass); padding-bottom: 15px;}
         .category-title { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px; }
-        .category-allocation { background: rgba(0,0,0,0.03); padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; }
-        .cat-target-note { font-size: 0.8rem; font-weight: 500; opacity: 0.6; display: block; margin-top: 4px; }
+        .category-allocation { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; }
+        .cat-target-note { font-size: 0.8rem; font-weight: 500; opacity: 0.6; display: block; margin-top: 4px; color: var(--text-muted); }
 
         .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
         
+        /* Staggered Card Animation Base */
         .product-card {
-            background: var(--surface-solid); border: 1px solid rgba(0,0,0,0.03);
+            background: var(--surface-solid); border: 1px solid var(--border-glass);
             border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.02); transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); backdrop-filter: blur(10px);
+            opacity: 0; transform: translateX(60px); /* Start state for animation */
+            transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
         }
-        .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: rgba(0,0,0,0.08); }
+        .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
+
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes popIn {
+            to { transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
 
         .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
         .product-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1; }
         
-        .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; }
-        .product-price { font-size: 1.4rem; font-weight: 800; color: #1e293b; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 20px; }
+        .product-price { font-size: 1.4rem; font-weight: 800; color: #f8fafc; }
         
         .buy-btn {
-            background: var(--gradient-primary); color: #fff; text-decoration: none;
-            padding: 10px 20px; border-radius: 20px; font-size: 0.95rem; font-weight: 700;
-            box-shadow: 0 4px 10px rgba(255, 154, 158, 0.3); transition: transform 0.2s;
+            background: rgba(255,255,255,0.1); color: #f8fafc; text-decoration: none; border: 1px solid var(--border-glass);
+            padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;
+            transition: all 0.2s;
         }
-        .buy-btn:hover { transform: scale(1.05); }
+        .buy-btn:hover { background: #f8fafc; color: #0f172a; transform: scale(1.05); }
 
-        /* NEW: Grand Total Card Styles */
         .grand-total-card {
             background: var(--surface-glass); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-            padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass);
-            box-shadow: var(--shadow-soft); text-align: center; margin-top: 60px;
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-highlight);
+            box-shadow: 0 0 40px rgba(161, 140, 209, 0.1); text-align: center; margin-top: 60px;
+            opacity: 0; transform: translateY(30px); animation: slideInRight 0.8s 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .gt-label { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .gt-value { font-size: 4.5rem; font-weight: 800; color: #1e293b; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
+        .gt-value { font-size: 4.5rem; font-weight: 800; color: #f8fafc; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
         .gt-target { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
-        .gt-target span { font-weight: 700; color: #1e293b; }
+        .gt-target span { font-weight: 700; color: #f8fafc; }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">BabyKit</div>
+        <div class="logo" id="logoBtn">BabyBudget</div>
     </nav>
 
     <div class="container">
         
-        <div id="setup-view">
+        <div id="setup-view" class="view-section active-view">
             <h1>Curate your baby's world.</h1>
             <p class="subtitle">Set your budget, deselect what you already own, and we'll perfectly balance the rest.</p>
             
@@ -210,12 +265,14 @@
                 </div>
 
                 <div class="budget-display" id="budgetDisplay">$1,000</div>
-                <input type="range" id="budgetSlider" min="300" max="4000" step="50" value="1000">
+                <div class="slider-wrapper">
+                    <input type="range" id="budgetSlider" min="300" max="4000" step="50" value="1000">
+                </div>
                 <button class="primary-btn" id="buildBtn">Generate My Kit</button>
             </div>
         </div>
 
-        <div id="results-view">
+        <div id="results-view" class="view-section hidden-view">
             <div class="results-header">
                 <div>
                     <h2>Your Personalized Kit</h2>
@@ -245,6 +302,7 @@
             const budgetDisplay = document.getElementById('budgetDisplay');
             const buildBtn = document.getElementById('buildBtn');
             const startOverBtn = document.getElementById('startOverBtn');
+            const logoBtn = document.getElementById('logoBtn');
             const categoriesContainer = document.getElementById('categories-container');
             const categoryTogglesContainer = document.getElementById('categoryTogglesContainer');
             const pieChartCanvas = document.getElementById('pieChartCanvas');
@@ -282,7 +340,7 @@
                 "Diapering Needs": [
                     { name: "Diaper Stockpile", weight: 0.40, search: "newborn size 1 diapers" },
                     { name: "Baby Wipes Bulk Box", weight: 0.25, search: "water baby wipes bulk" },
-                    { name: "Diaper Pail & Refills", weight: 0.20, search: "diaper pail" },
+                    { name: "Diaper Pail", weight: 0.20, search: "diaper pail" },
                     { name: "Changing Pad", weight: 0.15, search: "changing pad diaper cream" }
                 ],
                 "Clothing & Basics": [
@@ -319,17 +377,53 @@
                 buildBtn.disabled = checkedCount === 0;
             });
 
+            // Slider Feedback Animations
             budgetSlider.addEventListener('input', (e) => {
                 budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
             });
 
-            // Helper to make prices look real (e.g. $45.99 instead of $45.32)
+            // The "Jelly Drop" Shake Effect when letting go of the slider
+            budgetSlider.addEventListener('mouseup', () => triggerShake());
+            budgetSlider.addEventListener('touchend', () => triggerShake());
+
+            function triggerShake() {
+                budgetSlider.classList.remove('shake-effect');
+                // Trigger reflow to restart animation
+                void budgetSlider.offsetWidth; 
+                budgetSlider.classList.add('shake-effect');
+            }
+
             function makeRealisticPrice(rawPrice) {
-                // If the item is very cheap, just add .99
                 if (rawPrice < 5) return Math.floor(rawPrice) + 0.99;
-                // Otherwise make it end in .99 for retail realism
                 return Math.floor(rawPrice) + 0.99;
             }
+
+            // Animated View Transitions
+            function goToResults() {
+                setupView.classList.remove('active-view');
+                setupView.classList.add('hidden-view');
+                
+                // Add a slight pause to build anticipation before showing results
+                setTimeout(() => {
+                    resultsView.classList.remove('hidden-view');
+                    resultsView.classList.add('active-view');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 400);
+            }
+
+            function goToSetup() {
+                resultsView.classList.remove('active-view');
+                resultsView.classList.add('hidden-view');
+                
+                setTimeout(() => {
+                    setupView.classList.remove('hidden-view');
+                    setupView.classList.add('active-view');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            }
+
+            startOverBtn.addEventListener('click', goToSetup);
+            logoBtn.addEventListener('click', goToSetup);
 
             buildBtn.addEventListener('click', () => {
                 if(buildBtn.disabled) return;
@@ -339,30 +433,17 @@
                 const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
                 const activeCategoryNames = Array.from(document.querySelectorAll('.cat-checkbox:checked')).map(cb => cb.value);
                 
-                setupView.style.display = 'none';
-                resultsView.style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-
                 let totalActiveWeight = 0;
                 activeCategoryNames.forEach(cat => totalActiveWeight += initialCategoryWeights[cat].weight);
 
                 const kitData = activeCategoryNames.map(name => {
                     const normalizedWeight = initialCategoryWeights[name].weight / totalActiveWeight;
-                    return {
-                        name,
-                        color: initialCategoryWeights[name].color,
-                        normalizedWeight: normalizedWeight
-                    }
+                    return { name, color: initialCategoryWeights[name].color, normalizedWeight: normalizedWeight }
                 });
 
                 renderDonutChart(kitData);
                 generateKitList(totalBudget, gender, kitData);
-            });
-
-            startOverBtn.addEventListener('click', () => {
-                resultsView.style.display = 'none';
-                setupView.style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                goToResults();
             });
 
             function renderDonutChart(kitData) {
@@ -375,7 +456,7 @@
                 const centerY = 40;
                 let svgHtml = `<svg width="100%" height="100%" viewBox="0 0 80 80">`;
 
-                kitData.forEach(cat => {
+                kitData.forEach((cat, index) => {
                     const sliceAngle = cat.normalizedWeight * 360;
                     const largeArcFlag = sliceAngle > 180 ? 1 : 0;
                     const gap = 1; 
@@ -392,9 +473,11 @@
                               fill="${cat.color}" />
                     `;
 
+                    // Stagger the legend items fading in
+                    const legendDelay = 0.4 + (index * 0.1);
                     const legendItemHtml = `
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: ${cat.color};"></div>
+                        <div class="legend-item" style="animation-delay: ${legendDelay}s;">
+                            <div class="legend-color" style="background-color: ${cat.color}; color: ${cat.color};"></div>
                             <span>${cat.name}</span>
                         </div>
                     `;
@@ -402,8 +485,27 @@
                     currentAngle += sliceAngle;
                 });
 
-                svgHtml += `<circle cx="40" cy="40" r="24" fill="#ffffff" /></svg>`;
+                svgHtml += `<circle cx="40" cy="40" r="24" fill="#141a28" /></svg>`;
                 pieChartCanvas.insertAdjacentHTML('beforeend', svgHtml);
+            }
+
+            // Animated Number Counter Function
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    // Ease out quintic math for smooth slowing down at the end
+                    const easeOut = 1 - Math.pow(1 - progress, 5); 
+                    const currentVal = (progress * (end - start) + start);
+                    obj.innerHTML = `$${currentVal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        obj.innerHTML = `$${end.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                    }
+                };
+                window.requestAnimationFrame(step);
             }
 
             function generateKitList(totalTargetBudget, gender, kitData) {
@@ -411,31 +513,32 @@
                 grandTotalContainer.innerHTML = ''; 
                 
                 const genderStr = gender === "neutral" ? "gender neutral" : "baby " + gender;
-                let actualGrandTotal = 0; // Tracks the sum of all realistic prices
+                let actualGrandTotal = 0; 
+                let globalItemIndex = 0; // Used to stagger the slide-in animation across ALL items
 
-                kitData.forEach(cat => {
+                kitData.forEach((cat, catIndex) => {
                     const categoryTargetBudget = totalTargetBudget * cat.normalizedWeight;
                     const items = bundleTemplates[cat.name];
                     
                     let itemsHTML = '';
-                    let actualCategorySubtotal = 0; // Tracks sum for this specific category
+                    let actualCategorySubtotal = 0; 
 
                     items.forEach(item => {
                         const rawItemPrice = categoryTargetBudget * item.weight;
-                        
-                        // Convert exact float to a realistic retail price (e.g. $45.99)
                         const retailItemPrice = makeRealisticPrice(rawItemPrice);
                         actualCategorySubtotal += retailItemPrice;
 
                         const searchQuery = encodeURIComponent(`${genderStr} ${item.search}`);
                         const amazonLink = `https://www.amazon.com/s?k=${searchQuery}`;
-
                         const displayTitle = cat.name === "Clothing & Basics" 
                             ? `${gender === 'neutral' ? 'Neutral' : gender.charAt(0).toUpperCase() + gender.slice(1)} ${item.name}` 
                             : item.name;
 
+                        // Calculate the delay for this specific card to slide in
+                        const cardDelay = 0.5 + (globalItemIndex * 0.08);
+
                         itemsHTML += `
-                            <div class="product-card">
+                            <div class="product-card" style="animation: slideInRight 0.6s ${cardDelay}s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
                                 <div class="product-name">${displayTitle}</div>
                                 <div class="product-desc">Proportionally balanced estimate.</div>
                                 <div class="product-footer">
@@ -444,17 +547,17 @@
                                 </div>
                             </div>
                         `;
+                        globalItemIndex++;
                     });
 
-                    // Add category subtotal to the overall grand total
                     actualGrandTotal += actualCategorySubtotal;
 
                     const sectionHTML = `
                         <div class="category-section">
                             <div class="category-header">
-                                <div class="category-title" style="color: ${cat.color}">${cat.name}</div>
+                                <div class="category-title" style="color: ${cat.color}; text-shadow: 0 0 20px ${cat.color}40;">${cat.name}</div>
                                 <div style="text-align: right;">
-                                    <div class="category-allocation" style="color: ${cat.color}; background: ${cat.color}20;">
+                                    <div class="category-allocation" style="color: ${cat.color}; border-color: ${cat.color}50; background: ${cat.color}15;">
                                         Subtotal: $${actualCategorySubtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                                     </div>
                                     <span class="cat-target-note">Target: $${categoryTargetBudget.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
@@ -469,15 +572,22 @@
                     categoriesContainer.insertAdjacentHTML('beforeend', sectionHTML);
                 });
 
-                // Render the Grand Total Checkout Card
                 const grandTotalHTML = `
                     <div class="grand-total-card">
                         <div class="gt-label">Total Estimated Kit Value</div>
-                        <div class="gt-value">$${actualGrandTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                        <div class="gt-value" id="animatedTotal">$0.00</div>
                         <div class="gt-target">Based on your target budget of <span>$${totalTargetBudget.toLocaleString()}</span></div>
                     </div>
                 `;
                 grandTotalContainer.innerHTML = grandTotalHTML;
+
+                // Trigger the number counting animation after a short delay so it happens as they scroll down
+                setTimeout(() => {
+                    const animatedTotalEl = document.getElementById('animatedTotal');
+                    if(animatedTotalEl) {
+                        animateValue(animatedTotalEl, 0, actualGrandTotal, 1500);
+                    }
+                }, 800);
             }
         });
     </script>
