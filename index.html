@@ -142,12 +142,22 @@
         .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border-glass); padding-bottom: 15px;}
         .category-title { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px; }
         
-        .category-allocation-wrapper { position: relative; display: inline-block; }
+        .category-allocation-wrapper { position: relative; display: inline-block; cursor: help; }
         .category-allocation { 
             background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); 
             padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; transition: all 0.2s;
         }
+        .category-allocation-wrapper:hover .category-allocation { background: rgba(255,255,255,0.1) !important; transform: translateY(-2px); }
         
+        .subtotal-tooltip {
+            visibility: hidden; width: 340px; background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(40px); text-align: left; padding: 24px; border-radius: 16px; border: 1px solid var(--border-highlight);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: absolute; z-index: 100; bottom: 130%; right: 0;
+            opacity: 0; transform: translateY(10px); transition: all 0.3s; font-size: 0.9rem; font-weight: 500; line-height: 1.6;
+        }
+        .subtotal-tooltip::after { content: ''; position: absolute; top: 100%; right: 0; width: 100%; height: 30%; }
+        .category-allocation-wrapper:hover .subtotal-tooltip { visibility: visible; opacity: 1; transform: translateY(0); }
+
         .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
         .product-card {
             background: var(--surface-solid); border: 1px solid var(--border-glass);
@@ -211,6 +221,8 @@
             .chart-legend { grid-template-columns: 1fr; gap: 12px; }
             .category-header { flex-direction: column; align-items: flex-start; gap: 15px; }
             .category-header > div:last-child { text-align: left !important; width: 100%; }
+            .subtotal-tooltip { width: 100%; min-width: 280px; bottom: 100%; left: 0; right: auto; margin-bottom: 15px; }
+            .subtotal-tooltip::after { display: none; }
             .grand-total-card { padding: 30px 20px; }
             .gt-value { font-size: 3rem; }
         }
@@ -294,6 +306,16 @@
                 "Clothing & Basics": "#b6eacb", 
                 "Bath & Health": "#ffdac1", 
                 "Play & Soothing": "#c1c8e4"
+            };
+
+            const initialCategoryWeights = {
+                "Nursery & Furniture": { weight: 0.25, explanation: "Includes foundational items like a crib, mattress, and glider to ensure long-term comfort and safety." }, 
+                "Travel & Gear": { weight: 0.20, explanation: "Utilizes a large share due to strict safety requirements for items like an infant car seat and stroller." }, 
+                "Feeding & Nursing": { weight: 0.15, explanation: "Dedicated allocation for continuous daily needs, including bottles, cleaning supplies, and a high chair." }, 
+                "Diapering Needs": { weight: 0.15, explanation: "Secures funds for a diaper pail, changing pad, and a massive initial stockpile of diapers and wipes." }, 
+                "Clothing & Basics": { weight: 0.10, explanation: "Focuses on volume and comfort, requiring multiple daily changes of sleep-and-plays and bodysuits." }, 
+                "Bath & Health": { weight: 0.10, explanation: "Allocated to safely manage hygiene and early illnesses with bathtubs, skin care, and accurate thermometers." }, 
+                "Play & Soothing": { weight: 0.05, explanation: "Essential calming tools like a bouncer, play mat, and pacifiers offer immense value for soothing a fussy baby." } 
             };
 
             const productDatabase = {
@@ -463,4 +485,375 @@
                     { 
                         name: "Baby Bathtub", 
                         tiers: [
-                            { tier: "Budget", title: "The First Years Sure Comfort Tub", price: 19.99, rating: 4.8, reviews: 31054, img: "
+                            { tier: "Budget", title: "The First Years Sure Comfort Tub", price: 19.99, rating: 4.8, reviews: 31054, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Bathtub" },
+                            { tier: "Standard", title: "Fisher-Price 4-in-1 Sling Tub", price: 39.99, rating: 4.8, reviews: 25012, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Sling+Tub" },
+                            { tier: "Premium", title: "FridaBaby Grow-With-Me Tub", price: 49.99, rating: 4.7, reviews: 4291, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=FridaBaby+Tub" }
+                        ]
+                    },
+                    { 
+                        name: "Healthcare Kit", 
+                        tiers: [
+                            { tier: "Budget", title: "Safety 1st Healthcare Set", price: 14.99, rating: 4.5, reviews: 38045, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Health+Kit" },
+                            { tier: "Standard", title: "FridaBaby Bitty Bundle of Joy", price: 34.99, rating: 4.8, reviews: 19021, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=FridaBaby+Kit" },
+                            { tier: "Premium", title: "Braun ThermoScan 7 Ear Thermometer", price: 59.99, rating: 4.8, reviews: 21084, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Ear+Thermometer" }
+                        ]
+                    },
+                    { 
+                        name: "Towels & Washcloths", 
+                        tiers: [
+                            { tier: "Budget", title: "Luvable Friends Hooded Towel", price: 9.99, rating: 4.6, reviews: 14032, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Hooded+Towel" },
+                            { tier: "Standard", title: "Hudson Baby Animal Face Towel", price: 16.99, rating: 4.8, reviews: 32091, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Animal+Towel" },
+                            { tier: "Premium", title: "Burt's Bees Organic Towel Set", price: 29.99, rating: 4.8, reviews: 12543, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Organic+Towel" }
+                        ]
+                    },
+                    { 
+                        name: "Baby Wash", 
+                        tiers: [
+                            { tier: "Budget", title: "Johnson's Head-to-Toe Wash", price: 6.99, rating: 4.7, reviews: 29012, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Johnsons+Wash" },
+                            { tier: "Standard", title: "Aveeno Baby Wash & Shampoo", price: 11.99, rating: 4.8, reviews: 34088, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Aveeno+Wash" },
+                            { tier: "Premium", title: "Tubby Todd Hair & Body Wash", price: 19.99, rating: 4.9, reviews: 8143, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Tubby+Todd" }
+                        ]
+                    }
+                ],
+                "Play & Soothing": [
+                    { 
+                        name: "Bouncer or Swing", 
+                        tiers: [
+                            { tier: "Budget", title: "Bright Starts Playful Pinwheels", price: 29.99, rating: 4.6, reviews: 18054, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Basic+Bouncer" },
+                            { tier: "Standard", title: "Fisher-Price Snugapuppy Swing", price: 69.99, rating: 4.7, reviews: 14582, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Fisher+Price+Swing" },
+                            { tier: "Premium", title: "BabyBjorn Bouncer Balance Soft", price: 199.99, rating: 4.9, reviews: 11231, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=BabyBjorn" }
+                        ]
+                    },
+                    { 
+                        name: "Play Mat", 
+                        tiers: [
+                            { tier: "Budget", title: "Infantino Pond Pals Playmat", price: 19.99, rating: 4.6, reviews: 8412, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Pond+Pals+Mat" },
+                            { tier: "Standard", title: "Fisher-Price Deluxe Kick & Play", price: 39.99, rating: 4.9, reviews: 52088, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Kick+and+Play" },
+                            { tier: "Premium", title: "Lovevery The Play Gym", price: 139.99, rating: 4.9, reviews: 6845, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Lovevery+Gym" }
+                        ]
+                    },
+                    { 
+                        name: "Pacifier Pack", 
+                        tiers: [
+                            { tier: "Budget", title: "Tommee Tippee Happy Pacifiers", price: 5.99, rating: 4.6, reviews: 12054, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Tommee+Tippee" },
+                            { tier: "Standard", title: "Philips Avent Soothie 4-Pack", price: 11.99, rating: 4.8, reviews: 65021, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Avent+Soothie" },
+                            { tier: "Premium", title: "BIBS Natural Rubber Pacifiers", price: 15.99, rating: 4.7, reviews: 18092, img: "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=BIBS+Pacifiers" }
+                        ]
+                    }
+                ]
+            };
+
+            // Initialize Setup Toggles
+            Object.keys(categoryColors).forEach(cat => {
+                const labelHtml = `
+                    <label>
+                        <input type="checkbox" value="${cat}" class="cat-checkbox" checked>
+                        <div class="cat-label">${cat}</div>
+                    </label>
+                `;
+                categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
+            });
+
+            // Dynamic Slider Bounds based on actual Database Prices
+            function updateSliderBounds() {
+                let minFloor = 0;
+                let activeCount = 0;
+
+                document.querySelectorAll('.cat-checkbox:checked').forEach(cb => {
+                    activeCount++;
+                    const items = productDatabase[cb.value] || [];
+                    items.forEach(item => {
+                        if (item.tiers && item.tiers.length > 0) {
+                            minFloor += item.tiers[0].price;
+                        }
+                    });
+                });
+
+                if (activeCount === 0) {
+                    buildBtn.disabled = true;
+                    return;
+                }
+                buildBtn.disabled = false;
+
+                // Round down to nearest 50 for floor, cap max at 5000
+                const newMin = Math.max(100, Math.floor(minFloor / 50) * 50);
+                const newMax = 5000;
+
+                budgetSlider.min = newMin;
+                budgetSlider.max = newMax;
+
+                let currentVal = parseInt(budgetSlider.value);
+                if (currentVal < newMin) budgetSlider.value = newMin;
+                if (currentVal > newMax) budgetSlider.value = newMax;
+
+                budgetDisplay.textContent = '$' + parseInt(budgetSlider.value).toLocaleString();
+            }
+
+            categoryTogglesContainer.addEventListener('change', updateSliderBounds);
+            updateSliderBounds(); // Run on load
+
+            budgetSlider.addEventListener('input', (e) => {
+                budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
+            });
+
+            budgetSlider.addEventListener('mouseup', triggerShake);
+            budgetSlider.addEventListener('touchend', triggerShake);
+
+            function triggerShake() {
+                budgetSlider.classList.remove('shake-effect');
+                void budgetSlider.offsetWidth; 
+                budgetSlider.classList.add('shake-effect');
+            }
+
+            function goToResults() {
+                setupView.classList.remove('active-view');
+                setupView.classList.add('hidden-view');
+                setTimeout(() => {
+                    resultsView.classList.remove('hidden-view');
+                    resultsView.classList.add('active-view');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            }
+
+            function goToSetup() {
+                resultsView.classList.remove('active-view');
+                resultsView.classList.add('hidden-view');
+                setTimeout(() => {
+                    setupView.classList.remove('hidden-view');
+                    setupView.classList.add('active-view');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            }
+
+            startOverBtn.addEventListener('click', goToSetup);
+            logoBtn.addEventListener('click', goToSetup);
+
+            // --- THE POOLED UPGRADE ALGORITHM ---
+            function calculateOptimalKit(totalBudget, activeCategoryNames) {
+                let itemsList = [];
+                
+                activeCategoryNames.forEach(catName => {
+                    const items = productDatabase[catName] || [];
+                    items.forEach(item => {
+                        itemsList.push({
+                            catName: catName,
+                            baseItem: item,
+                            currentTierIdx: 0
+                        });
+                    });
+                });
+
+                let currentTotal = itemsList.reduce((sum, i) => sum + i.baseItem.tiers[0].price, 0);
+                let hadToOverride = currentTotal > totalBudget;
+
+                let canUpgrade = true;
+                while (canUpgrade && currentTotal < totalBudget) {
+                    let candidates = itemsList.filter(i => {
+                        if (i.currentTierIdx >= i.baseItem.tiers.length - 1) return false; 
+                        let costToUpgrade = i.baseItem.tiers[i.currentTierIdx + 1].price - i.baseItem.tiers[i.currentTierIdx].price;
+                        return (currentTotal + costToUpgrade) <= totalBudget;
+                    });
+
+                    if (candidates.length === 0) {
+                        canUpgrade = false; 
+                    } else {
+                        candidates.sort((a, b) => {
+                            if (a.currentTierIdx !== b.currentTierIdx) return a.currentTierIdx - b.currentTierIdx;
+                            let costA = a.baseItem.tiers[a.currentTierIdx + 1].price - a.baseItem.tiers[a.currentTierIdx].price;
+                            let costB = b.baseItem.tiers[b.currentTierIdx + 1].price - b.baseItem.tiers[b.currentTierIdx].price;
+                            return costA - costB; 
+                        });
+
+                        let itemToUpgrade = candidates[0];
+                        let costToUpgrade = itemToUpgrade.baseItem.tiers[itemToUpgrade.currentTierIdx + 1].price - itemToUpgrade.baseItem.tiers[itemToUpgrade.currentTierIdx].price;
+                        
+                        itemToUpgrade.currentTierIdx++;
+                        currentTotal += costToUpgrade;
+                    }
+                }
+
+                let kitByCategory = {};
+                let catTotals = {};
+                let grandTotal = 0;
+
+                activeCategoryNames.forEach(cat => {
+                    kitByCategory[cat] = [];
+                    catTotals[cat] = 0;
+                });
+
+                itemsList.forEach(i => {
+                    let selectedProduct = i.baseItem.tiers[i.currentTierIdx];
+                    kitByCategory[i.catName].push(selectedProduct);
+                    catTotals[i.catName] += selectedProduct.price;
+                    grandTotal += selectedProduct.price;
+                });
+
+                return { kitByCategory, catTotals, grandTotal, hadToOverride };
+            }
+
+            buildBtn.addEventListener('click', () => {
+                if(buildBtn.disabled) return;
+
+                const totalBudget = parseInt(budgetSlider.value);
+                const selectedGenderInput = document.querySelector('input[name="gender"]:checked');
+                const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
+                const activeCategoryNames = Array.from(document.querySelectorAll('.cat-checkbox:checked')).map(cb => cb.value);
+                
+                goToResults();
+                
+                const finalKit = calculateOptimalKit(totalBudget, activeCategoryNames);
+                
+                renderDonutChart(finalKit.catTotals, activeCategoryNames);
+                generateKitListHTML(finalKit, gender, activeCategoryNames, totalBudget);
+            });
+
+            function renderDonutChart(catTotals, activeCategoryNames) {
+                pieChartCanvas.innerHTML = ''; 
+                chartLegend.innerHTML = ''; 
+
+                let currentAngle = 0;
+                const radius = 40;
+                let svgHtml = `<svg width="100%" height="100%" viewBox="0 0 80 80">`;
+                
+                let grandTotal = Object.values(catTotals).reduce((a, b) => a + b, 0);
+
+                activeCategoryNames.forEach((catName, index) => {
+                    let color = categoryColors[catName];
+                    let weight = catTotals[catName] / grandTotal;
+                    if (weight === 0) return;
+
+                    const sliceAngle = weight * 360;
+                    const largeArcFlag = sliceAngle > 180 ? 1 : 0;
+                    const gap = 1; 
+                    const startRads = (currentAngle + gap - 90) * (Math.PI / 180);
+                    const endRads = (currentAngle + sliceAngle - gap - 90) * (Math.PI / 180);
+
+                    const startX = 40 + radius * Math.cos(startRads);
+                    const startY = 40 + radius * Math.sin(startRads);
+                    const endX = 40 + radius * Math.cos(endRads);
+                    const endY = 40 + radius * Math.sin(endRads);
+
+                    svgHtml += `<path d="M40,40 L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z" fill="${color}" />`;
+
+                    chartLegend.insertAdjacentHTML('beforeend', `
+                        <div class="legend-item" style="animation-delay: ${0.2 + (index * 0.1)}s;">
+                            <div class="legend-color" style="background-color: ${color}; box-shadow: 0 0 8px ${color};"></div>
+                            <span>${catName}</span>
+                        </div>
+                    `);
+                    currentAngle += sliceAngle;
+                });
+
+                svgHtml += `<circle cx="40" cy="40" r="24" fill="#141a28" /></svg>`;
+                pieChartCanvas.insertAdjacentHTML('beforeend', svgHtml);
+            }
+
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const currentVal = (progress * (end - start) + start);
+                    obj.innerHTML = `$${currentVal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                    if (progress < 1) window.requestAnimationFrame(step);
+                    else obj.innerHTML = `$${end.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            function generateKitListHTML(finalKit, gender, activeCategoryNames, targetBudget) {
+                categoriesContainer.innerHTML = ''; 
+                grandTotalContainer.innerHTML = ''; 
+                
+                const genderStr = gender === "neutral" ? "gender neutral" : "baby " + gender;
+                let globalItemIndex = 0; 
+
+                activeCategoryNames.forEach((catName) => {
+                    const items = finalKit.kitByCategory[catName];
+                    const catTotal = finalKit.catTotals[catName];
+                    const color = categoryColors[catName];
+                    
+                    let itemsHTML = '';
+
+                    items.forEach(product => {
+                        let displayTitle = product.title;
+                        if (catName === "Clothing & Basics") {
+                            const prefix = gender === 'neutral' ? 'Neutral' : gender.charAt(0).toUpperCase() + gender.slice(1);
+                            displayTitle = `${prefix} ${displayTitle}`;
+                        }
+
+                        const googleShoppingLink = `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(displayTitle + " " + genderStr)}`;
+                        const cardDelay = 0.2 + (globalItemIndex * 0.08);
+
+                        const starsHTML = product.rating ? `
+                            <div style="color: #fbbf24; font-size: 0.9rem; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+                                <span>★</span> 
+                                <span style="color: var(--text-main); font-weight: 700;">${product.rating}</span> 
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(${product.reviews.toLocaleString()})</span>
+                            </div>
+                        ` : '';
+
+                        const crashTestHTML = product.crashTest ? `
+                            <div style="background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 12px; display: inline-block;">
+                                🛡️ <strong>Safety Rating:</strong> ${product.crashTest}
+                            </div>
+                        ` : '';
+
+                        itemsHTML += `
+                            <div class="product-card" style="animation: slideInRight 0.6s ${cardDelay}s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
+                                <img src="${product.img}" alt="" class="product-thumb" onerror="this.onerror=null;this.src='https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Item+Image';">
+                                <div>
+                                    <span class="tier-badge">${product.tier} Choice</span>
+                                </div>
+                                <div class="product-name">${displayTitle}</div>
+                                ${starsHTML}
+                                ${crashTestHTML}
+                                <div class="product-desc">Maximized for your budget.</div>
+                                <div class="product-footer">
+                                    <div class="product-price">$${product.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                    <a href="${googleShoppingLink}" target="_blank" class="buy-btn">Find Deals</a>
+                                </div>
+                            </div>
+                        `;
+                        globalItemIndex++;
+                    });
+
+                    categoriesContainer.insertAdjacentHTML('beforeend', `
+                        <div class="category-section">
+                            <div class="category-header">
+                                <div class="category-title" style="color: ${color}; text-shadow: 0 0 20px ${color}40;">${catName}</div>
+                                <div style="text-align: right;">
+                                    <div class="category-allocation" style="color: ${color}; border-color: ${color}50; background: ${color}15;">
+                                        Subtotal: $${catTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-list">
+                                ${itemsHTML}
+                            </div>
+                        </div>
+                    `);
+                });
+
+                const overrideNoteHTML = finalKit.hadToOverride 
+                    ? `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 15px; padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);"><strong>Safety First:</strong> The minimum safe requirements exceeded your target limits. We automatically upgraded your list to the lowest-priced safe options available.</div>` 
+                    : '';
+
+                grandTotalContainer.innerHTML = `
+                    <div class="grand-total-card">
+                        <div class="gt-label">Actual Kit Cost</div>
+                        <div class="gt-value" id="animatedTotal">$0.00</div>
+                        <div class="gt-target">Based on your target budget of <span>$${targetBudget.toLocaleString()}</span></div>
+                        ${overrideNoteHTML}
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    const animatedTotalEl = document.getElementById('animatedTotal');
+                    if(animatedTotalEl) animateValue(animatedTotalEl, 0, finalKit.grandTotal, 1500);
+                }, 400);
+            }
+        });
+    </script>
+</body>
+</html>
