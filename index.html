@@ -314,9 +314,6 @@
                 "Play & Soothing": { weight: 0.05, color: "#c1c8e4", explanation: "Essential calming tools like a bouncer, play mat, and pacifiers offer immense value for soothing a fussy baby." } 
             };
 
-            // THE CURATED APPROVED DATABASE
-            // Each necessity has tiers. The algorithm automatically picks the highest tier that fits the allocated budget.
-            // Placeholder images are formatted perfectly for the UI. You can replace them with actual Walmart image links later.
             const productDatabase = {
                 "Nursery & Furniture": [
                     { 
@@ -348,7 +345,7 @@
                         tiers: [
                             { tier: "Budget", title: "VTech Audio Baby Monitor", price: 29.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Audio+Monitor" },
                             { tier: "Standard", title: "HelloBaby Video Monitor", price: 69.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Video+Monitor" },
-                            { tier: "Premium", title: "Infant Optics DXR-8 Video Monitor", price: 165.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Infant+Optics" }
+                            { tier: "Premium", title: "Infant Optics DXR-8 PRO Video Monitor", price: 199.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Infant+Optics" }
                         ]
                     }
                 ],
@@ -365,8 +362,8 @@
                         name: "Travel Stroller", weight: 0.45, 
                         tiers: [
                             { tier: "Budget", title: "Kolcraft Cloud Plus Stroller", price: 79.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Compact+Stroller" },
-                            { tier: "Standard", title: "Graco Modes Element Stroller", price: 169.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Graco+Stroller" },
-                            { tier: "Premium", title: "Baby Jogger Minu V2 Stroller", price: 399.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Premium+Stroller" }
+                            { tier: "Standard", title: "Baby Jogger City Mini GT2 Stroller", price: 299.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=City+Mini+GT2" },
+                            { tier: "Premium", title: "UPPAbaby Vista V3 Stroller", price: 999.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=UPPAbaby+Vista" }
                         ]
                     },
                     { 
@@ -382,8 +379,8 @@
                     { 
                         name: "Bottle Starter Set", weight: 0.35, 
                         tiers: [
-                            { tier: "Budget", title: "Parent's Choice Bottle Set", price: 14.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Budget+Bottles" },
-                            { tier: "Standard", title: "Philips Avent Natural Starter Set", price: 39.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Avent+Bottles" },
+                            { tier: "Budget", title: "Parent's Choice 3-Pack Bottles", price: 14.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Budget+Bottles" },
+                            { tier: "Standard", title: "Philips Avent Natural Response Set", price: 39.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Avent+Bottles" },
                             { tier: "Premium", title: "Dr. Brown's Anti-Colic Glass Set", price: 59.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Dr+Browns" }
                         ]
                     },
@@ -400,7 +397,7 @@
                         tiers: [
                             { tier: "Budget", title: "Cosco Simple Fold High Chair", price: 39.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Fold+High+Chair" },
                             { tier: "Standard", title: "Graco Slim Snacker High Chair", price: 69.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Graco+High+Chair" },
-                            { tier: "Premium", title: "Stokke Clikk High Chair", price: 169.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Stokke+Clikk" }
+                            { tier: "Premium", title: "Stokke Tripp Trapp High Chair", price: 239.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Stokke+Tripp+Trapp" }
                         ]
                     },
                     { 
@@ -414,11 +411,11 @@
                 ],
                 "Diapering Needs": [
                     { 
-                        name: "Diaper Stockpile", weight: 0.40, 
+                        name: "Diapers (1-Week Supply)", weight: 0.40, 
                         tiers: [
-                            { tier: "Budget", title: "Parent's Choice Dry/Gentle Diapers", price: 24.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Budget+Diapers" },
-                            { tier: "Standard", title: "Pampers Swaddlers Bulk Box", price: 44.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Pampers" },
-                            { tier: "Premium", title: "The Honest Company Clean Diapers", price: 54.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Honest+Diapers" }
+                            { tier: "Budget", title: "Parent's Choice Dry/Gentle Diapers", price: 15.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Budget+Diapers" },
+                            { tier: "Standard", title: "Pampers Swaddlers (1-Week Box)", price: 28.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Pampers" },
+                            { tier: "Premium", title: "The Honest Company Clean Diapers", price: 45.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Honest+Diapers" }
                         ]
                     },
                     { 
@@ -448,11 +445,11 @@
                 ],
                 "Clothing & Basics": [
                     { 
-                        name: "Sleep & Plays", weight: 0.40, 
+                        name: "Sleep & Plays (1-Week Supply)", weight: 0.40, 
                         tiers: [
                             { tier: "Budget", title: "Wonder Nation 3-Pack Sleep 'n Play", price: 12.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Budget+Sleepers" },
-                            { tier: "Standard", title: "Gerber 4-Pack Sleep 'n Play", price: 24.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Gerber+Sleepers" },
-                            { tier: "Premium", title: "Burt's Bees Baby Zip Rompers", price: 44.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Burts+Bees" }
+                            { tier: "Standard", title: "Carter's 4-Pack Sleep 'n Play", price: 24.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Carters+Sleepers" },
+                            { tier: "Premium", title: "Kyte Baby Bamboo Zip Rompers", price: 69.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Kyte+Baby" }
                         ]
                     },
                     { 
@@ -468,7 +465,7 @@
                         tiers: [
                             { tier: "Budget", title: "Luvable Friends 3-Pack Swaddles", price: 12.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Cotton+Swaddles" },
                             { tier: "Standard", title: "SwaddleMe Original 3-Pack", price: 29.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=SwaddleMe" },
-                            { tier: "Premium", title: "Halo SleepSack 2-Pack", price: 49.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Halo+SleepSack" }
+                            { tier: "Premium", title: "Aden + Anais Muslin 4-Pack", price: 49.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Aden+Anais" }
                         ]
                     },
                     { 
@@ -494,7 +491,7 @@
                         tiers: [
                             { tier: "Budget", title: "Safety 1st Healthcare Set", price: 14.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Basic+Health+Kit" },
                             { tier: "Standard", title: "FridaBaby Bitty Bundle of Joy", price: 34.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=FridaBaby+Kit" },
-                            { tier: "Premium", title: "Braun Braun ThermoScan 7", price: 59.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Ear+Thermometer" }
+                            { tier: "Premium", title: "Braun ThermoScan 7 Ear Thermometer", price: 59.99, img: "https://placehold.co/400x300/1e293b/f8fafc?text=Ear+Thermometer" }
                         ]
                     },
                     { 
