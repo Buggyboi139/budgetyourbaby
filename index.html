@@ -127,6 +127,7 @@
         .secondary-btn:hover { background: rgba(255,255,255,0.05); border-color: var(--border-highlight); transform: translateY(-2px); }
 
         .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+        .header-actions { display: flex; gap: 15px; flex-wrap: wrap; }
 
         .pie-chart-container {
             display: flex; align-items: center; gap: 30px; margin-bottom: 50px;
@@ -157,6 +158,7 @@
         }
         .subtotal-tooltip::after { content: ''; position: absolute; top: 100%; right: 0; width: 100%; height: 30%; }
         .category-allocation-wrapper:hover .subtotal-tooltip { visibility: visible; opacity: 1; transform: translateY(0); }
+        .cat-target-note { font-size: 0.8rem; font-weight: 500; opacity: 0.6; display: block; margin-top: 4px; color: var(--text-muted); }
 
         .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
         .product-card {
@@ -167,6 +169,12 @@
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
         
+        .product-thumb-container {
+            height: 180px; width: 100%; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-glass);
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2));
+            display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px;
+        }
+        .product-thumb-text { font-size: 1.1rem; font-weight: 700; color: rgba(255,255,255,0.3); line-height: 1.2; }
         .product-thumb { 
             height: 180px; width: 100%; border-radius: 12px; background-color: #1e293b; 
             object-fit: cover; margin-bottom: 20px; border: 1px solid var(--border-glass); display: block;
@@ -208,6 +216,59 @@
             opacity: 0; animation: fadeIn 1s 0.5s forwards;
         }
 
+        /* =========================================
+           PRINT STYLES (PDF EXPORT FIX)
+           ========================================= */
+        @media print {
+            body { 
+                background: #ffffff !important; 
+                color: #000000 !important; 
+                background-image: none !important; 
+                -webkit-print-color-adjust: exact; 
+                padding-bottom: 0 !important;
+            }
+            * {
+                filter: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                text-shadow: none !important;
+            }
+            /* Hide UI clutter */
+            nav, .header-actions, .engine-disclaimer, #setup-view { display: none !important; }
+            
+            .container { padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
+            h2, p { color: #000 !important; }
+            
+            /* Reformat the grid for paper */
+            .product-list { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 15px !important; }
+            
+            .product-card { 
+                background: #fff !important; border: 1px solid #ccc !important; 
+                box-shadow: none !important; color: #000 !important; 
+                page-break-inside: avoid !important; break-inside: avoid !important;
+                padding: 15px !important;
+                opacity: 1 !important; transform: none !important; /* Kill animations */
+            }
+            
+            .product-name, .product-price { color: #000 !important; }
+            .tier-badge { background: #f1f5f9 !important; color: #475569 !important; border: 1px solid #cbd5e1; }
+            .product-desc { color: #333 !important; }
+            .buy-btn { display: none !important; } /* Hide link buttons */
+            
+            .category-section { page-break-inside: avoid !important; break-inside: avoid !important; }
+            .category-header { border-bottom: 2px solid #ccc !important; }
+            .category-title { color: #000 !important; }
+            .category-allocation { background: #f8fafc !important; color: #000 !important; border: 1px solid #ccc !important; }
+            
+            .pie-chart-container { display: none !important; } /* Usually broken in print, better to hide */
+            
+            .grand-total-card { 
+                background: #f8fafc !important; border: 2px solid #000 !important; 
+                box-shadow: none !important; page-break-inside: avoid !important;
+            }
+            .gt-label, .gt-value, .gt-target, .gt-target span { color: #000 !important; }
+        }
+
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
             .container { padding: 30px 15px; }
@@ -217,6 +278,7 @@
             .gender-selector { flex-direction: column; align-items: stretch; gap: 10px; }
             .gender-label { text-align: center; }
             .results-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .header-actions { width: 100%; justify-content: space-between; }
             .pie-chart-container { flex-direction: column; padding: 25px 20px; gap: 25px; align-items: center; text-align: left; }
             .chart-legend { grid-template-columns: 1fr; gap: 12px; }
             .category-header { flex-direction: column; align-items: flex-start; gap: 15px; }
@@ -265,7 +327,11 @@
                     <h2>Your Recommended Kit</h2>
                     <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 5px;">Curated safety-first essentials mapped to your budget.</p>
                 </div>
-                <button class="secondary-btn" id="startOverBtn">← Edit Setup</button>
+                
+                <div class="header-actions">
+                    <button class="secondary-btn" id="startOverBtn">← Edit Setup</button>
+                    <button class="primary-btn" id="exportPdfBtn" style="margin-top: 0; padding: 12px 28px; width: auto; font-size: 0.95rem; box-shadow: none;">Save as PDF</button>
+                </div>
             </div>
 
             <div id="results-content">
@@ -291,6 +357,7 @@
             const budgetDisplay = document.getElementById('budgetDisplay');
             const buildBtn = document.getElementById('buildBtn');
             const startOverBtn = document.getElementById('startOverBtn');
+            const exportPdfBtn = document.getElementById('exportPdfBtn');
             const logoBtn = document.getElementById('logoBtn');
             const categoriesContainer = document.getElementById('categories-container');
             const categoryTogglesContainer = document.getElementById('categoryTogglesContainer');
@@ -543,7 +610,6 @@
                 ]
             };
 
-            // Initialize Setup Toggles
             Object.keys(categoryColors).forEach(cat => {
                 const labelHtml = `
                     <label>
@@ -554,7 +620,6 @@
                 categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
             });
 
-            // Dynamic Slider Bounds based on actual Database Prices
             function updateSliderBounds() {
                 let minFloor = 0;
                 let activeCount = 0;
@@ -575,7 +640,6 @@
                 }
                 buildBtn.disabled = false;
 
-                // Round down to nearest 50 for floor, cap max at 5000
                 const newMin = Math.max(100, Math.floor(minFloor / 50) * 50);
                 const newMax = 5000;
 
@@ -590,7 +654,7 @@
             }
 
             categoryTogglesContainer.addEventListener('change', updateSliderBounds);
-            updateSliderBounds(); // Run on load
+            updateSliderBounds();
 
             budgetSlider.addEventListener('input', (e) => {
                 budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
@@ -627,8 +691,12 @@
 
             startOverBtn.addEventListener('click', goToSetup);
             logoBtn.addEventListener('click', goToSetup);
+            
+            // --- NEW: Print Event Listener ---
+            exportPdfBtn.addEventListener('click', () => {
+                window.print();
+            });
 
-            // --- THE POOLED UPGRADE ALGORITHM ---
             function calculateOptimalKit(totalBudget, activeCategoryNames) {
                 let itemsList = [];
                 
@@ -818,13 +886,21 @@
                         globalItemIndex++;
                     });
 
+                    const fractionDisplay = `${catName} utilizes ${((catTotal / finalKit.grandTotal) * 100).toFixed(0)}% of your actual spend.`;
+                    
                     categoriesContainer.insertAdjacentHTML('beforeend', `
                         <div class="category-section">
                             <div class="category-header">
                                 <div class="category-title" style="color: ${color}; text-shadow: 0 0 20px ${color}40;">${catName}</div>
                                 <div style="text-align: right;">
-                                    <div class="category-allocation" style="color: ${color}; border-color: ${color}50; background: ${color}15;">
-                                        Subtotal: $${catTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                    <div class="category-allocation-wrapper">
+                                        <div class="category-allocation" style="color: ${color}; border-color: ${color}50; background: ${color}15;">
+                                            Subtotal: $${catTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                        </div>
+                                        <div class="subtotal-tooltip">
+                                            <strong style="color: ${color}; display: block; margin-bottom: 8px; font-size: 1rem;">${fractionDisplay}</strong>
+                                            ${initialCategoryWeights[catName].explanation}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
