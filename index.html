@@ -63,12 +63,12 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
-        /* Gender Selector Styles */
+        /* Gender Selector */
         .gender-selector {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .gender-label {
@@ -83,13 +83,55 @@
         }
 
         .gender-radio { display: none; }
-        
         .gender-radio:checked + .gender-label {
             border-color: var(--accent-color);
             background: rgba(251, 194, 235, 0.1);
             color: var(--accent-color);
         }
 
+        /* Category Selector */
+        .category-selector {
+            margin-bottom: 40px;
+        }
+
+        .category-title-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .toggles-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .cat-label {
+            background: var(--surface-light);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .cat-checkbox { display: none; }
+        .cat-checkbox:checked + .cat-label {
+            background: rgba(161, 140, 209, 0.15);
+            border-color: #a18cd1;
+            color: #f8f9fa;
+        }
+        .cat-checkbox:not(:checked) + .cat-label {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        /* Budget Slider */
         .budget-display {
             font-size: 4.5rem;
             font-weight: 800;
@@ -180,7 +222,7 @@
         
         <div id="setup-view">
             <h1>Build your prep kit.</h1>
-            <p class="subtitle">Set your budget and preferences, and we'll configure the best items.</p>
+            <p class="subtitle">Set your budget, uncheck what you already have, and we'll handle the rest.</p>
             
             <div class="control-panel">
                 
@@ -199,6 +241,12 @@
                     </label>
                 </div>
 
+                <div class="category-selector">
+                    <div class="category-title-label">Select Categories Needed</div>
+                    <div class="toggles-grid" id="categoryTogglesContainer">
+                        </div>
+                </div>
+
                 <div class="budget-display" id="budgetDisplay">$1,000</div>
                 <input type="range" id="budgetSlider" min="300" max="4000" step="50" value="1000">
                 <button class="primary-btn" id="buildBtn">Generate My Kit</button>
@@ -209,9 +257,9 @@
             <div class="results-header">
                 <div>
                     <h2>Your Curated Kit</h2>
-                    <p style="color: var(--text-muted);">Optimized based on your budget and preferences.</p>
+                    <p style="color: var(--text-muted);">Optimized based on your selections.</p>
                 </div>
-                <button class="secondary-btn" id="startOverBtn">← Start Over</button>
+                <button class="secondary-btn" id="startOverBtn">← Edit Selections</button>
             </div>
 
             <div id="categories-container">
@@ -230,8 +278,9 @@
             const buildBtn = document.getElementById('buildBtn');
             const startOverBtn = document.getElementById('startOverBtn');
             const categoriesContainer = document.getElementById('categories-container');
+            const categoryTogglesContainer = document.getElementById('categoryTogglesContainer');
 
-            // Bundle Templates: Defines what makes up a category and how much of the category budget it takes
+            // Bundle Templates
             const bundleTemplates = {
                 "Sleeping & Nursery": [
                     { name: "Crib or Bassinet", weight: 0.50, search: "crib bassinet" },
@@ -264,22 +313,52 @@
                 ]
             };
 
+            // Inject Category Checkboxes dynamically
+            Object.keys(bundleTemplates).forEach(cat => {
+                const safeId = cat.replace(/[^a-zA-Z0-9]/g, '');
+                const labelHtml = `
+                    <label>
+                        <input type="checkbox" value="${cat}" class="cat-checkbox" checked>
+                        <div class="cat-label">${cat}</div>
+                    </label>
+                `;
+                categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
+            });
+
+            // Make sure at least one category is checked
+            categoryTogglesContainer.addEventListener('change', () => {
+                const checkedCount = document.querySelectorAll('.cat-checkbox:checked').length;
+                if (checkedCount === 0) {
+                    alert("Please select at least one category to generate a kit.");
+                    buildBtn.disabled = true;
+                    buildBtn.style.opacity = "0.5";
+                } else {
+                    buildBtn.disabled = false;
+                    buildBtn.style.opacity = "1";
+                }
+            });
+
             budgetSlider.addEventListener('input', (e) => {
                 budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
             });
 
             buildBtn.addEventListener('click', () => {
+                if(buildBtn.disabled) return;
+
                 const totalBudget = parseInt(budgetSlider.value);
                 
                 // Get selected gender
                 const selectedGenderInput = document.querySelector('input[name="gender"]:checked');
                 const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
+
+                // Get selected categories
+                const activeCategories = Array.from(document.querySelectorAll('.cat-checkbox:checked')).map(cb => cb.value);
                 
                 setupView.style.display = 'none';
                 resultsView.style.display = 'block';
                 window.scrollTo(0, 0);
 
-                generateKitList(totalBudget, gender);
+                generateKitList(totalBudget, gender, activeCategories);
             });
 
             startOverBtn.addEventListener('click', () => {
@@ -288,29 +367,22 @@
                 window.scrollTo(0, 0);
             });
 
-            function generateKitList(totalBudget, gender) {
+            function generateKitList(totalBudget, gender, activeCategories) {
                 categoriesContainer.innerHTML = ''; 
                 
-                // Even 20% split across 5 categories
-                const categories = Object.keys(bundleTemplates);
-                const categoryBudget = totalBudget / categories.length;
-
-                // Format gender string for display and search
+                // Recalibrate budget based ONLY on the number of active categories
+                const categoryBudget = totalBudget / activeCategories.length;
                 const genderStr = gender === "neutral" ? "gender neutral" : "baby " + gender;
 
-                categories.forEach(categoryName => {
+                activeCategories.forEach(categoryName => {
                     const items = bundleTemplates[categoryName];
                     let itemsHTML = '';
 
                     items.forEach(item => {
-                        // Calculate price based on item weight within the category budget
                         const itemPrice = categoryBudget * item.weight;
-                        
-                        // Construct an Amazon Search URL simulating the API parameters
                         const searchQuery = encodeURIComponent(`${genderStr} ${item.search}`);
                         const amazonLink = `https://www.amazon.com/s?k=${searchQuery}`;
 
-                        // If clothing, explicitly mention gender in the title
                         const displayTitle = categoryName === "Clothing & Basics" 
                             ? `${gender === 'neutral' ? 'Neutral' : gender.charAt(0).toUpperCase() + gender.slice(1)} ${item.name}` 
                             : item.name;
@@ -318,7 +390,7 @@
                         itemsHTML += `
                             <div class="product-card">
                                 <div class="product-name">${displayTitle}</div>
-                                <div class="product-desc">Target allocation based on overall budget constraints.</div>
+                                <div class="product-desc">Calculated based on your updated parameters.</div>
                                 <div class="product-footer">
                                     <div class="product-price">$${itemPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                                     <a href="${amazonLink}" target="_blank" class="buy-btn">Search Amazon</a>
