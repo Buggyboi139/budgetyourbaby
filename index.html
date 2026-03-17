@@ -16,8 +16,10 @@
             --border-highlight: rgba(255, 255, 255, 0.2);
             --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
             --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.6);
+            
             --gradient-primary: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
             --gradient-hover: linear-gradient(135deg, #b5a3df 0%, #fcd3f2 100%);
+            
             --radius-lg: 32px;
             --radius-md: 20px;
         }
@@ -25,15 +27,18 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--text-main);
-            background-color: #07090f;
-            background-image: radial-gradient(at 0% 0%, rgba(161, 140, 209, 0.1) 0, transparent 50%), 
-                              radial-gradient(at 100% 0%, rgba(251, 194, 235, 0.05) 0, transparent 50%), 
-                              radial-gradient(at 50% 100%, rgba(132, 250, 176, 0.05) 0, transparent 50%);
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #f8fafc;
+            line-height: 1.6;
             padding-bottom: 90px;
+            min-height: 100vh;
+            background-color: #07090f;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(161, 140, 209, 0.1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(251, 194, 235, 0.05) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, rgba(132, 250, 176, 0.05) 0, transparent 50%);
+            position: relative;
+            overflow-x: hidden;
         }
 
         body::before, body::after {
@@ -44,16 +49,16 @@
 
         nav {
             padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass);
-            position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass); position: sticky; top: 0; z-index: 50;
         }
 
         .logo {
-            font-size: 1.6rem; font-weight: 800; background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            cursor: pointer; transition: transform 0.3s ease; user-select: none;
+            font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;
+            background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            cursor: pointer; transition: opacity 0.2s; user-select: none;
         }
-        .logo:hover { transform: scale(1.05); }
+        .logo:hover { opacity: 0.8; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
@@ -66,7 +71,7 @@
         .subtitle { color: var(--text-muted); font-size: 1.25rem; margin-bottom: 3rem; font-weight: 500; }
 
         .control-panel {
-            background: var(--surface-glass); backdrop-filter: blur(30px);
+            background: var(--surface-glass); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             padding: 50px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass);
             box-shadow: var(--shadow-soft);
         }
@@ -75,12 +80,22 @@
         .gender-label {
             background: rgba(255,255,255,0.05); padding: 14px 32px; border-radius: 40px;
             cursor: pointer; font-weight: 600; font-size: 1.05rem; border: 2px solid transparent;
-            transition: all 0.3s ease; color: var(--text-muted);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); color: var(--text-muted);
         }
         .gender-radio { display: none; }
-        input[value="boy"]:checked + .gender-label { border-color: #a1c4fd; color: #a1c4fd; background: rgba(161, 196, 253, 0.1); box-shadow: 0 10px 20px rgba(161, 196, 253, 0.1); transform: translateY(-2px); }
-        input[value="girl"]:checked + .gender-label { border-color: #fbc2eb; color: #fbc2eb; background: rgba(251, 194, 235, 0.1); box-shadow: 0 10px 20px rgba(251, 194, 235, 0.1); transform: translateY(-2px); }
-        input[value="neutral"]:checked + .gender-label { border-color: #fbd38d; color: #fbd38d; background: rgba(251, 211, 141, 0.1); box-shadow: 0 10px 20px rgba(251, 211, 141, 0.1); transform: translateY(-2px); }
+        
+        input[value="boy"]:checked + .gender-label {
+            background: rgba(161, 196, 253, 0.1); border-color: #a1c4fd; color: #a1c4fd;
+            box-shadow: 0 10px 20px rgba(161, 196, 253, 0.1); transform: translateY(-2px);
+        }
+        input[value="girl"]:checked + .gender-label {
+            background: rgba(251, 194, 235, 0.1); border-color: #fbc2eb; color: #fbc2eb;
+            box-shadow: 0 10px 20px rgba(251, 194, 235, 0.1); transform: translateY(-2px);
+        }
+        input[value="neutral"]:checked + .gender-label {
+            background: rgba(251, 211, 141, 0.1); border-color: #fbd38d; color: #fbd38d;
+            box-shadow: 0 10px 20px rgba(251, 211, 141, 0.1); transform: translateY(-2px);
+        }
 
         .category-selector { margin-bottom: 40px; }
         .category-title-label { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
@@ -92,20 +107,25 @@
             transition: all 0.3s ease; color: var(--text-muted);
         }
         .cat-checkbox { display: none; }
-        .cat-checkbox:checked + .cat-label { background: var(--text-main); color: #0f172a; border-color: var(--text-main); }
+        .cat-checkbox:checked + .cat-label { background: #f8fafc; color: #0f172a; border-color: #f8fafc; }
         .cat-checkbox:not(:checked) + .cat-label { opacity: 0.4; text-decoration: line-through; }
 
-        .budget-display { font-size: 5rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -2px; }
+        .budget-display { font-size: 5rem; font-weight: 800; color: #f8fafc; margin-bottom: 10px; letter-spacing: -2px; }
         
         .slider-wrapper { position: relative; margin: 30px 0 40px; }
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; outline: none; }
+        
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none; height: 36px; width: 36px; border-radius: 50%;
             background: var(--gradient-primary); cursor: grab; margin-top: -14px;
             box-shadow: 0 0 20px rgba(161, 140, 209, 0.5); border: 4px solid #0f172a;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
         }
-        input[type=range]:active::-webkit-slider-thumb { transform: scale(1.3); cursor: grabbing; box-shadow: 0 0 30px rgba(161, 140, 209, 0.8); }
+        
+        input[type=range]:active::-webkit-slider-thumb {
+            transform: scale(1.3); cursor: grabbing; box-shadow: 0 0 30px rgba(161, 140, 209, 0.8);
+        }
+
         @keyframes jellyShake {
             0% { transform: scale(1.3) translateX(0); }
             25% { transform: scale(1.05) translateX(-4px); }
@@ -113,34 +133,38 @@
             75% { transform: scale(0.95) translateX(-2px); }
             100% { transform: scale(1) translateX(0); }
         }
-        input[type=range].shake-effect::-webkit-slider-thumb { animation: jellyShake 0.4s ease-in-out both; }
+        input[type=range].shake-effect::-webkit-slider-thumb {
+            animation: jellyShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 10px; }
 
         .primary-btn {
             background: var(--gradient-primary); color: #0f172a; border: none; padding: 20px 48px;
             font-size: 1.15rem; font-weight: 800; border-radius: 40px; cursor: pointer;
-            transition: all 0.3s ease; width: 100%; max-width: 320px; box-shadow: 0 10px 30px rgba(161, 140, 209, 0.3);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; max-width: 320px;
+            box-shadow: 0 10px 30px rgba(161, 140, 209, 0.3); position: relative; overflow: hidden;
         }
         .primary-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(161, 140, 209, 0.5); background: var(--gradient-hover); }
+        .primary-btn:active { transform: translateY(2px); }
         .primary-btn:disabled { opacity: 0.5; transform: none; box-shadow: none; cursor: not-allowed; }
 
         .secondary-btn {
-            background: transparent; color: var(--text-main); border: 1px solid var(--border-glass);
+            background: transparent; color: #f8fafc; border: 1px solid var(--border-glass);
             padding: 12px 28px; border-radius: 30px; cursor: pointer; font-weight: 600; transition: all 0.2s;
         }
         .secondary-btn:hover { background: rgba(255,255,255,0.05); border-color: var(--border-highlight); transform: translateY(-2px); }
 
-        #results-view { display: none; }
         .results-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
 
         .pie-chart-container {
             display: flex; align-items: center; gap: 30px; margin-bottom: 50px;
-            background: var(--surface-glass); backdrop-filter: blur(20px);
+            background: var(--surface-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass); box-shadow: var(--shadow-soft);
         }
-        .pie-chart { width: 120px; height: 120px; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); transform: scale(0); animation: popIn 0.6s 0.3s forwards; flex-shrink: 0;}
+        .pie-chart { width: 120px; height: 120px; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); transform: scale(0); animation: popIn 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; flex-shrink: 0;}
         .chart-legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 24px; font-weight: 500; width: 100%; }
-        .legend-item { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; opacity: 0; animation: fadeIn 0.4s forwards; }
+        .legend-item { display: flex; align-items: center; gap: 10px; color: #f8fafc; font-size: 0.95rem; opacity: 0; animation: fadeIn 0.4s ease forwards; }
         .legend-color { width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 10px currentColor; flex-shrink: 0;}
 
         .category-section { margin-bottom: 60px; }
@@ -150,69 +174,86 @@
         .category-allocation-wrapper { position: relative; display: inline-block; cursor: help; }
         .category-allocation { 
             background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); 
-            padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; transition: all 0.2s;
+            padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; 
+            transition: all 0.2s;
         }
         .category-allocation-wrapper:hover .category-allocation { background: rgba(255,255,255,0.1) !important; transform: translateY(-2px); }
         
         .subtotal-tooltip {
             visibility: hidden; width: 340px; background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(40px); text-align: left; padding: 24px; border-radius: 16px; border: 1px solid var(--border-highlight);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: absolute; z-index: 100; bottom: 130%; right: 0;
-            opacity: 0; transform: translateY(10px); transition: all 0.3s; font-size: 0.9rem; font-weight: 500;
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); color: #f8fafc; text-align: left;
+            padding: 24px; border-radius: 16px; border: 1px solid var(--border-highlight); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: absolute; z-index: 100; bottom: 130%; right: 0; opacity: 0; transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-size: 0.9rem; font-weight: 500; line-height: 1.6;
         }
         .subtotal-tooltip::after { content: ''; position: absolute; top: 100%; right: 0; width: 100%; height: 30%; }
         .category-allocation-wrapper:hover .subtotal-tooltip { visibility: visible; opacity: 1; transform: translateY(0); }
+
         .cat-target-note { font-size: 0.8rem; font-weight: 500; opacity: 0.6; display: block; margin-top: 4px; color: var(--text-muted); }
 
         .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        
         .product-card {
             background: var(--surface-solid); border: 1px solid var(--border-glass);
             border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2); backdrop-filter: blur(10px);
-            opacity: 0; transform: translateX(60px); transition: 0.3s;
+            opacity: 0; transform: translateX(60px); transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
-        .product-image-container { height: 160px; background-size: contain; background-position: center; background-repeat: no-repeat; margin-bottom: 20px; border-radius: 10px; background-color: #fff; }
 
         @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
         @keyframes popIn { to { transform: scale(1); } }
         @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes spin { 100% { transform: rotate(360deg); } } /* Spinner animation added */
 
-        .product-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
-        .product-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
-        .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 15px; }
-        .product-price { font-size: 1.4rem; font-weight: 800; }
+        .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .product-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 20px; }
+        .product-price { font-size: 1.4rem; font-weight: 800; color: #f8fafc; }
+        
         .buy-btn {
-            background: rgba(255,255,255,0.1); color: var(--text-main); text-decoration: none; border: 1px solid var(--border-glass);
-            padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; transition: 0.2s;
+            background: rgba(255,255,255,0.1); color: #f8fafc; text-decoration: none; border: 1px solid var(--border-glass);
+            padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;
         }
-        .buy-btn:hover { background: var(--text-main); color: #0f172a; transform: scale(1.05); }
+        .buy-btn:hover { background: #f8fafc; color: #0f172a; transform: scale(1.05); }
 
         .grand-total-card {
-            background: var(--surface-glass); backdrop-filter: blur(30px); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-highlight);
+            background: var(--surface-glass); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-highlight);
             box-shadow: 0 0 40px rgba(161, 140, 209, 0.1); text-align: center; margin-top: 60px;
-            opacity: 0; transform: translateY(30px); animation: slideInRight 0.8s 1s forwards;
+            opacity: 0; transform: translateY(30px); animation: slideInRight 0.8s 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .gt-label { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .gt-value { font-size: 4.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
+        .gt-value { font-size: 4.5rem; font-weight: 800; color: #f8fafc; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
         .gt-target { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
-        .gt-target span { font-weight: 700; color: var(--text-main); }
+        .gt-target span { font-weight: 700; color: #f8fafc; }
 
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
             .container { padding: 30px 15px; }
             h1 { font-size: 2.2rem; letter-spacing: -0.5px; }
-            .control-panel { padding: 30px 20px; }
+            .subtitle { font-size: 1.05rem; margin-bottom: 2rem; }
+            
+            .control-panel { padding: 30px 20px; border-radius: var(--radius-md); }
             .budget-display { font-size: 3.5rem; }
+            
             .gender-selector { flex-direction: column; align-items: stretch; gap: 10px; }
             .gender-label { text-align: center; }
+            
+            .toggles-grid { gap: 8px; }
+            .cat-label { padding: 10px 16px; font-size: 0.85rem; }
+
             .results-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            
             .pie-chart-container { flex-direction: column; padding: 25px 20px; gap: 25px; align-items: center; text-align: left; }
             .chart-legend { grid-template-columns: 1fr; gap: 12px; }
+            
             .category-header { flex-direction: column; align-items: flex-start; gap: 15px; }
             .category-header > div:last-child { text-align: left !important; width: 100%; }
-            .subtotal-tooltip { width: 100%; min-width: 280px; bottom: 100%; left: 0; margin-bottom: 15px; }
-            .subtotal-tooltip::after { display: none; }
+            
+            .subtotal-tooltip { width: 100%; min-width: 280px; bottom: 100%; left: 0; right: auto; margin-bottom: 15px; }
+            .subtotal-tooltip::after { display: none; } 
+
             .grand-total-card { padding: 30px 20px; }
             .gt-value { font-size: 3rem; }
         }
@@ -225,15 +266,25 @@
     </nav>
 
     <div class="container">
+        
         <div id="setup-view" class="view-section active-view">
             <h1>Curate your baby's world.</h1>
             <p class="subtitle">Set your budget, deselect what you already own, and we'll perfectly balance the rest.</p>
             
             <div class="control-panel">
                 <div class="gender-selector">
-                    <label><input type="radio" name="gender" value="boy" class="gender-radio"><div class="gender-label">Boy</div></label>
-                    <label><input type="radio" name="gender" value="girl" class="gender-radio"><div class="gender-label">Girl</div></label>
-                    <label><input type="radio" name="gender" value="neutral" class="gender-radio" checked><div class="gender-label">Neutral</div></label>
+                    <label>
+                        <input type="radio" name="gender" value="boy" class="gender-radio">
+                        <div class="gender-label">Boy</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="girl" class="gender-radio">
+                        <div class="gender-label">Girl</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="neutral" class="gender-radio" checked>
+                        <div class="gender-label">Neutral</div>
+                    </label>
                 </div>
 
                 <div class="category-selector">
@@ -253,23 +304,26 @@
             <div class="results-header">
                 <div>
                     <h2>Your Personalized Kit</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 5px;">Populated with estimated retail prices.</p>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 5px;">Populated with live retail prices.</p>
                 </div>
                 <button class="secondary-btn" id="startOverBtn">← Edit Setup</button>
             </div>
 
-            <div class="pie-chart-container">
+            <div class="pie-chart-container" id="pieChartSection">
                 <div class="pie-chart" id="pieChartCanvas"></div>
                 <div class="chart-legend" id="chartLegend"></div>
             </div>
 
             <div id="categories-container"></div>
+            
             <div id="grand-total-container"></div>
         </div>
+
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
             const setupView = document.getElementById('setup-view');
             const resultsView = document.getElementById('results-view');
             const budgetSlider = document.getElementById('budgetSlider');
@@ -284,13 +338,34 @@
             const grandTotalContainer = document.getElementById('grand-total-container');
 
             const initialCategoryWeights = {
-                "Nursery & Furniture": { weight: 0.25, color: "#bfa2db", explanation: "Includes foundational items like a crib, mattress, and glider to ensure long-term comfort and safety." }, 
-                "Travel & Gear": { weight: 0.20, color: "#ffb7b2", explanation: "Utilizes a large share due to strict safety requirements for items like an infant car seat and stroller." }, 
-                "Feeding & Nursing": { weight: 0.15, color: "#a1c4fd", explanation: "Dedicated allocation for continuous daily needs, including bottles, cleaning supplies, and a high chair." }, 
-                "Diapering Needs": { weight: 0.15, color: "#fbd38d", explanation: "Secures funds for a diaper pail, changing pad, and a massive initial stockpile of diapers and wipes." }, 
-                "Clothing & Basics": { weight: 0.10, color: "#b6eacb", explanation: "Focuses on volume and comfort, requiring multiple daily changes of sleep-and-plays and bodysuits." }, 
-                "Bath & Health": { weight: 0.10, color: "#ffdac1", explanation: "Allocated to safely manage hygiene and early illnesses with bathtubs, skin care, and accurate thermometers." }, 
-                "Play & Soothing": { weight: 0.05, color: "#c1c8e4", explanation: "Essential calming tools like a bouncer, play mat, and pacifiers offer immense value for soothing a fussy baby." } 
+                "Nursery & Furniture": { 
+                    weight: 0.25, color: "#bfa2db", 
+                    explanation: "Nursery & Furniture accounts for a major portion of the budget because it includes foundational, heavy-duty items. High-ticket necessities like a durable crib, a quality mattress, and a comfortable glider quickly consume funds. Investing here ensures long-term comfort and safety for your newborn's sleep environment."
+                }, 
+                "Travel & Gear": { 
+                    weight: 0.20, color: "#ffb7b2",
+                    explanation: "Travel & Gear utilizes a large share of the budget due to the strict safety requirements and complex engineering of infant transport. An infant car seat and a reliable travel stroller are absolute necessities that cannot be compromised on quality. These items protect your baby during transit and provide essential mobility."
+                }, 
+                "Feeding & Nursing": { 
+                    weight: 0.15, color: "#a1c4fd",
+                    explanation: "Feeding & Nursing requires a dedicated allocation to cover the continuous, daily nutritional needs of your growing baby. Whether nursing or bottle-feeding, you will need a robust rotation of bottles, cleaning supplies, pillows, and eventually a high chair. Building a solid inventory prevents constant washing and late-night stress."
+                }, 
+                "Diapering Needs": { 
+                    weight: 0.15, color: "#fbd38d",
+                    explanation: "Diapering commands this allocation because babies go through an astonishing number of diapers and wipes in their first year. A proper setup requires a reliable diaper pail, changing pad, and a massive initial stockpile of newborn and size 1 diapers. Securing these funds prevents frantic late-night pharmacy runs."
+                }, 
+                "Clothing & Basics": { 
+                    weight: 0.10, color: "#b6eacb",
+                    explanation: "Clothing & Basics takes up a smaller but vital portion because newborns grow out of their initial sizes incredibly fast. Your focus here is on volume and comfort, requiring multiple daily changes of sleep-and-plays and bodysuits due to frequent messes. This ensures you have enough clean rotation without doing laundry daily."
+                }, 
+                "Bath & Health": { 
+                    weight: 0.10, color: "#ffdac1",
+                    explanation: "Bath & Health is allocated to safely manage your baby's hygiene and unexpected early illnesses. Specialized infant bathtubs, gentle skin care, and accurate healthcare tools like a reliable thermometer are vital but relatively affordable. Having these items on hand before your baby gets sick is crucial for peace of mind."
+                }, 
+                "Play & Soothing": { 
+                    weight: 0.05, color: "#c1c8e4",
+                    explanation: "Play & Soothing focuses on essential developmental tools and calming mechanisms for a relatively low cost. Items like a bouncer, a tummy-time mat, and pacifiers offer immense value for soothing a fussy baby. While babies don't need expensive toys early on, these basic items provide safe spots for them to rest."
+                } 
             };
 
             const bundleTemplates = {
@@ -365,12 +440,14 @@
             }
 
             function makeRealisticPrice(rawPrice) {
+                if (rawPrice < 5) return Math.floor(rawPrice) + 0.99;
                 return Math.floor(rawPrice) + 0.99;
             }
 
             function goToResults() {
                 setupView.classList.remove('active-view');
                 setupView.classList.add('hidden-view');
+                
                 setTimeout(() => {
                     resultsView.classList.remove('hidden-view');
                     resultsView.classList.add('active-view');
@@ -381,6 +458,7 @@
             function goToSetup() {
                 resultsView.classList.remove('active-view');
                 resultsView.classList.add('hidden-view');
+                
                 setTimeout(() => {
                     setupView.classList.remove('hidden-view');
                     setupView.classList.add('active-view');
@@ -391,7 +469,7 @@
             startOverBtn.addEventListener('click', goToSetup);
             logoBtn.addEventListener('click', goToSetup);
 
-            buildBtn.addEventListener('click', () => {
+            buildBtn.addEventListener('click', async () => {
                 if(buildBtn.disabled) return;
 
                 const totalBudget = parseInt(budgetSlider.value);
@@ -411,9 +489,21 @@
                     }
                 });
 
+                // Clear previous and show loading spinner inside results
+                categoriesContainer.innerHTML = `
+                    <div id="loadingScreen" style="text-align: center; padding: 60px 0;">
+                        <div style="width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--text-main); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                        <h3 style="color: var(--text-main); font-size: 1.5rem; margin-bottom: 8px;">Fetching Live Walmart Prices...</h3>
+                        <p style="color: var(--text-muted);">Scanning trusted brands. This usually takes about 10-15 seconds.</p>
+                    </div>
+                `;
+                grandTotalContainer.innerHTML = '';
+                
                 renderDonutChart(kitData);
-                generateKitList(totalBudget, gender, kitData);
-                goToResults();
+                goToResults(); // Transition immediately so they see the spinner
+                
+                // Now run the async fetch
+                await generateKitList(totalBudget, gender, kitData);
             });
 
             function renderDonutChart(kitData) {
@@ -422,28 +512,35 @@
 
                 let currentAngle = 0;
                 const radius = 40;
+                const centerX = 40;
+                const centerY = 40;
                 let svgHtml = `<svg width="100%" height="100%" viewBox="0 0 80 80">`;
 
                 kitData.forEach((cat, index) => {
                     const sliceAngle = cat.normalizedWeight * 360;
                     const largeArcFlag = sliceAngle > 180 ? 1 : 0;
                     const gap = 1; 
-                    const startRads = (currentAngle + gap - 90) * (Math.PI / 180);
-                    const endRads = (currentAngle + sliceAngle - gap - 90) * (Math.PI / 180);
+                    const startRadians = (currentAngle + gap - 90) * (Math.PI / 180);
+                    const endRadians = (currentAngle + sliceAngle - gap - 90) * (Math.PI / 180);
 
-                    const startX = 40 + radius * Math.cos(startRads);
-                    const startY = 40 + radius * Math.sin(startRads);
-                    const endX = 40 + radius * Math.cos(endRads);
-                    const endY = 40 + radius * Math.sin(endRads);
+                    const startX = centerX + radius * Math.cos(startRadians);
+                    const startY = centerY + radius * Math.sin(startRadians);
+                    const endX = centerX + radius * Math.cos(endRadians);
+                    const endY = centerY + radius * Math.sin(endRadians);
 
-                    svgHtml += `<path d="M40,40 L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z" fill="${cat.color}" />`;
+                    svgHtml += `
+                        <path d="M${centerX},${centerY} L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z" 
+                              fill="${cat.color}" />
+                    `;
 
-                    chartLegend.insertAdjacentHTML('beforeend', `
-                        <div class="legend-item" style="animation-delay: ${0.4 + (index * 0.1)}s;">
+                    const legendDelay = 0.4 + (index * 0.1);
+                    const legendItemHtml = `
+                        <div class="legend-item" style="animation-delay: ${legendDelay}s;">
                             <div class="legend-color" style="background-color: ${cat.color}; color: ${cat.color};"></div>
                             <span>${cat.name}</span>
                         </div>
-                    `);
+                    `;
+                    chartLegend.insertAdjacentHTML('beforeend', legendItemHtml);
                     currentAngle += sliceAngle;
                 });
 
@@ -456,6 +553,7 @@
                 const step = (timestamp) => {
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const easeOut = 1 - Math.pow(1 - progress, 5); 
                     const currentVal = (progress * (end - start) + start);
                     obj.innerHTML = `$${currentVal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                     if (progress < 1) window.requestAnimationFrame(step);
@@ -464,19 +562,14 @@
                 window.requestAnimationFrame(step);
             }
 
-            // --- ASYNC API FETCH INTEGRATION ---
             async function generateKitList(totalTargetBudget, gender, kitData) {
-                categoriesContainer.innerHTML = ''; 
-                grandTotalContainer.innerHTML = ''; 
-                
                 const genderStr = gender === "neutral" ? "gender neutral" : "baby " + gender;
                 let actualGrandTotal = 0; 
                 let globalItemIndex = 0; 
-
-                // Feedback to user that the API is working
-                const originalBtnText = buildBtn.innerText;
-                buildBtn.innerText = "Fetching Live Deals...";
-                buildBtn.disabled = true;
+                
+                // Store generated HTML chunks to render all at once, or we can append as they load.
+                // We will append category by category so the user sees it building!
+                let isFirstCategoryRendered = false;
 
                 for (let catIndex = 0; catIndex < kitData.length; catIndex++) {
                     const cat = kitData[catIndex];
@@ -497,12 +590,10 @@
                             : item.name;
                         
                         let imageUrl = '';
-                        // Fallback search link directly to Walmart if API fails
                         let buyLink = `https://www.walmart.com/search?q=${encodeURIComponent(searchQuery)}`;
 
                         // --- LIVE API FETCH ---
                         try {
-                            // Points to the Netlify Function backend
                             const res = await fetch(`/.netlify/functions/walmart?searchTerm=${encodeURIComponent(searchQuery)}&maxPrice=${retailItemPrice}`);
                             if (res.ok) {
                                 const realProduct = await res.json();
@@ -512,19 +603,18 @@
                                 buyLink = realProduct.link || buyLink;
                             }
                         } catch (err) {
-                            console.log("API unavailable or limited. Falling back to estimated mock data.");
+                            console.log("API unavailable. Falling back to mock data.");
                         }
 
                         actualCategorySubtotal += retailItemPrice;
-                        const cardDelay = 0.5 + (globalItemIndex * 0.08);
+                        const cardDelay = 0.2 + ((i * 0.1)); // Reset delay for each category so they slide in smoothly
 
-                        // Only render image div if API returned an image URL
-                        const imageHTML = imageUrl ? `<div class="product-image-container" style="background-image: url('${imageUrl}');"></div>` : '';
+                        const imageHTML = imageUrl ? `<div style="height: 160px; background: url('${imageUrl}') center/contain no-repeat; margin-bottom: 20px; border-radius: 10px; background-color: #fff;"></div>` : '';
 
                         itemsHTML += `
                             <div class="product-card" style="animation: slideInRight 0.6s ${cardDelay}s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
                                 ${imageHTML}
-                                <div class="product-name">${displayTitle}</div>
+                                <div class="product-name" style="font-size: 1rem;">${displayTitle}</div>
                                 <div class="product-desc">Proportionally balanced estimate.</div>
                                 <div class="product-footer">
                                     <div class="product-price">$${retailItemPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
@@ -538,7 +628,7 @@
                     actualGrandTotal += actualCategorySubtotal;
                     const fractionDisplay = `${cat.name} utilizes ${(cat.normalizedWeight * 100).toFixed(0)}% of your active budget.`;
 
-                    categoriesContainer.insertAdjacentHTML('beforeend', `
+                    const sectionHTML = `
                         <div class="category-section">
                             <div class="category-header">
                                 <div class="category-title" style="color: ${cat.color}; text-shadow: 0 0 20px ${cat.color}40;">${cat.name}</div>
@@ -559,25 +649,32 @@
                                 ${itemsHTML}
                             </div>
                         </div>
-                    `);
+                    `;
+                    
+                    // Clear the loader right before appending the first loaded category
+                    if (!isFirstCategoryRendered) {
+                        const loader = document.getElementById('loadingScreen');
+                        if(loader) loader.style.display = 'none';
+                        isFirstCategoryRendered = true;
+                    }
+
+                    categoriesContainer.insertAdjacentHTML('beforeend', sectionHTML);
                 }
 
-                // Reset Generate button state
-                buildBtn.innerText = originalBtnText;
-                buildBtn.disabled = false;
-
-                grandTotalContainer.innerHTML = `
+                // Append Final Grand Total Card
+                const grandTotalHTML = `
                     <div class="grand-total-card">
                         <div class="gt-label">Total Estimated Kit Value</div>
                         <div class="gt-value" id="animatedTotal">$0.00</div>
                         <div class="gt-target">Based on your target budget of <span>$${totalTargetBudget.toLocaleString()}</span></div>
                     </div>
                 `;
+                grandTotalContainer.innerHTML = grandTotalHTML;
 
                 setTimeout(() => {
                     const animatedTotalEl = document.getElementById('animatedTotal');
                     if(animatedTotalEl) animateValue(animatedTotalEl, 0, actualGrandTotal, 1500);
-                }, 800);
+                }, 400);
             }
         });
     </script>
