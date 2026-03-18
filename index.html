@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabyBudget | Prep for Arrival</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -33,8 +42,9 @@
                               radial-gradient(at 50% 100%, rgba(132, 250, 176, 0.05) 0, transparent 50%);
             min-height: 100vh;
             overflow-x: hidden;
-            padding-bottom: 90px;
             padding-left: 20px; 
+            display: flex;
+            flex-direction: column;
         }
 
         body::before {
@@ -62,7 +72,7 @@
         }
         .logo:hover { transform: scale(1.05); }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative; flex: 1; width: 100%; }
 
         .view-section { transition: opacity 0.4s ease, transform 0.4s ease; width: 100%; }
         .hidden-view { opacity: 0; transform: translateY(20px); pointer-events: none; position: absolute; visibility: hidden; z-index: -1; }
@@ -114,16 +124,6 @@
         input[type=range]::-moz-range-track { width: 100%; height: 10px; cursor: pointer; background: rgba(255, 255, 255, 0.25); border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
         input[type=range]::-moz-range-thumb { height: 36px; width: 36px; border-radius: 50%; box-sizing: border-box; background: var(--gradient-primary); cursor: grab; border: 4px solid #0f172a; box-shadow: 0 0 20px rgba(161, 140, 209, 0.5); transition: transform 0.3s, box-shadow 0.3s; }
         input[type=range]:active::-moz-range-thumb { transform: scale(1.3); cursor: grabbing; box-shadow: 0 0 30px rgba(161, 140, 209, 0.8); }
-
-        @keyframes jellyShake {
-            0% { transform: scale(1.3) translateX(0); }
-            25% { transform: scale(1.05) translateX(-4px); }
-            50% { transform: scale(1.1) translateX(4px); }
-            75% { transform: scale(0.95) translateX(-2px); }
-            100% { transform: scale(1) translateX(0); }
-        }
-        input[type=range].shake-effect::-webkit-slider-thumb { animation: jellyShake 0.4s ease-in-out both; }
-        input[type=range].shake-effect::-moz-range-thumb { animation: jellyShake 0.4s ease-in-out both; }
 
         .primary-btn {
             background: var(--gradient-primary); color: #0f172a; border: none; padding: 20px 48px;
@@ -255,12 +255,34 @@
         }
         .skip-btn:hover { color: var(--text-main); }
 
+        /* Site Footer */
+        .site-footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        .site-footer a { color: var(--text-muted); text-decoration: underline; }
+        .site-footer a:hover { color: var(--text-main); }
+        .timestamp-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px solid var(--border-glass);
+            font-weight: 500;
+        }
+
         /* Print Styles */
         @media print {
             body { background: #ffffff !important; color: #000000 !important; background-image: none !important; -webkit-print-color-adjust: exact; padding-bottom: 0 !important; padding-left: 0 !important; }
             body::before { display: none !important; }
             * { filter: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; text-shadow: none !important; }
-            nav, .header-actions, .engine-disclaimer, #setup-view, #email-modal { display: none !important; }
+            nav, .header-actions, .engine-disclaimer, #setup-view, #email-modal, .site-footer { display: none !important; }
             .container { padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
             h2, p { color: #000 !important; }
             .product-list { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 15px !important; }
@@ -309,8 +331,8 @@
 
     <div class="container">
         <div id="setup-view" class="view-section active-view">
-            <h1>Curate your baby's world.</h1>
-            <p class="subtitle">Set your budget, choose your priority, and we'll intelligently balance the rest.</p>
+            <h1>Plan your baby's arrival with confidence.</h1>
+            <p class="subtitle">Set your budget and tell us what matters most. We'll beautifully balance the rest so you don't have to.</p>
             
             <div class="control-panel">
                 <div class="gender-selector">
@@ -380,11 +402,17 @@
                 <div id="grand-total-container"></div>
                 
                 <div class="engine-disclaimer">
-                    *This is a smart recommendation engine designed to optimize parental spending. Items are hand-curated for safety and quality, and intelligently matched to your budget constraints. As an Amazon Associate, we earn from qualifying purchases.
+                    *This is a smart recommendation engine designed to optimize parental spending. Items are hand-curated for safety and quality, and intelligently matched to your budget constraints.
                 </div>
             </div>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <p>BabyBudget is a free tool built to help parents plan smartly and safely.</p>
+        <p>As an Amazon Associate, we earn from qualifying purchases. This helps keep the engine running.</p>
+        <div class="timestamp-badge" id="liveTimestampBadge">Waiting for live data...</div>
+    </footer>
 
     <div id="email-modal" class="modal-overlay">
         <div class="modal-content">
@@ -416,6 +444,7 @@
             const pieChartCanvas = document.getElementById('pieChartCanvas');
             const chartLegend = document.getElementById('chartLegend');
             const grandTotalContainer = document.getElementById('grand-total-container');
+            const timestampBadge = document.getElementById('liveTimestampBadge');
 
             document.getElementById('closeModalBtn').addEventListener('click', () => document.getElementById('email-modal').classList.remove('show-modal'));
             document.getElementById('skipModalBtn').addEventListener('click', () => document.getElementById('email-modal').classList.remove('show-modal'));
@@ -444,7 +473,6 @@
                 "Play & Soothing": "#c1c8e4"
             };
 
-            // NEW: DYNAMIC PROFILES ENGINE
             const profiles = {
                 budget: {
                     weights: { "Nursery & Furniture": 0.10, "Travel & Gear": 0.20, "Feeding & Nursing": 0.25, "Diapering Needs": 0.25, "Clothing & Basics": 0.10, "Bath & Health": 0.05, "Play & Soothing": 0.05 },
@@ -470,9 +498,68 @@
 
             let productDatabase = {};
 
-            // Fetch live data from JSON
+            // Render category checkboxes first so they exist when we check Local Storage
+            Object.keys(categoryColors).forEach(cat => {
+                const labelHtml = `
+                    <label>
+                        <input type="checkbox" value="${cat}" class="cat-checkbox category-toggle" checked>
+                        <div class="cat-label">${cat}</div>
+                    </label>
+                `;
+                categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
+            });
+
+            // --- SESSION MEMORY (LOCAL STORAGE) ---
+            function saveUserPreferences() {
+                const state = {
+                    budget: budgetSlider.value,
+                    gender: document.querySelector('input[name="gender"]:checked').value,
+                    profile: document.querySelector('input[name="priority_profile"]:checked').value,
+                    categories: Array.from(document.querySelectorAll('.category-toggle:checked')).map(cb => cb.value)
+                };
+                localStorage.setItem('babyBudgetState', JSON.stringify(state));
+            }
+
+            function loadUserPreferences() {
+                const saved = localStorage.getItem('babyBudgetState');
+                if (saved) {
+                    try {
+                        const state = JSON.parse(saved);
+                        if(state.budget) {
+                            budgetSlider.value = state.budget;
+                            budgetDisplay.textContent = '$' + parseInt(state.budget).toLocaleString();
+                        }
+                        if(state.gender) {
+                            const g = document.querySelector(`input[name="gender"][value="${state.gender}"]`);
+                            if(g) g.checked = true;
+                        }
+                        if(state.profile) {
+                            const p = document.querySelector(`input[name="priority_profile"][value="${state.profile}"]`);
+                            if(p) p.checked = true;
+                        }
+                        if(state.categories) {
+                            document.querySelectorAll('.category-toggle').forEach(cb => {
+                                cb.checked = state.categories.includes(cb.value);
+                            });
+                        }
+                    } catch (e) {
+                        console.log("Memory load error, starting fresh.");
+                    }
+                }
+            }
+
+            // Bind memory save to all inputs
+            document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+                input.addEventListener('change', saveUserPreferences);
+            });
+            budgetSlider.addEventListener('change', saveUserPreferences); 
+            // -------------------------------------
+
             buildBtn.disabled = true;
             buildBtn.textContent = "Loading live prices...";
+
+            // Load memory before fetching
+            loadUserPreferences();
 
             fetch('products.json')
                 .then(response => {
@@ -480,6 +567,14 @@
                     return response.json();
                 })
                 .then(data => {
+                    // Extract and display metadata timestamp if it exists
+                    if(data._metadata && data._metadata.last_updated) {
+                        timestampBadge.textContent = `Prices last verified: ${data._metadata.last_updated}`;
+                        delete data._metadata; // Remove it so it doesn't break the calculator loop
+                    } else {
+                        timestampBadge.style.display = 'none';
+                    }
+
                     productDatabase = data;
                     buildBtn.textContent = "Generate My Recommendations";
                     updateSliderBounds();
@@ -600,21 +695,11 @@
                 }, 400);
             }
 
-            Object.keys(categoryColors).forEach(cat => {
-                const labelHtml = `
-                    <label>
-                        <input type="checkbox" value="${cat}" class="cat-checkbox" checked>
-                        <div class="cat-label">${cat}</div>
-                    </label>
-                `;
-                categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
-            });
-
             function updateSliderBounds() {
                 let minFloor = 0;
                 let activeCount = 0;
 
-                document.querySelectorAll('.cat-checkbox:checked').forEach(cb => {
+                document.querySelectorAll('.category-toggle:checked').forEach(cb => {
                     if (Object.keys(categoryColors).includes(cb.value)) {
                         activeCount++;
                         const items = productDatabase[cb.value] || [];
@@ -647,7 +732,6 @@
             }
 
             categoryTogglesContainer.addEventListener('change', updateSliderBounds);
-            updateSliderBounds();
 
             budgetSlider.addEventListener('input', (e) => {
                 budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
@@ -686,7 +770,6 @@
             logoBtn.addEventListener('click', goToSetup);
             exportPdfBtn.addEventListener('click', () => { window.print(); });
 
-            // NEW TWO-PHASE ALLOCATION ENGINE
             function calculateOptimalKit(totalBudget, activeCategoryNames, selectedProfileId) {
                 let itemsList = [];
                 const profileWeights = profiles[selectedProfileId].weights;
@@ -775,9 +858,9 @@
                 const selectedGenderInput = document.querySelector('input[name="gender"]:checked');
                 const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
                 
-                const activeCategoryNames = Array.from(document.querySelectorAll('.cat-checkbox:checked'))
+                const activeCategoryNames = Array.from(document.querySelectorAll('.category-toggle:checked'))
                     .map(cb => cb.value)
-                    .filter(val => Object.keys(categoryColors).includes(val)); // Filter out profile radios
+                    .filter(val => Object.keys(categoryColors).includes(val)); 
                 
                 const selectedProfileId = document.querySelector('input[name="priority_profile"]:checked').value;
                 
