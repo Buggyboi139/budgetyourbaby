@@ -10,7 +10,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-NK7X1VJ6LJ');
     </script>
 
@@ -82,6 +81,19 @@
         #setup-view { text-align: center; }
         h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -1.5px; }
         .subtitle { color: var(--text-muted); font-size: 1.25rem; margin-bottom: 3rem; font-weight: 500; }
+
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass);
+            padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+            color: var(--text-muted); margin-bottom: 25px; cursor: pointer;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .hero-pill:hover {
+            background: rgba(255, 255, 255, 0.1); color: var(--text-main);
+            border-color: rgba(161, 140, 209, 0.5); transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(161, 140, 209, 0.2);
+        }
 
         .control-panel {
             background: var(--surface-glass); backdrop-filter: blur(30px);
@@ -193,7 +205,6 @@
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
         
-        /* NEW: The Interactive Swap Button */
         .swap-btn {
             position: absolute;
             top: 15px; right: 15px;
@@ -246,7 +257,6 @@
         .gt-target { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
         .gt-target span { font-weight: 700; color: var(--text-main); }
         
-        /* NEW: The Over-Budget Warning */
         .over-budget-warning {
             color: #fb7185; font-weight: 700; font-size: 1.1rem; margin-top: 15px;
             background: rgba(251, 113, 133, 0.1); border: 1px solid rgba(251, 113, 133, 0.3);
@@ -300,7 +310,7 @@
             body { background: #ffffff !important; color: #000000 !important; background-image: none !important; -webkit-print-color-adjust: exact; padding-bottom: 0 !important; padding-left: 0 !important; }
             #left-color-bar { display: none !important; }
             * { filter: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; text-shadow: none !important; }
-            nav, .header-actions, .engine-disclaimer, #setup-view, #email-modal, .site-footer { display: none !important; }
+            nav, .header-actions, .engine-disclaimer, #setup-view, #email-modal, #about-modal, .site-footer { display: none !important; }
             .container { padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
             h2, p { color: #000 !important; }
             .product-list { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 15px !important; }
@@ -350,6 +360,10 @@
 
     <div class="container">
         <div id="setup-view" class="view-section active-view">
+            <div class="hero-pill" id="aboutPillBtn">
+                <span style="opacity: 0.7;">✨</span>
+                <span>When should I use this?</span>
+            </div>
             <h1>Plan your baby's arrival with confidence.</h1>
             <p class="subtitle">Set your budget and tell us what matters most. We'll balance the rest so you don't have to.</p>
             
@@ -427,6 +441,21 @@
         </div>
     </div>
 
+    <div id="about-modal" class="modal-overlay">
+        <div class="modal-content" style="text-align: left; max-width: 500px;">
+            <button id="closeAboutBtn" class="close-btn">&times;</button>
+            <div style="display: inline-block; background: rgba(161, 140, 209, 0.2); color: #c4b5fd; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(161, 140, 209, 0.4);">Our Philosophy</div>
+            <h3 style="font-size: 2rem; margin-bottom: 15px; line-height: 1.1; letter-spacing: -1px;">The First 40 Weeks.</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; font-size: 1.05rem;">
+                The baby industry is loud, expensive, and overwhelming. BabyBudget is designed to be your compass from the moment you see the positive test, right up until your first week home with your newborn.
+            </p>
+            <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.7; font-size: 1.05rem;">
+                We purposely exclude items you won't need until they are older (like convertible car seats or high-end feeding tech). Our algorithm cuts through the noise to build a survival kit mapped perfectly to your wallet.
+            </p>
+            <button id="gotItBtn" class="primary-btn" style="width: 100%; padding: 16px;">Got it, let's plan</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const setupView = document.getElementById('setup-view');
@@ -460,6 +489,10 @@
                 this.innerHTML = '<h4 style="color: #34d399; margin-top: 20px; font-size: 1.2rem;">Saved! Check your inbox shortly.</h4>';
                 setTimeout(() => document.getElementById('email-modal').classList.remove('show-modal'), 2000);
             });
+
+            document.getElementById('aboutPillBtn').addEventListener('click', () => document.getElementById('about-modal').classList.add('show-modal'));
+            document.getElementById('closeAboutBtn').addEventListener('click', () => document.getElementById('about-modal').classList.remove('show-modal'));
+            document.getElementById('gotItBtn').addEventListener('click', () => document.getElementById('about-modal').classList.remove('show-modal'));
 
             const categoryColors = {
                 "Nursery & Furniture": "#bfa2db", 
@@ -497,7 +530,6 @@
 
             let productDatabase = {};
             
-            // NEW: Global state object to power the interactive Swaps
             let currentLiveKit = {
                 targetBudget: 0, grandTotal: 0, catTotals: {}, kitByCategory: {}, targetBudgets: {}, selectedProfileId: ""
             };
@@ -928,7 +960,6 @@
                 goToResults();
                 const finalKit = calculateOptimalKit(totalBudget, activeCategoryNames, selectedProfileId);
                 
-                // Lock state into the Global Tracker
                 currentLiveKit = {
                     targetBudget: totalBudget,
                     grandTotal: finalKit.grandTotal,
@@ -943,16 +974,13 @@
                 generateKitListHTML(activeCategoryNames);
             });
 
-            // NEW: Unified Event Listener for Modals AND the Swap Button
             let modalHasBeenShown = false;
             document.getElementById('categories-container').addEventListener('click', function(e) {
-                // Email Request Catch
                 if (e.target.classList.contains('buy-btn') && !modalHasBeenShown) {
                     document.getElementById('email-modal').classList.add('show-modal');
                     modalHasBeenShown = true;
                 }
                 
-                // Swap Action Catch
                 const swapBtn = e.target.closest('.swap-btn');
                 if (swapBtn) {
                     const catName = swapBtn.dataset.cat;
@@ -961,30 +989,24 @@
                     const itemState = currentLiveKit.kitByCategory[catName][itemIndex];
                     const oldTier = itemState.tiers[itemState.selectedIdx];
                     
-                    // Cycle to next tier
                     itemState.selectedIdx = (itemState.selectedIdx + 1) % itemState.tiers.length;
                     const newTier = itemState.tiers[itemState.selectedIdx];
 
-                    // Update math
                     const priceDiff = newTier.price - oldTier.price;
                     currentLiveKit.catTotals[catName] += priceDiff;
                     currentLiveKit.grandTotal += priceDiff;
 
-                    // Update DOM (Card)
                     const safeCatId = catName.replace(/[^a-zA-Z0-9]/g, '');
                     const cardEl = document.getElementById(`card-${safeCatId}-${itemIndex}`);
                     if (cardEl) {
                         cardEl.innerHTML = getCardInnerHtml(newTier, catName, itemIndex);
-                        // Brief pop animation
                         cardEl.style.transform = "scale(0.95)";
                         setTimeout(() => cardEl.style.transform = "scale(1)", 150);
                     }
 
-                    // Update DOM (Subtotals & Budget)
                     const subtotalEl = document.getElementById(`subtotal-${safeCatId}`);
                     if (subtotalEl) subtotalEl.textContent = `Subtotal: $${currentLiveKit.catTotals[catName].toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
 
-                    // Update dynamic % tooltips
                     Object.keys(currentLiveKit.catTotals).forEach(c => {
                         const sId = c.replace(/[^a-zA-Z0-9]/g, '');
                         const fracEl = document.getElementById(`fraction-text-${sId}`);
