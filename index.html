@@ -201,7 +201,7 @@
             background: var(--surface-solid); border: 1px solid var(--border-glass); position: relative;
             border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2); backdrop-filter: blur(10px);
-            opacity: 0; transform: translateX(60px); transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+            opacity: 0; transform: translateX(60px); transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s, opacity 0.2s;
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
         
@@ -362,7 +362,7 @@
         <div id="setup-view" class="view-section active-view">
             <div class="hero-pill" id="aboutPillBtn">
                 <span style="opacity: 0.7;">✨</span>
-                <span>When should I use this?</span>
+                <span>How do I use this?</span>
             </div>
             <h1>Plan your baby's arrival with confidence.</h1>
             <p class="subtitle">Set your budget and tell us what matters most. We'll balance the rest so you don't have to.</p>
@@ -447,10 +447,10 @@
             <div style="display: inline-block; background: rgba(161, 140, 209, 0.2); color: #c4b5fd; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(161, 140, 209, 0.4);">Our Philosophy</div>
             <h3 style="font-size: 2rem; margin-bottom: 15px; line-height: 1.1; letter-spacing: -1px;">The First 40 Weeks.</h3>
             <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; font-size: 1.05rem;">
-                The baby industry is loud, expensive, and overwhelming. BabyBudget is designed to be your compass from the moment you see the positive test, right up until your first week home with your newborn.
+                The baby industry is loud, expensive, and overwhelming. BabyBudget is designed to help you navigate from the moment you see the positive test, right up until your first week home with your newborn.
             </p>
             <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.7; font-size: 1.05rem;">
-                We purposely exclude items you won't need until they are older (like convertible car seats or high-end feeding tech). Our algorithm cuts through the noise to build a survival kit mapped perfectly to your wallet.
+                We help you get your nursery in order with the essentials. Our algorithm cuts through the noise to build a survival kit mapped perfectly to your wallet. Pick your priorities. Exclude categories you've already got covered. Then, Choose your budget.
             </p>
             <button id="gotItBtn" class="primary-btn" style="width: 100%; padding: 16px;">Got it, let's plan</button>
         </div>
@@ -999,9 +999,16 @@
                     const safeCatId = catName.replace(/[^a-zA-Z0-9]/g, '');
                     const cardEl = document.getElementById(`card-${safeCatId}-${itemIndex}`);
                     if (cardEl) {
-                        cardEl.innerHTML = getCardInnerHtml(newTier, catName, itemIndex);
-                        cardEl.style.transform = "scale(0.95)";
-                        setTimeout(() => cardEl.style.transform = "scale(1)", 150);
+                        cardEl.style.opacity = "0";
+                        
+                        setTimeout(() => {
+                            cardEl.innerHTML = getCardInnerHtml(newTier, catName, itemIndex);
+                            
+                            cardEl.style.transform = "scale(0.98)";
+                            cardEl.style.opacity = "1"; 
+                            setTimeout(() => cardEl.style.transform = "scale(1)", 150);
+                            
+                        }, 200);
                     }
 
                     const subtotalEl = document.getElementById(`subtotal-${safeCatId}`);
