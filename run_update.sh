@@ -2,11 +2,13 @@
 
 cd ~/budgetyourbaby || exit
 
-python3 update_prices.py
+~/budgetyourbaby/scraper_env/bin/python update_prices.py
 
-if [[ -n $(git status --porcelain) ]]; then
-    echo "Changes detected. Committing and pushing..."
-    git add .
+if [[ -n $(git status --porcelain products.json) ]]; then
+    echo "Changes detected in products.json. Committing and pushing..."
+    
+    git add products.json
+    
     git commit -m "Automated Amazon price/image update: $(date +'%Y-%m-%d %H:%M')"
     git push origin main
 else
