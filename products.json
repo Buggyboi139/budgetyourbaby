@@ -5,30 +5,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Delta Children Canton Mini Crib",
+                    "title": "Delta Children Folding Portable Mini Baby Crib with 1.5-inch Mattress - Greenguard Gold Certified, White",
                     "price": 126.32,
                     "rating": 4.6,
-                    "reviews": 4218,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B002MZMDX8/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/710KV1N+JCL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Graco Benton 5-in-1 Convertible Crib",
+                    "title": "Graco Benton 5-in-1 Convertible Crib \u2013 GREENGUARD Gold Certified, Converts from Baby Crib to Toddler Bed, Daybed and Full-Size Bed, Fits Standard Full-Size Crib Mattress (Pebble Gray)",
                     "price": 199.99,
-                    "rating": 4.8,
-                    "reviews": 12543,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B010S7VZ6W/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71CtqIsSfrL._SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Babyletto Hudson 3-in-1 Convertible Crib",
+                    "title": "Babyletto Hudson 3-in-1 Convertible Baby Crib - GREENGUARD Gold Certified - Convertible Crib to Toddler Bed and Daybed - Baby Bed with 4 Adjustable Heights - Wooden Crib - Washed Natural",
                     "price": 499.0,
                     "rating": 4.7,
-                    "reviews": 2312,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0148KHE7O/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71HpSqsYFBL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Babyletto Moab 3-in-1 Convertible Crib in Taupe and Ash, GREENGUARD Gold Certified",
+                    "price": 999.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0F23LPQSV/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71wFmcBkPfL._AC_SY355_.jpg"
                 }
             ]
         },
@@ -37,30 +46,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Storkcraft Premium Hoop Glider",
+                    "title": "Storkcraft Premium Hoop Glider & Ottoman (White/Gray) \u2014 GREENGUARD Gold Certified Nursery Glider, Solid Wood Craftsmanship, Smooth-Gliding, Award-Winning",
                     "price": 189.99,
                     "rating": 4.4,
-                    "reviews": 18274,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00I5ELBA6/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/717el9ToXJL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Delta Children Blair Slim Glider",
+                    "title": "Delta Children Blair Slim Nursery Glider Swivel Rocker Chair, Charcoal",
                     "price": 232.09,
                     "rating": 4.4,
-                    "reviews": 3188,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B072VGKCFZ/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81eDz68ypSL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "DaVinci Olive Upholstered Swivel Glider",
+                    "title": "daVinci Olive 360\u00b0 Swivel Glider Chair w/ Storage Ottoman - Water & Stain Resistant Rocking Glider - GREENGUARD Gold & FSC Certified, Versatile Rocking Chair for Nursery & Living Room, Polyester Cream",
                     "price": 296.65,
-                    "rating": 4.8,
-                    "reviews": 5491,
+                    "rating": 4.4,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0192SZGNQ/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/91IoSpx8FRL._SY355_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Babyletto Kiwi Glider Recliner Nursery Chair w/USB Ports - GREENGUARD Gold Certified - Water & Stain Resistant Glider Rocking Chair - Electronic, 270\u00b0 Swivel, Almond Teddy Loop w/Light Wood Base",
+                    "price": 1099.0,
+                    "rating": 4.2,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0CZ6M96RR/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/91ssiOep0tL._SY355_.jpg"
                 }
             ]
         },
@@ -69,30 +87,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Safety 1st Heavenly Dreams Mattress",
+                    "title": "Safety 1st Heavenly Dreams Baby Crib & Toddler Bed Mattress, Waterproof Cover, Firm, Fits Standard Size Cribs & Toddler Beds, White",
                     "price": 62.99,
                     "rating": 4.6,
-                    "reviews": 22045,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B004044LD4/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71krXFLbGtL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Sealy Baby Firm Rest Mattress",
+                    "title": "Sealy Baby Firm Rest Antibacterial Breathable Crib Mattress, Made in USA, GREENGUARD Gold Certified, 204 Steel Coils, 2 Stage, Toddler Bed Fit, Waterproof, Non Toxic, Safety & Quality Tested, 52x28\"",
                     "price": 89.99,
-                    "rating": 4.8,
-                    "reviews": 9532,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B004EWG4ZA/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81-wl0BzfCL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Newton Baby Wovenaire Crib Mattress",
+                    "title": "Newton Baby Crib Mattress and Toddler Bed - Ultra-Breathable Proven to Reduce Suffocation Risk, Washable Core & Cover, All-Stages, Infant to Toddler, Deluxe 5.5\" Thick - White",
                     "price": 299.99,
-                    "rating": 4.9,
-                    "reviews": 6821,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00WR958TA/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71VeejrijDL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Naturepedic Organic Crib Mattress - 2-Stage Lightweight Infant & Toddler Mattress with Protector Pad - Waterproof, Breathable & Non-Toxic for Baby and Toddler Bed",
+                    "price": 313.65,
+                    "rating": 4.3,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07NQN9XBT/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/510Z09clJIL._AC_SY355_.jpg"
                 }
             ]
         },
@@ -101,30 +128,80 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "VTech Upgraded Audio Baby Monitor",
+                    "title": "VTech Upgraded Audio Baby Monitor with Rechargeable Battery, Long Range, and Crystal-Clear Sound",
                     "price": 23.95,
-                    "rating": 4.5,
-                    "reviews": 15482,
+                    "rating": 4.4,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00JEV5UI8/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61PzyDeMA-L._AC_SX342_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "HelloBaby Video Monitor",
+                    "title": "HelloBaby No WiFi Baby Monitor 5\" Screen 30-Hour Battery Pan-Tilt-Zoom Video Upgrade with Camera and Audio, Night Vision, VOX, 2-Way Talk, 8 Lullabies and 1000ft Range, HB6550",
                     "price": 63.16,
-                    "rating": 4.6,
-                    "reviews": 31056,
+                    "rating": 4.5,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B09GM8JZM9/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61qMfoVil5L._AC_SX355_PIbundle-2,TopRight,0,0_SH20_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Infant Optics DXR-8 PRO Video Monitor",
+                    "title": "Infant Optics DXR-8 PRO Video Baby Monitor, 720P HD Resolution 5\" Display, Patented A.N.R. (Active Noise Reduction), No WiFi, Pan Tilt Zoom, and Interchangeable Lenses",
                     "price": 199.99,
-                    "rating": 4.8,
-                    "reviews": 45129,
+                    "rating": 4.5,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B08FF4GV5C/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71G9W+hypCL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B08QMWP5V8/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                }
+            ]
+        },
+        {
+            "name": "Sound Machine",
+            "tiers": [
+                {
+                    "tier": "Budget",
+                    "title": "Yogasleep Hushh Portable White Noise Sound Machine for Baby, 3 Soothing Natural Sounds with Volume Control, Compact Size, Noise Canceling for Sleep Aid, Office Privacy, & Meditation, Registry Gift",
+                    "price": 25.99,
+                    "rating": 4.6,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B01D50RYSC/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61xcoVjNP5L._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Standard",
+                    "title": "Hatch Baby Sound Machine, Night Light | Sleep Support | Registry Essential, Routine Builder, Time-to-Rise Alarm Clock, White Noise, Nursery Stories, Toddler Kids (Wi-Fi) (White, Rest 1st Gen)",
+                    "price": 29.99,
+                    "rating": 4.8,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B06XMRCC94/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/31jmo07al7S._AC_SX342_.jpg"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Hatch Baby Sound Machine, Night Light | Hatch Baby (Putty) Sleep Support | Registry Essential, Routine Builder, Time-to-Rise Alarm Clock, White Noise, Nursery Stories, Toddler Kids (Wi-Fi)",
+                    "price": 99.99,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0F7C6XJ3P/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61ywgG8LjOL._AC_SX342_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0D6SX8VLQ/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
                 }
             ]
         }
@@ -135,33 +212,43 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Graco SnugRide 35 Lite LX",
-                    "price": 139.99,
-                    "rating": 4.8,
-                    "reviews": 28104,
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07Y5S4VWT/?tag=1097fa-20",
-                    "crashTest": "ProtectPlus Engineered (Side, Rear, Rollover)",
-                    "img": "https://m.media-amazon.com/images/I/711Rix6pr9L._SY355_.jpg"
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error",
+                    "crashTest": "ProtectPlus Engineered"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Chicco KeyFit 30 Infant Car Seat",
+                    "title": "Chicco KeyFit 30 ClearTex Infant Car Seat and Base, Rear-Facing Seat for Infants 4-30 lbs., Includes Infant Head and Body Support, Compatible with Chicco Strollers, Baby Travel Gear, Pewter/Grey",
                     "price": 229.99,
                     "rating": 4.9,
-                    "reviews": 35492,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B09LKZFKGD/?tag=1097fa-20",
-                    "crashTest": "EPS Energy-Absorbing Foam & SuperCinch Tightener",
-                    "img": "https://m.media-amazon.com/images/I/71CalcfjvSL._SY355_.jpg"
+                    "img": "https://m.media-amazon.com/images/I/71CalcfjvSL._SY355_.jpg",
+                    "crashTest": "EPS Energy-Absorbing Foam"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Evenflo Nurture Infant Car Seat",
-                    "price": 239.99,
-                    "rating": 4.9,
-                    "reviews": 13,
-                    "link": "https://www.amazon.com/dp/B0F67FF4C9/?tag=1097fa-20",
-                    "crashTest": "Meets US FMVSS 213 Standards",
-                    "img": "https://m.media-amazon.com/images/I/71TBrQZh2hL._SY355_.jpg"
+                    "title": "Evenflo Gold Revolve360 Extend All-in-One Rotational Car Seat with SensorSafe (Onyx Black)",
+                    "price": 499.99,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0DTYGNBR3/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71QeqzFJVsL._SY355_.jpg",
+                    "crashTest": "Meets US FMVSS 213 Standards"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Baby Jogger City Turn Rotating Convertible Car Seat, Pike, 180-Degree Turn, Lightweight Coolmax Fabric, Newborn to Toddler",
+                    "price": 579.99,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0987YSHNY/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/81Ss7XHCVEL._SY355_.jpg",
+                    "crashTest": "Advanced Side Impact Protection"
                 }
             ]
         },
@@ -170,28 +257,37 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Kolcraft Cloud Plus Stroller",
+                    "title": "Kolcraft Cloud Plus Lightweight Umbrella Stroller for Toddlers with Reclining Seat, Large Storage Basket, Canopy, Infant & Parent Trays, Compact Fold for Summer Travel, Durable Frame, Slate Gray",
                     "price": 89.99,
-                    "rating": 4.5,
-                    "reviews": 14588,
+                    "rating": 4.3,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B019DHBCXE/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71RLZKHo-YL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Baby Jogger City Mini GT2 Stroller",
+                    "title": "Baby Jogger City Mini GT2 All-Terrain Stroller Black Complete with Adjustable Handlebar Hand-Operated Parking Brake and car seat Adapter",
                     "price": 399.99,
-                    "rating": 4.8,
-                    "reviews": 4219,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B08ZJTNY7Y/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81er4BpnLhL._SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "UPPAbaby Vista V2 Stroller",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B08VWWQ96T/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "UPPAbaby Vista V3 Convertible Single-to-Double Stroller for Baby & Toddler, 30+ Configurations, Travel System Compatible, All-Wheel Suspension, XL Basket \u2013 Greyson (Charcoal M\u00e9lange/Carbon Frame)",
                     "price": 999.99,
-                    "rating": 4.9,
-                    "reviews": 2845,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0D9XS9VXL/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61CXZQdFSVL._SY355_.jpg"
                 }
@@ -202,30 +298,80 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Infantino Flip Advanced Carrier",
+                    "title": "Infantino Flip 4-in-1 Convertible Baby Carrier, Adjustable, Ergonomic Babywearing, Registry Essential, Baby Carrier for Newborn to Toddler, Gray",
                     "price": 24.49,
                     "rating": 4.6,
-                    "reviews": 45032,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00M0DWQYI/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71Ysf6HGZ1L._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Moby Wrap Classic Baby Carrier",
+                    "title": "Moby Baby Wrap Carrier Classic for Newborns to Toddlers (8-33lbs), Infant Sling Carrier, Lightweight & Hands Free Design, Adjustable for All Body Types (Pear)",
                     "price": 44.99,
-                    "rating": 4.5,
-                    "reviews": 12084,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B079TFMCHY/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71j54Z8kalL._SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Ergobaby Omni 360 Carrier",
+                    "title": "Ergobaby Omni Classic (formerly OMNI 360) All-Position Baby Carrier for Newborn to Toddler with Lumbar Support and Cool Air Mesh, 7-45 Pounds, Midnight Blue, One Size",
                     "price": 179.99,
-                    "rating": 4.8,
-                    "reviews": 8911,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07B41952V/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/710zAgteHvL._SY355_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Ergobaby All Carry Positions Breathable Mesh Baby Carrier with Enhanced Lumbar Support & Airflow (7-45 Lb), Omni Breeze, Midnight Blue",
+                    "price": 219.0,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B092FM5KJ7/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/81qIKA7aofL._SY355_.jpg"
+                }
+            ]
+        },
+        {
+            "name": "Diaper Bag",
+            "tiers": [
+                {
+                    "tier": "Budget",
+                    "title": "LOVEVOOK Laptop Backpack for Women with Giant Tumbler Holder Pocket,15.6 inch Waterproof Travel Backpack Purse Computer Laptop Bag,Professional Work College Nurse Teacher Backpack Casual Daypack,Black",
+                    "price": 28.14,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0FSLB42V3/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71HgnUHbcHL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Standard",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07C3SWZ1C/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00J4N04EA/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B01MT2G6D8/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
                 }
             ]
         }
@@ -236,30 +382,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Evenflo Feeding Classic Glass 6-Pack",
+                    "title": "Evenflo Feeding Classic Glass, Twist Bottles, 4 Oz, 6 Bottles.",
                     "price": 16.99,
-                    "rating": 4.4,
-                    "reviews": 1243,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00RVIOQLI/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71sgXVcoHRL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Philips Avent Natural Response 4-Pack",
+                    "title": "Philips Avent Natural Baby Bottles with Natural Response Nipples (Medium Flow, Flow 3), 9oz, 4-Pack, SCY903/04",
                     "price": 29.95,
-                    "rating": 4.7,
-                    "reviews": 15682,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0964CHD65/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71PP49jvjLL._SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Dr. Brown's Anti-Colic Narrow Glass 4-Pack",
+                    "title": "Dr. Brown's Anti-Colic Options+ Narrow Glass Baby Bottle with Level 1 Slow Flow Nipple, BPA-Free, 8 oz/250 mL, 0m+, 4-Pack (Packaging May Vary)",
                     "price": 31.96,
-                    "rating": 4.8,
-                    "reviews": 22091,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0F54RHSM7/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81PGkAoYIML._SY355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "BIBS Baby Bottle 270 ml Silicone Nipple 4 Pack - Anti-Colic, BPA-Free, Round Nipple, Lightweight & Easy to Clean, Suitable for Newborns 0+ Years, 4-Pack + 2 Extra Nipples - Ivory",
+                    "price": 42.95,
+                    "rating": 5.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0FPGB6D2G/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61K-CGPvcGL._SY355_.jpg"
                 }
             ]
         },
@@ -268,28 +423,37 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Boppy Original Support Pillow",
+                    "title": "Boppy Nursing Pillow, Bare Naked - Larger, More Supportive Pillow for Breastfeeding and Bottle Feeding with Higher Lift; Baby Safety Alliance Verified",
                     "price": 39.99,
                     "rating": 4.0,
-                    "reviews": 38045,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0F8LDHL26/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/51ICfyOYckL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "My Brest Friend Nursing Pillow",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0B5P2RXYN/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "My Brest Friend Nursing Pillow - Deluxe - Enhanced Comfort w/ Slipcover - Ergonomic Breastfeeding Pillow For Ultimate Support For Mom & Baby - Adjustable Pillow W/ Handy Side Pocket, Soft Rose",
                     "price": 56.99,
-                    "rating": 4.7,
-                    "reviews": 12467,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B08J54C2Y8/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/618aurIHl4L._SY355_.jpg"
                 },
                 {
-                    "tier": "Premium",
-                    "title": "Snuggle Me Organic Bare Pillow",
+                    "tier": "Organic",
+                    "title": "snuggle me Organic Nursing Pillow (New 2025 Design) | Bottle & Breastfeeding Pillow with Organic Cotton Cover & Fiberfill, Machine Washable Feeding Pillow, Newborn Essentials Must Haves (Natural) - v2",
                     "price": 64.99,
-                    "rating": 4.9,
-                    "reviews": 9214,
+                    "rating": 4.4,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B08SMT92PK/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61nqq8HAyIL._SY355_.jpg"
                 }
@@ -300,30 +464,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Cosco Simple Fold High Chair",
+                    "title": "Cosco Kids Simple Fold Highchair for Baby, Simple Foldable High Chair, Convenient, Lightweight, and Compact Design, Comet",
                     "price": 59.99,
                     "rating": 4.6,
-                    "reviews": 16088,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B01JRY07BQ/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71DryRBVuNL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Graco Slim Snacker High Chair",
+                    "title": "Graco Slim Snacker High Chair, Ultra Slim, Fast-Folding, Multiple Recline Positions, Comfortable Feeding, Whisk",
                     "price": 99.99,
-                    "rating": 4.8,
-                    "reviews": 14521,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00PTL13LA/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71bAgE8A+oL._SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Stokke Tripp Trapp High Chair",
+                    "title": "Stokke Tripp Trapp High Chair 2, Natural - Includes Chair + Baby Set with Removable Harness for Children 6-36 Months - Adjustable, Ergonomic & Easy to Clean",
                     "price": 279.2,
-                    "rating": 4.9,
-                    "reviews": 6894,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0D5KLGSYS/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/6109NxB5HWL._SY355_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Peg Perego Siesta, Grow With Baby Folding High Chair & Recliner, Height Adjustable, Quick Clean & Easy Push Wheels For Babies & Toddlers, Made in Italy, Arancia (Orange)",
+                    "price": 263.99,
+                    "rating": 4.5,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B006T6CKG6/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61OsEjmRhWL._SY355_.jpg"
                 }
             ]
         },
@@ -332,30 +505,80 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Luvable Friends Flannel Cloths",
+                    "title": "Luvable Friends Unisex Baby Cotton Flannel Burp Cloths, Love, One Size",
                     "price": 9.99,
-                    "rating": 4.6,
-                    "reviews": 31056,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0757FF5Z9/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/91RVwda1A-L._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Burt's Bees Organic Burp Cloths",
-                    "price": 26.95,
-                    "rating": 4.8,
-                    "reviews": 18032,
-                    "link": "https://www.amazon.com/dp/B00N4PNYRY/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/711Th9A2nNL._SY355_.jpg"
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B08CBJ2SSQ/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Copper Pearl Premium Burp Cloths",
-                    "price": 23.0,
-                    "rating": 4.9,
-                    "reviews": 11284,
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B079MFDF4M/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/A1kxr7Rkl0L._SY355_.jpg"
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Burts Bees Baby Infant Burp Cloths, 100% Organic Cotton Extra Absorbent Soft Fabric Drool Cloths, 5-Pack Newborn Must-Have Essential Large Burping Cloths, One Size 17 x 11.75 Inches",
+                    "price": 26.95,
+                    "rating": 4.9,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00N4PNYRY/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/711Th9A2nNL._SY355_.jpg"
+                }
+            ]
+        },
+        {
+            "name": "Breast Pump",
+            "tiers": [
+                {
+                    "tier": "Budget",
+                    "title": "Medela, Harmony Breast Pump, Manual Breast Pump, Portable Pump, 2-Phase Expression Technology, Ergonomic Swivel Handle, Easy to Control Vaccuum, Designed for Occasional Use",
+                    "price": 23.49,
+                    "rating": 4.5,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0006HBS1M/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/51LEcg2OPYL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Standard",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00BLBLR1I/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00DBKFFJM/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Elvie - Double, Wearable Breast Pump w/App - The Smallest & Quietest - Portable - Hands Free & Discreet - Automated with Four Personalized Settings",
+                    "price": 439.99,
+                    "rating": 4.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07G375DHR/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71ZuSeF2tHL._AC_SX355_PIbundle-2,TopRight,0,0_SH20_.jpg"
                 }
             ]
         }
@@ -366,30 +589,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Luvs Pro Level Leak Protection 40 Count",
+                    "title": "Luvs Newborn Ultra Leakguards Diapers, 40 Count",
                     "price": 20.99,
-                    "rating": 4.3,
-                    "reviews": 8521,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00FF79658/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/715wWFn1vzL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Pampers Swaddlers Box 40 Count",
+                    "title": "Pampers Swaddlers Diapers Size N 20 Count Pack of 2 (Total of 40 Pampers)",
                     "price": 25.99,
                     "rating": 4.8,
-                    "reviews": 65098,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0178B04JK/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81NvjVv9j9L._AC_SY355_PIbundle-2,TopRight,0,0_SH20_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "The Honest Company Clean Diapers 78 Count",
+                    "title": "The Honest Company Comfort Dry Disposable Diapers for Sensitive Skin, Hypoallergenic, All The Alpacas + Turtle Time, Club Box Size 1 (8-14 lbs) 78 Count",
                     "price": 26.97,
-                    "rating": 4.7,
-                    "reviews": 14265,
+                    "rating": 4.3,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0CKV2ZL1Y/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/817J-AgVkNL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Earth & Eden Sensitive | Eco-Conscious & Hypoallergenic Diapers | Size 4 | 192 Count",
+                    "price": 59.99,
+                    "rating": 4.4,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0B5YCSGDD/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/81s7w2YcMvL._AC_SY355_.jpg"
                 }
             ]
         },
@@ -398,30 +630,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Amazon Elements Baby Wipes 810 Count",
+                    "title": "Amazon Elements Baby Wipes, Unscented, Alcohol-Free, With Aloe and Vitamin E, 810 Count, Flip-Top Packs",
                     "price": 20.24,
-                    "rating": 4.5,
-                    "reviews": 11043,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07H53W5WP/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71gbIUpYmcL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Huggies Natural Care Wipes 768 Count",
-                    "price": 21.99,
-                    "rating": 4.8,
-                    "reviews": 82012,
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07SCL613T/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/81KJo22+X0L._AC_SY355_PIbundle-12,TopRight,0,0_SH20_.jpg"
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
                 },
                 {
                     "tier": "Premium",
-                    "title": "WaterWipes Original Baby Wipes 720 Count",
-                    "price": 44.82,
-                    "rating": 4.8,
-                    "reviews": 45076,
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B008KJEYLO/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/813fvE8SHRL._AC_SY355_PIbundle-12,TopRight,0,0_SH20_.jpg"
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B01LXNICJF/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
                 }
             ]
         },
@@ -430,30 +671,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Diaper Dekor EKO Classic Diaper Pail",
-                    "price": 39.99,
-                    "rating": 4.5,
-                    "reviews": 13154,
+                    "title": "Amazon Product",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0D37YXJBF/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/51Uz7GqvPeL._SY355_.jpg"
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Error"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Munchkin Step Diaper Pail",
+                    "title": "Munchkin\u00ae STEP\u2122 Diaper Pail Powered by Arm & Hammer, #1 in Odor Control, Award-Winning, Includes 1 Snap, Seal & Toss\u2122 Bag, 1 Starter Refill Ring, and 1 PUCK\u2122 Baking Soda Cartridge",
                     "price": 69.97,
-                    "rating": 4.7,
-                    "reviews": 18532,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B01BDQDIGM/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71CfMQJJoHL._SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Ubbi Steel Odor Locking Pail",
+                    "title": "Ubbi Adult Diaper Pail, Steel Odor Locking, No Special Bag Required, Awards-Winning, Modern Design, White",
                     "price": 99.99,
                     "rating": 4.4,
-                    "reviews": 21088,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0CK2K6JXD/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/51go+sKFx5L._SX342_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Munchkin\u00ae UV Diaper Pail #1 in Odor Control, Includes 1 UV Snap, Seal & Toss\u2122 Bag and 1 UV Refill Ring",
+                    "price": 129.99,
+                    "rating": 4.4,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B09RCPTWB4/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/51Nyzxx2rAL._SX342_.jpg"
                 }
             ]
         },
@@ -462,30 +712,80 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Munchkin Secure Grip Pad",
-                    "price": 34.99,
-                    "rating": 4.7,
-                    "reviews": 15021,
-                    "link": "https://www.amazon.com/dp/B00O64QJOC/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/51bcxL+mU0L._SY355_.jpg"
-                },
-                {
-                    "tier": "Standard",
-                    "title": "Summer Infant Contoured Pad",
+                    "title": "Summer by Ingenuity Contoured Changing Pad \u2013 Includes Waterproof Changing Liner and Safety Fastening Strap with Quick-Release Buckle",
                     "price": 18.89,
                     "rating": 4.8,
-                    "reviews": 29084,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B009EDSWJA/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/712fV9oRPRL._SY355_.jpg"
                 },
                 {
-                    "tier": "Premium",
-                    "title": "Skip Hop Wipe-Clean Changing Pad",
-                    "price": 89.97,
+                    "tier": "Standard",
+                    "title": "Munchkin Secure Grip Baby Diaper Changing Pad for Dresser, Waterproof and Wipeable, Contoured, Standard Size (14.75\" x 31\"), White",
+                    "price": 34.99,
                     "rating": 4.8,
-                    "reviews": 9231,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00O64QJOC/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/51bcxL+mU0L._SY355_.jpg"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Skip Hop Baby Changing Pad Nursery Style Wipe-Clean Contoured with Cushioned Foam, Non-Skid Base, Built-in Safety Belt & Tuck-Away Toy Bar, Grey",
+                    "price": 89.97,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B075X8TPMN/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/51tvpEH0MUL._SY355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Naturepedic Organic Contoured Changing Pad - Easy to Clean, Lightweight & Portable - Comfort 2-Sided Waterproof Baby Diaper Changing Pad for Dresser or Changing Table - 16\" x 31\"",
+                    "price": 118.15,
+                    "rating": 4.6,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B004FTTV5W/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/41DZFMFm6FL._SY355_.jpg"
+                }
+            ]
+        },
+        {
+            "name": "Diaper Cream",
+            "tiers": [
+                {
+                    "tier": "Budget",
+                    "title": "Desitin Daily Defense Baby Diaper Rash Cream with Zinc Oxide to Treat, Relieve & Prevent diaper rash, Hypoallergenic, Dye-, Phthalate- & Paraben-Free, 4.8 oz",
+                    "price": 7.55,
+                    "rating": 4.8,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07H7GBJC4/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71UlEqyodhL._SY355_.jpg"
+                },
+                {
+                    "tier": "Standard",
+                    "title": "Aquaphor Baby Healing Ointment Advanced Therapy Skin Protectant, Dry Skin and Diaper Rash Ointment, 7 Oz Tube",
+                    "price": 12.97,
+                    "rating": 4.9,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0107QP1VE/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61F9-Xo8-jL._SY355_.jpg"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Boudreaux\u2019s Butt Paste Max Strength Diaper Rash Cream for Baby, Ointment With Zinc Oxide, 14 oz Flip-Top Jar",
+                    "price": 15.27,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B01LZF07GU/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71q3CwPpg+L._SY355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Earth Mama Organic Economy Size Diaper Balm | Diaper Cream for Baby | EWG Verified, Petroleum & Artificial Fragrance-Free with Calendula for Sensitive Skin, 4-Fluid Ounce",
+                    "price": 21.97,
+                    "rating": 4.8,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0825WHHGJ/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71KzXB188sL._AC_SX355_.jpg"
                 }
             ]
         }
@@ -496,30 +796,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Gerber 4-Pack Sleep 'n Play",
-                    "price": 25.95,
-                    "rating": 4.6,
-                    "reviews": 3218,
-                    "link": "https://www.amazon.com/dp/B08BV38H37/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/91rugS1eU+S._AC_SX342_.jpg"
-                },
-                {
-                    "tier": "Standard",
-                    "title": "Carter's 3-Pack Sleep 'n Play",
+                    "title": "Simple Joys by Carter's Baby 3-Pack Neutral Sleep and Play",
                     "price": 25.0,
                     "rating": 4.8,
-                    "reviews": 18562,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07NSNHX12/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/91+cp0njVPL._AC_SY445_.jpg"
                 },
                 {
+                    "tier": "Standard",
+                    "title": "Gerber baby-girls 4 Pack Sleep 'N Play Footie",
+                    "price": 25.95,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B08BV38H37/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/91rugS1eU+S._AC_SX342_.jpg"
+                },
+                {
                     "tier": "Premium",
-                    "title": "Kyte Baby Bamboo Zip Romper",
+                    "title": "KYTE BABY Unisex Zipper Closure Footies, Rayon Made From Bamboo, 0-24 Months",
                     "price": 37.99,
-                    "rating": 4.9,
-                    "reviews": 5419,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0CN3CHM3T/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/417GOKSy+ZL._AC_SX342_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Burt's Bees Baby Boys Sleep and Play PJs, 100% Organic Cotton One-Piece Zip Front Romper Jumpsuit Pajamas",
+                    "price": 18.95,
+                    "rating": 4.8,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0G232YTND/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71Z1-ENRP5L._AC_SX342_.jpg"
                 }
             ]
         },
@@ -528,28 +837,37 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Gerber 5-Pack Onesies",
+                    "title": "Gerber Baby 5-pack Solid Onesies Bodysuits",
                     "price": 12.95,
-                    "rating": 4.5,
-                    "reviews": 4123,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B007CRR7Z0/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61TLWiHnDZL._AC_SX342_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Carter's 5-Pack Onesies",
-                    "price": 20.53,
-                    "rating": 4.9,
-                    "reviews": 42088,
+                    "title": "Simple Joys by Carter's unisex-baby 5-pack Side Snap Short-sleeve Bodysuit",
+                    "price": 20.58,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B083X7MVK8/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/91C8Z9G9j9L._AC_SY445_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Honest Baby 5-Pack Organic",
-                    "price": 34.99,
+                    "title": "Magnetic Me 100% Organic Cotton Magnetic Baby Footie Pajamas | Super Soft Cotton Fabric | Available in PRE - 24M",
+                    "price": 40.0,
                     "rating": 4.7,
-                    "reviews": 8354,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B08X8JG5G7/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/713ZSozBQrL._AC_SX342_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "HonestBaby Baby Boys' 5-pack Short Sleeve Bodysuits One-piece 100% Organic Cotton for Infant Baby Boys",
+                    "price": 34.99,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B08G5WTTLZ/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81SYlbbwK3L._AC_SX342_.jpg"
                 }
@@ -560,62 +878,80 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Luvable Friends 3-Pack Swaddles",
+                    "title": "Luvable Friends Unisex Baby Cotton Flannel Receiving Blankets, Boy Clouds 3-Pack, One Size",
                     "price": 9.99,
                     "rating": 4.6,
-                    "reviews": 12591,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B077G8FMBY/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/91inuxd3YEL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "SwaddleMe Original 3-Pack",
+                    "title": "SwaddleMe by Ingenuity Original Swaddle, 100% Cotton, Improves Sleep & Calms Startle Reflex, 0-3 Months, 1.0 TOG, 3-Pack, Baby Swaddle Blanket - Criss Cross",
                     "price": 16.39,
-                    "rating": 4.7,
-                    "reviews": 29045,
+                    "rating": 4.6,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07C8L4CTZ/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81qMK2B3pXL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Aden + Anais Muslin 4-Pack",
+                    "title": "aden + anais Essentials Muslin Swaddle Blankets, Newborn Receiving Blanket for Swaddling, 100% Cotton Baby Swaddle Wrap, 4 Pack, Farm to Table",
                     "price": 32.95,
                     "rating": 4.8,
-                    "reviews": 15421,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0B75QS1RF/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71pAg3KDXdL._SY355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "LifeTree Muslin Swaddle Blankets, 2 Pack Baby Swaddling Receiving Blanket for Boys & Girls, 70% Viscose from Bamboo & 30% Cotton, Large 47\" X 47\" Eucalyptus Leaves/Sage",
+                    "price": 25.9,
+                    "rating": 4.9,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B09Y8SNJ15/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71TIsv8LSjL._SY355_.jpg"
                 }
             ]
         },
         {
-            "name": "Socks & Mittens",
+            "name": "Socks",
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Luvable Friends Mittens & Hats",
-                    "price": 12.97,
-                    "rating": 4.5,
-                    "reviews": 6812,
-                    "link": "https://www.amazon.com/dp/B00X224Y9G/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/81VTay4TbyL._AC_SX342_.jpg"
+                    "title": "Luvable Friends Baby Girls' Cozy Fleece Booties",
+                    "price": 10.79,
+                    "rating": 4.8,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00X21MRHI/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/81DvR4yJKXL._AC_SX342_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Gerber Mittens & Caps Set",
-                    "price": 18.95,
+                    "title": "Zutano unisex-baby Cozie Fleece Baby Booties With Grippers",
+                    "price": 23.0,
                     "rating": 4.7,
-                    "reviews": 11043,
-                    "link": "https://www.amazon.com/dp/B0B6H1KHJK/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/91VUb+e+yxL._AC_SX342_.jpg"
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0733N7PLQ/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/81io4GQUWYL._AC_SY395_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Burt's Bees Booties & Mitts",
-                    "price": 12.95,
+                    "title": "goumikids Viscose Made from Bamboo Cotton Stay-On Boots",
+                    "price": 19.95,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07SH3H9WV/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61TVsxTufLL._AC_SY395_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Burt's Bees Baby Unisex Booties Organic Cotton Newborn Essentials Shoes for Infants",
+                    "price": 14.93,
                     "rating": 4.8,
-                    "reviews": 9288,
-                    "link": "https://www.amazon.com/dp/B07NC524HY/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/71o0fRnLUFL._AC_SX342_.jpg"
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07D49GDQK/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/81hLVEyIfUL._AC_SY395_.jpg"
                 }
             ]
         }
@@ -626,30 +962,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "The First Years Sure Comfort Tub",
+                    "title": "The First Years Newborn to Toddler Baby Bath Tub - Convertible 3-in-1 Baby Tub with Removable Sling - Ages 0 to 24 Months - Sure Comfort - Teal",
                     "price": 34.99,
-                    "rating": 4.8,
-                    "reviews": 31054,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B000067EH7/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/41rzsORGdiL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Fisher-Price 4-in-1 Sling Tub",
-                    "price": 64.4,
+                    "title": "Frida Baby 4-in-1 Grow-with-Me Baby Bathtub, Baby Tub for Newborns to Toddler with Removable Bath Seat & Backrest for Bath Support in Tub",
+                    "price": 49.97,
+                    "rating": 4.3,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B099FM4W4H/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71ok+FA6jWL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Fisher-Price\u2122 Baby to Toddler Bath 4-in-1 Sling 'N Seat Tub with Removable Infant Support and 2 Toys, Pacific Pebble",
+                    "price": 64.43,
                     "rating": 4.8,
-                    "reviews": 25012,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0DVLQN538/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71Ho9D5xBgL._SY355_.jpg"
                 },
                 {
-                    "tier": "Premium",
-                    "title": "FridaBaby Grow-With-Me Tub",
-                    "price": 49.97,
-                    "rating": 4.7,
-                    "reviews": 4291,
-                    "link": "https://www.amazon.com/dp/B099FM4W4H/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/71ok+FA6jWL._AC_SY355_.jpg"
+                    "tier": "Luxury",
+                    "title": "Stokke Flexi Bath Portable X-Large Baby Bathtub with Heat-Sensitive Plug, White Grey",
+                    "price": 79.0,
+                    "rating": 4.6,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07RJ3C7DX/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61ThooJ47CL._SX355_.jpg"
                 }
             ]
         },
@@ -658,30 +1003,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Safety 1st Healthcare Set",
+                    "title": "Safety 1st Deluxe Baby Healthcare and Grooming Kit, Arctic Blue, Newborn Baby Essentials, One Size, 25 Pieces",
                     "price": 16.09,
-                    "rating": 4.5,
-                    "reviews": 38045,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00VXMXN30/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81DWcddfyaL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "FridaBaby Bitty Bundle of Joy",
+                    "title": "Braun ThermoScan 5 Ear Thermometer - ExacTemp Stability Indicator for Professional Accuracy, Digital Display, Baby and Infant Friendly, No.1 Brand Recommended by Pediatricians",
+                    "price": 44.99,
+                    "rating": 4.6,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00MUK6M82/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/51kZsqS4XgL._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Frida Baby Bitty Bundle of Joy Mom & Baby Essentials Healthcare and Grooming Gift Kit Includes Peri Bottle, NoseFrida Snotsucker, Windi Gaspasser & Nail Clipper + File Set",
                     "price": 40.99,
                     "rating": 4.8,
-                    "reviews": 19021,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B01J8C1VVC/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71FZy5TSj9L._SY355_.jpg"
                 },
                 {
-                    "tier": "Premium",
-                    "title": "Braun ThermoScan 7 Ear Thermometer",
-                    "price": 39.95,
+                    "tier": "Organic",
+                    "title": "Little Remedies New Baby Essentials Kit with Saline Nasal Spray, Diaper Rash Cream, Gas Relief Drops, Gripe Water & More, Safe for Newborns",
+                    "price": 24.99,
                     "rating": 4.8,
-                    "reviews": 21084,
-                    "link": "https://www.amazon.com/dp/B00MUK6M82/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/51kZsqS4XgL._AC_SY355_.jpg"
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B075G6XMSF/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71R8abXaXoL._AC_SY355_.jpg"
                 }
             ]
         },
@@ -690,28 +1044,37 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Luvable Friends Hooded Towel",
+                    "title": "Luvable Friends Unisex Baby Hooded Towel with Five Washcloths, Whale, One Size",
                     "price": 11.99,
-                    "rating": 4.6,
-                    "reviews": 14032,
+                    "rating": 4.7,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07ZSCJB4K/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81WelyjR7XL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Hudson Baby Animal Face Towel",
+                    "title": "Hudson Baby Unisex Baby Cotton Animal Face Hooded Towel, Pretty Elephant, One Size",
                     "price": 12.99,
                     "rating": 4.8,
-                    "reviews": 32091,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00X22L0AC/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/911s9uvyuWL._SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Burt's Bees Organic Towel Set",
+                    "title": "KYTE BABY Unisex Rayon Made From Bamboo Sleeping Bag for Babies and Toddlers, 1.0 Tog",
+                    "price": 55.99,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0B46RBFBD/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/51edbXM8P1L._AC_SX342_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Burts Bees Baby Infant Hooded Towels Little Ducks Organic Cotton, Unisex Bath Essentials and Newborn Necessities, Soft Nursery Towel with Hood Set, 2-Pack Size 29 x 29 Inch",
                     "price": 29.95,
                     "rating": 4.8,
-                    "reviews": 12543,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B081SFS6SW/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/7155yfK9IqL._AC_SY355_.jpg"
                 }
@@ -722,30 +1085,80 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Johnson's Head-to-Toe Wash",
+                    "title": "Johnson's Baby Head-To-Toe Baby Wash & Shampoo + Aloe & Vitamin B5, 2-in-1 Bath Wash Gently Cleanses Newborn's Delicate Skin & Hair, Hypoallergenic, No Added Parabens, Dyes & Sulfates, 27.1 fl. oz",
                     "price": 7.68,
                     "rating": 4.7,
-                    "reviews": 29012,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B07D2JMJPS/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61KA4Qj0XxL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Aveeno Baby Wash & Shampoo",
+                    "title": "Aveeno Baby Daily Moisture Gentle Body Wash & Shampoo with Oat Extract, 2-in-1 Baby Bath Wash & Hair Shampoo, Tear- & Paraben-Free for Hair & Sensitive Skin, Lightly Scented, 18 fl. oz",
                     "price": 12.62,
                     "rating": 4.8,
-                    "reviews": 34088,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B004L5JCZ4/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61Oy6CZtOkL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Tubby Todd Hair & Body Wash",
+                    "title": "TUBBY TODD Hair + Body Wash - Baby Shampoo and Body Wash - Gentle, Natural Baby Was for Newborns, Babies, and Toddlers - Non-Toxic and Hypoallergenic - Fragrance-Free, 25oz",
                     "price": 51.0,
                     "rating": 4.9,
-                    "reviews": 8143,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0FY3YPZCG/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61l+srJQfGL._SY355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Earth Mama Sweet Orange Baby Lotion | Moisturizing Body Lotion for Dry Skin, Newborn Baby Lotion Sensitive Skin Care, Face Lotion for Babies & Kids with Shea Butter, Calendula & Aloe, 8 Fl Oz",
+                    "price": 15.48,
+                    "rating": 4.5,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B000P7M26I/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61GCqSOqcnL._SY355_.jpg"
+                }
+            ]
+        },
+        {
+            "name": "Nasal Aspirator",
+            "tiers": [
+                {
+                    "tier": "Budget",
+                    "title": "DMI Reusable Nasal Aspirator for Baby & Ear Bulb Syringe for Infant - Gentle Mucus Removal Suction to Clear Airway & Nasal | Baby Congestion Relief Nose Sucker for Baby",
+                    "price": 5.18,
+                    "rating": 4.5,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B001OTK6JG/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/51-th9ZsUML._AC_SY355_.jpg"
+                },
+                {
+                    "tier": "Standard",
+                    "title": "Frida Baby NoseFrida SnotSucker for Baby, Nasal Aspirator for Baby, Nose Sucker Baby Nasal Aspirator & 4 Hygiene Filters to Help Baby Breathe Easy",
+                    "price": 14.97,
+                    "rating": 4.7,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B00171WXII/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71x9h8NxWnL._SY355_.jpg"
+                },
+                {
+                    "tier": "Premium",
+                    "title": "Braun Electric Nasal Aspirator - Mucus Remover, Blocked Nose Relief for Newborn, Baby and Toddler, Electric Suction Power, 2 Suction Levels, 2 Nose Tip Sizes, Dishwasher Safe, FSA and HSA Eligible",
+                    "price": 35.99,
+                    "rating": 4.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B07N28G62S/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61O+-H0UlZL._SY355_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "Dr. Noze Best NozeBot Electric Baby Nasal Aspirator - Designed by a Pediatric ENT for Safe, Gentle Congestion Relief - Rechargeable, Portable & Easy to Clean Nose Sucker for Infants and Toddlers",
+                    "price": 119.97,
+                    "rating": 4.5,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B08G6SZ2LT/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71hu6pLRrlL._AC_SY355_.jpg"
                 }
             ]
         }
@@ -756,30 +1169,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Bright Starts Playful Pinwheels",
+                    "title": "Bright Starts Portable Baby Bouncer Soothing Vibrations Infant Seat with Removable-Toy-Bar, 0-6 Months 6-20 lbs (Playful Pinwheels)",
                     "price": 34.99,
                     "rating": 4.6,
-                    "reviews": 18054,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B00KHR7TPK/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/81S7zOrgIyL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Graco Simple Sway Portable Baby Swing",
+                    "title": "Graco Simple Sway Portable Baby Swing for Infants, Newborn Swing with 15 Songs and Sounds, Great Gift for New Parents, Baby Registry Must Have",
                     "price": 139.99,
-                    "rating": 4.7,
-                    "reviews": 22582,
+                    "rating": 4.5,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0GD8VN5WX/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61dxxxVMHiL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "BabyBjorn Bouncer Balance Soft",
+                    "title": "BabyBj\u00f6rn Bouncer Balance Soft, Light Beige, Woven/Jersey, Tri-Fabric | 2-in-1 Adjustable Baby Bouncer Seat and Toddler Chair, Newborn to Toddler (8-29 lbs), 4 Positions, Lightweight & Portable",
                     "price": 229.99,
-                    "rating": 4.9,
-                    "reviews": 11231,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0D5DL7RWZ/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61NkvY+Db-L._SY355_.jpg"
+                },
+                {
+                    "tier": "Luxury",
+                    "title": "4moms MamaRoo Multi-Motion Baby Swing, Bluetooth Enabled with 5 Unique Motions, Grey",
+                    "price": 149.99,
+                    "rating": 4.5,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0B3F93NYT/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/41rBMT5sHGL._SY355_.jpg"
                 }
             ]
         },
@@ -788,30 +1210,39 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Infantino Pond Pals Playmat",
+                    "title": "Infantino Foldable Soft Foam Play Mat, 57\" Baby Mat for Floor Time, Lightweight, Easy to Store, Wipeable, Rainbows",
                     "price": 29.97,
-                    "rating": 4.6,
-                    "reviews": 8412,
+                    "rating": 4.3,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0D7P22KPN/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/710Jw1KhrYL._SY355_.jpg"
                 },
                 {
                     "tier": "Standard",
-                    "title": "Fisher-Price Deluxe Kick & Play",
+                    "title": "Fisher-Price Baby Playmat Deluxe Kick & Play Piano Gym, Pink, Learning with Music Lights & Activities for Newborn to Toddler Ages 0+ Months",
                     "price": 60.0,
-                    "rating": 4.9,
-                    "reviews": 52088,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B076HYSWB9/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71xACtCTsvL._AC_SY355_.jpg"
                 },
                 {
                     "tier": "Premium",
-                    "title": "Lovevery The Play Gym",
+                    "title": "LOVEVERY | The Play Gym | Award Winning For Baby , Stage-Based Developmental Activity Gym & Play Mat for Baby to Toddler",
                     "price": 150.0,
-                    "rating": 4.9,
-                    "reviews": 6845,
+                    "rating": 4.8,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B075R8BXXC/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71VLpdw5GVL._SX355_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Pehr Baby Play Mat, Flower Patch | Ultra-Soft Quilted 100% Cotton Exterior with Plush Polyester Fiberfill | 40\u201d Diameter",
+                    "price": 98.0,
+                    "rating": 4.6,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0CD2WMW6Y/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/71hgz32gZeL._SY355_.jpg"
                 }
             ]
         },
@@ -820,35 +1251,60 @@
             "tiers": [
                 {
                     "tier": "Budget",
-                    "title": "Tommee Tippee Happy Pacifiers",
-                    "price": 14.39,
-                    "rating": 4.6,
-                    "reviews": 12054,
-                    "link": "https://www.amazon.com/dp/B0DPN9YJSW/?tag=1097fa-20",
-                    "img": "https://m.media-amazon.com/images/I/61T4dbQ-jnL._SY355_.jpg"
-                },
-                {
-                    "tier": "Standard",
-                    "title": "Philips Avent Soothie 4-Pack",
+                    "title": "Philips Avent Soothie Baby Pacifiers - 100% Silicone Pacifiers for Babies 0-3 Months, One-Piece Design, BPA-Free, Extra Durable, Lilac and Pink, 4 Pack, Model SCF190/70",
                     "price": 10.79,
                     "rating": 4.8,
-                    "reviews": 65021,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B0D82PQKPC/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/71nSI-oZHtL._SY355_.jpg"
                 },
                 {
+                    "tier": "Standard",
+                    "title": "Tommee Tippee Ultra-Light StayPut Pacifier, One-Piece Silicone Design, 0-6m, 4 Pack",
+                    "price": 14.39,
+                    "rating": 4.8,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B0DPN9YJSW/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/61T4dbQ-jnL._SY355_.jpg"
+                },
+                {
                     "tier": "Premium",
-                    "title": "BIBS Natural Rubber Pacifiers",
+                    "title": "Bibs Pacifiers Color Collection, Set of 2 BPA-Free Latex Pacifiers Made in Europe, Round Nipple Baby Pacifier.",
                     "price": 15.95,
                     "rating": 4.7,
-                    "reviews": 18092,
+                    "reviews": 0,
                     "link": "https://www.amazon.com/dp/B08L9HV8JC/?tag=1097fa-20",
                     "img": "https://m.media-amazon.com/images/I/61BqAe51i4L._AC_SX342_.jpg"
+                },
+                {
+                    "tier": "Organic",
+                    "title": "Natursutten 2-Pack Natural Rubber Pacifiers - Safe & Soft BPA-Free Pacifier for Breastfeeding Babies, Made in Italy, Butterfly Shield Orthodontic Nipple, 6-12 Months",
+                    "price": 23.49,
+                    "rating": 4.3,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/B09X1YTHWS/?tag=1097fa-20",
+                    "img": "https://m.media-amazon.com/images/I/51X8Uar80uL._SY355_.jpg"
+                }
+            ]
+        }
+    ],
+    "Organic and or Luxury": [
+        {
+            "name": "Example Item Name",
+            "tiers": [
+                {
+                    "tier": "Premium",
+                    "title": "Placeholder Item",
+                    "price": 0.0,
+                    "rating": 0.0,
+                    "reviews": 0,
+                    "link": "https://www.amazon.com/dp/EXAMPLE_ASIN_HERE/?tag=1097fa-20",
+                    "img": "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=No+Link"
                 }
             ]
         }
     ],
     "_metadata": {
-        "last_updated": "March 18, 2026 at 12:55 PM"
+        "last_updated": "March 19, 2026 at 09:06 AM"
     }
 }
