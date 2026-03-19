@@ -34,12 +34,12 @@ input_catalog = {
             "Budget": "https://www.amazon.com/dp/B00JEV5UI8/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B09GM8JZM9/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08FF4GV5C/?tag=1097fa-20",
-            "Luxury": "https://www.amazon.com/dp/B08QMWP5V8/?tag=1097fa-20"
+            "Luxury": "https://www.amazon.com/dp/B0FDT7KQTH/?tag=1097fa-20"
         },
         "Sound Machine": {
             "Budget": "https://www.amazon.com/dp/B01D50RYSC/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B06XMRCC94/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B0F7C6XJ3P/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B0F7C6XJ3P/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B06XMRCC94/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B0D6SX8VLQ/?tag=1097fa-20"
         }
     },
@@ -52,7 +52,7 @@ input_catalog = {
         },
         "Travel Stroller": {
             "Budget": "https://www.amazon.com/dp/B019DHBCXE/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B08ZJTNY7Y/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B0C5463NVT/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08VWWQ96T/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B0D9XS9VXL/?tag=1097fa-20"
         },
@@ -64,9 +64,9 @@ input_catalog = {
         },
         "Diaper Bag": {
             "Budget": "https://www.amazon.com/dp/B0FSLB42V3/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B07C3SWZ1C/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B00J4N04EA/?tag=1097fa-20",
-            "Luxury": "https://www.amazon.com/dp/B01MT2G6D8/?tag=1097fa-20"
+            "Standard": "https://www.amazon.com/dp/B07C3SWZXK/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B074HXT4W2/?tag=1097fa-20",
+            "Luxury": "https://www.amazon.com/dp/B0DNWZ1KV8/?tag=1097fa-20"
         }
     },
     "Feeding & Nursing": {
@@ -78,7 +78,7 @@ input_catalog = {
         },
         "Nursing Pillow": {
             "Budget": "https://www.amazon.com/dp/B0F8LDHL26/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B0B5P2RXYN/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B0F6T5VNRX/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08J54C2Y8/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B08SMT92PK/?tag=1097fa-20"
         },
@@ -150,7 +150,7 @@ input_catalog = {
             "Budget": "https://www.amazon.com/dp/B077G8FMBY/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B07C8L4CTZ/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B0B75QS1RF/?tag=1097fa-20",
-            "Organic": "https://www.amazon.com/dp/B09Y8SNJ15/?tag=1097fa-20"
+            "Organic": "https://www.amazon.com/dp/B08MDYFTS1/?tag=1097fa-20"
         },
         "Socks": {
             "Budget": "https://www.amazon.com/dp/B00X21MRHI/?tag=1097fa-20",
@@ -161,28 +161,28 @@ input_catalog = {
     },
     "Bath & Health": {
         "Baby Bathtub": {
-            "Budget": "https://www.amazon.com/dp/B000067EH7/?tag=1097fa-20",
+            "Budget": "https://www.amazon.com/dp/B0BFVBMM2Y/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B099FM4W4H/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B0DVLQN538/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B07RJ3C7DX/?tag=1097fa-20"
         },
         "Healthcare Kit": {
             "Budget": "https://www.amazon.com/dp/B00VXMXN30/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B00MUK6M82/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B01J8C1VVC/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B01J8C1VVC/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0DP4TXLP9/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B075G6XMSF/?tag=1097fa-20"
         },
         "Towels & Washcloths": {
             "Budget": "https://www.amazon.com/dp/B07ZSCJB4K/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B00X22L0AC/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B0B46RBFBD/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0FP5DJ4RC/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B081SFS6SW/?tag=1097fa-20"
         },
         "Baby Wash": {
             "Budget": "https://www.amazon.com/dp/B07D2JMJPS/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B004L5JCZ4/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B0FY3YPZCG/?tag=1097fa-20",
-            "Organic": "https://www.amazon.com/dp/B000P7M26I/?tag=1097fa-20"
+            "Organic": "https://www.amazon.com/dp/B09JL8D41T/?tag=1097fa-20"
         },
         "Nasal Aspirator": {
             "Budget": "https://www.amazon.com/dp/B001OTK6JG/?tag=1097fa-20",
