@@ -894,10 +894,14 @@
                 
                 renderDonutChart(finalKit.catTotals, activeCategoryNames);
                 generateKitListHTML(finalKit, activeCategoryNames, totalBudget, selectedProfileId);
+            });
 
-                setTimeout(() => {
+            let modalHasBeenShown = false;
+            document.getElementById('categories-container').addEventListener('click', function(e) {
+                if (e.target.classList.contains('buy-btn') && !modalHasBeenShown) {
                     document.getElementById('email-modal').classList.add('show-modal');
-                }, 2000);
+                    modalHasBeenShown = true;
+                }
             });
 
             function renderDonutChart(catTotals, activeCategoryNames) {
