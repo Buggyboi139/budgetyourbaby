@@ -9,7 +9,6 @@ AFFILIATE_TAG = "1097fa-20"
 
 # ==========================================
 # 1. YOUR LINK CATALOG
-# The script will build the complex JSON automatically from these links.
 # ==========================================
 input_catalog = {
     "Nursery & Furniture": {
@@ -212,7 +211,6 @@ input_catalog = {
             "Organic": "https://www.amazon.com/dp/B09X1YTHWS/?tag=1097fa-20"
         }
     },
-    # The dummy template for your new category
     "Organic and or Luxury": {
         "Example Item Name": {
             "Premium": "https://www.amazon.com/dp/EXAMPLE_ASIN_HERE/?tag=1097fa-20"
@@ -221,7 +219,7 @@ input_catalog = {
 }
 
 # ==========================================
-# 2. THE SCRAPER ENGINE
+# 2. THE SCRAPER ENGINE (Upgraded for .jpgs and Reviews)
 # ==========================================
 def get_amazon_data(url, max_retries=3):
     if url == "#" or "EXAMPLE_ASIN" in url: 
@@ -259,23 +257,36 @@ def get_amazon_data(url, max_retries=3):
                 try: rating = float(rating_tag.text.split()[0])
                 except: pass
 
-            # 4. Scrape Reviews
-            review_tag = soup.find("span", id="acrCustomerReviewText")
+            # 4. Scrape Reviews (Upgraded: Aggressive text stripping)
+            review_tag = soup.find("span", id="acrCustomerReviewText") or soup.find("span", {"data-hook": "total-review-count"})
             if review_tag:
-                try: reviews = int(review_tag.text.replace(',', '').split()[0])
+                try:
+                    review_text = review_tag.text.replace(',', '')
+                    reviews = int(''.join(filter(str.isdigit, review_text)))
                 except: pass
 
-            # 5. Scrape Image
+            # 5. Scrape Image (Upgraded: Ignores .gif and dynamic JSON bypass)
             img_tag = soup.find("img", id="landingImage") or soup.find("img", id="imgBlkFront")
             if img_tag:
+                temp_img = None
+                
                 if img_tag.has_attr("data-a-dynamic-image"):
                     try:
                         dynamic_images = json.loads(img_tag["data-a-dynamic-image"])
                         urls = list(dynamic_images.keys())
-                        if urls: img = urls[0]
+                        if urls: temp_img = urls[0]
                     except: pass
-                elif img_tag.has_attr("src"):
-                    img = img_tag["src"]
+                
+                if not temp_img and img_tag.has_attr("data-old-hires") and img_tag["data-old-hires"]:
+                    temp_img = img_tag["data-old-hires"]
+
+                if not temp_img and img_tag.has_attr("src"):
+                    src = img_tag["src"]
+                    if not src.endswith('.gif') and not src.startswith('data:image'):
+                        temp_img = src
+
+                if temp_img and temp_img.startswith("http") and not temp_img.endswith(".gif"):
+                    img = temp_img
 
             return title, price, img, rating, reviews
 
@@ -315,12 +326,12 @@ for category, items in input_catalog.items():
                 "img": img
             }
             
-            # Inject Crash Test info specifically for Car Seats to match your old format
+            # Inject Crash Test info specifically for Car Seats
             if category == "Travel & Gear" and item_name == "Infant Car Seat":
                 if tier_name == "Budget": tier_data["crashTest"] = "ProtectPlus Engineered"
-                if tier_name == "Standard": tier_data["crashTest"] = "EPS Energy-Absorbing Foam"
-                if tier_name == "Premium": tier_data["crashTest"] = "Meets US FMVSS 213 Standards"
-                if tier_name == "Luxury": tier_data["crashTest"] = "Advanced Side Impact Protection"
+                elif tier_name == "Standard": tier_data["crashTest"] = "EPS Energy-Absorbing Foam"
+                elif tier_name == "Premium": tier_data["crashTest"] = "Meets US FMVSS 213 Standards"
+                elif tier_name.lower() == "luxury": tier_data["crashTest"] = "Advanced Side Impact Protection"
 
             item_block["tiers"].append(tier_data)
             
