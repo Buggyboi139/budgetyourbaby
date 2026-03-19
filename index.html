@@ -34,9 +34,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html {
-            overflow-x: hidden;
-        }
+        html { overflow-x: hidden; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -54,9 +52,7 @@
 
         #left-color-bar {
             position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            top: 0; left: 0; bottom: 0;
             width: 4px; 
             background: var(--gradient-primary);
             z-index: 200; 
@@ -123,11 +119,9 @@
         
         .slider-wrapper { position: relative; margin: 30px 0 40px; width: 100%; }
         input[type=range] { -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 100%; background: transparent; outline: none; margin: 0; }
-        
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 10px; cursor: pointer; background: rgba(255, 255, 255, 0.25); border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 36px; width: 36px; border-radius: 50%; background: var(--gradient-primary); cursor: grab; margin-top: -13px; box-shadow: 0 0 20px rgba(161, 140, 209, 0.5); border: 4px solid #0f172a; transition: transform 0.3s, box-shadow 0.3s; }
         input[type=range]:active::-webkit-slider-thumb { transform: scale(1.3); cursor: grabbing; box-shadow: 0 0 30px rgba(161, 140, 209, 0.8); }
-
         input[type=range]::-moz-range-track { width: 100%; height: 10px; cursor: pointer; background: rgba(255, 255, 255, 0.25); border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
         input[type=range]::-moz-range-thumb { height: 36px; width: 36px; border-radius: 50%; box-sizing: border-box; background: var(--gradient-primary); cursor: grab; border: 4px solid #0f172a; box-shadow: 0 0 20px rgba(161, 140, 209, 0.5); transition: transform 0.3s, box-shadow 0.3s; }
         input[type=range]:active::-moz-range-thumb { transform: scale(1.3); cursor: grabbing; box-shadow: 0 0 30px rgba(161, 140, 209, 0.8); }
@@ -192,13 +186,31 @@
 
         .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
         .product-card {
-            background: var(--surface-solid); border: 1px solid var(--border-glass);
+            background: var(--surface-solid); border: 1px solid var(--border-glass); position: relative;
             border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2); backdrop-filter: blur(10px);
             opacity: 0; transform: translateX(60px); transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
         
+        /* NEW: The Interactive Swap Button */
+        .swap-btn {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-highlight); color: var(--text-main);
+            border-radius: 50%; width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .swap-btn:hover {
+            background: var(--gradient-primary); color: #0f172a;
+            transform: rotate(180deg) scale(1.1); border-color: transparent;
+            box-shadow: 0 6px 15px rgba(161, 140, 209, 0.5);
+        }
+
         .product-thumb { 
             height: 200px; width: 100%; border-radius: 12px; background-color: #ffffff; 
             object-fit: contain; padding: 15px; margin-bottom: 20px; border: 1px solid var(--border-glass); display: block;
@@ -233,6 +245,14 @@
         .gt-value { font-size: 4.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
         .gt-target { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
         .gt-target span { font-weight: 700; color: var(--text-main); }
+        
+        /* NEW: The Over-Budget Warning */
+        .over-budget-warning {
+            color: #fb7185; font-weight: 700; font-size: 1.1rem; margin-top: 15px;
+            background: rgba(251, 113, 133, 0.1); border: 1px solid rgba(251, 113, 133, 0.3);
+            padding: 10px 20px; border-radius: 12px; display: inline-block;
+            opacity: 0; transform: translateY(-10px); transition: all 0.3s ease;
+        }
 
         .engine-disclaimer {
             text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px;
@@ -271,26 +291,10 @@
         }
         .skip-btn:hover { color: var(--text-main); }
 
-        .site-footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            border-top: 1px solid var(--border-glass);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
+        .site-footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid var(--border-glass); color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
         .site-footer a { color: var(--text-muted); text-decoration: underline; }
         .site-footer a:hover { color: var(--text-main); }
-        .timestamp-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.05);
-            padding: 4px 10px;
-            border-radius: 12px;
-            margin-top: 10px;
-            border: 1px solid var(--border-glass);
-            font-weight: 500;
-        }
+        .timestamp-badge { display: inline-block; background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 12px; margin-top: 10px; border: 1px solid var(--border-glass); font-weight: 500; }
         
         @media print {
             body { background: #ffffff !important; color: #000000 !important; background-image: none !important; -webkit-print-color-adjust: exact; padding-bottom: 0 !important; padding-left: 0 !important; }
@@ -304,14 +308,14 @@
             .product-name, .product-price { color: #000 !important; }
             .tier-badge { background: #f1f5f9 !important; color: #475569 !important; border: 1px solid #cbd5e1; }
             .product-desc { color: #333 !important; }
-            .buy-btn { display: none !important; }
+            .swap-btn, .buy-btn { display: none !important; }
             .category-section { page-break-inside: avoid !important; break-inside: avoid !important; }
             .category-header { border-bottom: 2px solid #ccc !important; }
             .category-title { color: #000 !important; }
             .category-allocation { background: #f8fafc !important; color: #000 !important; border: 1px solid #ccc !important; }
             .pie-chart-container { display: none !important; }
             .grand-total-card { background: #f8fafc !important; border: 2px solid #000 !important; box-shadow: none !important; page-break-inside: avoid !important; }
-            .gt-label, .gt-value, .gt-target, .gt-target span { color: #000 !important; }
+            .gt-label, .gt-value, .gt-target, .gt-target span, .over-budget-warning { color: #000 !important; }
         }
 
         @media (max-width: 768px) {
@@ -350,30 +354,14 @@
             <p class="subtitle">Set your budget and tell us what matters most. We'll balance the rest so you don't have to.</p>
             
             <div class="control-panel">
-
                 <div class="category-selector" style="margin-bottom: 35px;">
                     <div class="category-title-label">Parenting Priority</div>
                     <div class="toggles-grid" id="profileSelector">
-                        <label>
-                            <input type="radio" name="priority_profile" value="budget" class="priority-radio">
-                            <div class="priority-label">Budget</div>
-                        </label>
-                        <label>
-                            <input type="radio" name="priority_profile" value="balanced" class="priority-radio" checked>
-                            <div class="priority-label">Balanced</div>
-                        </label>
-                        <label>
-                            <input type="radio" name="priority_profile" value="safety" class="priority-radio">
-                            <div class="priority-label">Safety First</div>
-                        </label>
-                        <label>
-                            <input type="radio" name="priority_profile" value="aesthetic" class="priority-radio">
-                            <div class="priority-label">Aesthetic</div>
-                        </label>
-                        <label>
-                            <input type="radio" name="priority_profile" value="organic" class="priority-radio">
-                            <div class="priority-label">Organic</div>
-                        </label>
+                        <label><input type="radio" name="priority_profile" value="budget" class="priority-radio"><div class="priority-label">Budget</div></label>
+                        <label><input type="radio" name="priority_profile" value="balanced" class="priority-radio" checked><div class="priority-label">Balanced</div></label>
+                        <label><input type="radio" name="priority_profile" value="safety" class="priority-radio"><div class="priority-label">Safety First</div></label>
+                        <label><input type="radio" name="priority_profile" value="aesthetic" class="priority-radio"><div class="priority-label">Aesthetic</div></label>
+                        <label><input type="radio" name="priority_profile" value="organic" class="priority-radio"><div class="priority-label">Organic</div></label>
                     </div>
                 </div>
 
@@ -412,7 +400,7 @@
                 <div id="grand-total-container"></div>
                 
                 <div class="engine-disclaimer">
-                    *This is a smart recommendation engine designed to optimize parental spending. Items are hand-curated for safety and quality, and intelligently matched to your budget constraints.
+                    *This is a smart recommendation engine designed to optimize parental spending. Items are hand-curated for safety and quality, and intelligently matched to your budget constraints. Use the swap button (⟳) on any item to view other options.
                 </div>
             </div>
         </div>
@@ -480,33 +468,39 @@
                 "Diapering Needs": "#fbd38d", 
                 "Clothing & Basics": "#b6eacb", 
                 "Bath & Health": "#ffdac1", 
-                "Play & Soothing": "#c1c8e4"
+                "Play & Soothing": "#c1c8e4",
+                "Organic and or Luxury": "#d4af37"
             };
 
             const profiles = {
                 budget: {
-                    weights: { "Nursery & Furniture": 0.10, "Travel & Gear": 0.20, "Feeding & Nursing": 0.25, "Diapering Needs": 0.25, "Clothing & Basics": 0.10, "Bath & Health": 0.05, "Play & Soothing": 0.05 },
+                    weights: { "Nursery & Furniture": 0.10, "Travel & Gear": 0.20, "Feeding & Nursing": 0.25, "Diapering Needs": 0.25, "Clothing & Basics": 0.10, "Bath & Health": 0.05, "Play & Soothing": 0.05, "Organic and or Luxury": 0.0 },
                     desc: "Focuses purely on the daily survival essentials—feeding, diapering, and safe travel—while minimizing spending on furniture and extras."
                 },
                 balanced: {
-                    weights: { "Nursery & Furniture": 0.25, "Travel & Gear": 0.20, "Feeding & Nursing": 0.15, "Diapering Needs": 0.15, "Clothing & Basics": 0.10, "Bath & Health": 0.10, "Play & Soothing": 0.05 },
+                    weights: { "Nursery & Furniture": 0.20, "Travel & Gear": 0.20, "Feeding & Nursing": 0.15, "Diapering Needs": 0.15, "Clothing & Basics": 0.10, "Bath & Health": 0.10, "Play & Soothing": 0.05, "Organic and or Luxury": 0.05 },
                     desc: "A well-rounded allocation ensuring no single category consumes your budget at the expense of the others."
                 },
                 safety: {
-                    weights: { "Nursery & Furniture": 0.15, "Travel & Gear": 0.35, "Feeding & Nursing": 0.10, "Diapering Needs": 0.10, "Clothing & Basics": 0.05, "Bath & Health": 0.20, "Play & Soothing": 0.05 },
+                    weights: { "Nursery & Furniture": 0.15, "Travel & Gear": 0.35, "Feeding & Nursing": 0.10, "Diapering Needs": 0.10, "Clothing & Basics": 0.05, "Bath & Health": 0.20, "Play & Soothing": 0.05, "Organic and or Luxury": 0.0 },
                     desc: "Prioritizes premium crash-tested travel gear and high-fidelity monitoring and health equipment above all else."
                 },
                 aesthetic: {
-                    weights: { "Nursery & Furniture": 0.40, "Travel & Gear": 0.15, "Feeding & Nursing": 0.15, "Diapering Needs": 0.10, "Clothing & Basics": 0.10, "Bath & Health": 0.05, "Play & Soothing": 0.05 },
+                    weights: { "Nursery & Furniture": 0.35, "Travel & Gear": 0.15, "Feeding & Nursing": 0.15, "Diapering Needs": 0.10, "Clothing & Basics": 0.10, "Bath & Health": 0.05, "Play & Soothing": 0.05, "Organic and or Luxury": 0.05 },
                     desc: "Maximized budget for high-quality nursery furniture, comfortable gliders, and design-forward pieces."
                 },
                 organic: {
-                    weights: { "Nursery & Furniture": 0.15, "Travel & Gear": 0.15, "Feeding & Nursing": 0.25, "Diapering Needs": 0.20, "Clothing & Basics": 0.15, "Bath & Health": 0.05, "Play & Soothing": 0.05 },
+                    weights: { "Nursery & Furniture": 0.10, "Travel & Gear": 0.10, "Feeding & Nursing": 0.25, "Diapering Needs": 0.20, "Clothing & Basics": 0.15, "Bath & Health": 0.05, "Play & Soothing": 0.05, "Organic and or Luxury": 0.10 },
                     desc: "Heavily weighted towards non-toxic, glass, and organic materials for feeding, clothing, and skin contact."
                 }
             };
 
             let productDatabase = {};
+            
+            // NEW: Global state object to power the interactive Swaps
+            let currentLiveKit = {
+                targetBudget: 0, grandTotal: 0, catTotals: {}, kitByCategory: {}, targetBudgets: {}, selectedProfileId: ""
+            };
 
             Object.keys(categoryColors).forEach(cat => {
                 const labelHtml = `
@@ -618,61 +612,68 @@
                 return "Maintained at a standard allocation to keep your budget balanced.";
             }
 
-            function generateKitListHTML(finalKit, activeCategoryNames, targetBudget, selectedProfileId) {
+            function getCardInnerHtml(tier, catName, itemIndex) {
+                const directLink = tier.link || "#"; 
+                let imgSrc = tier.img; 
+
+                const starsHTML = tier.rating ? `
+                    <div style="color: #fbbf24; font-size: 0.9rem; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+                        <span>★</span> 
+                        <span style="color: var(--text-main); font-weight: 700;">${tier.rating}</span> 
+                        <span style="color: var(--text-muted); font-size: 0.8rem;">(${tier.reviews.toLocaleString()})</span>
+                    </div>
+                ` : '';
+
+                const crashTestHTML = tier.crashTest ? `
+                    <div style="background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 12px; display: inline-block;">
+                        🛡️ <strong>Safety Rating:</strong> ${tier.crashTest}
+                    </div>
+                ` : '';
+
+                return `
+                    <button class="swap-btn" data-cat="${catName}" data-index="${itemIndex}" title="Swap with next tier">⟳</button>
+                    <img src="${imgSrc}" alt="" class="product-thumb" 
+                         onload="if(this.naturalWidth <= 1 && !this.src.includes('dummyimage')) this.src='https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Unavailable';"
+                         onerror="this.onerror=null;this.src='https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Unavailable';">
+                    <div>
+                        <span class="tier-badge">${tier.tier} Choice</span>
+                    </div>
+                    <div class="product-name">${tier.title}</div>
+                    ${starsHTML}
+                    ${crashTestHTML}
+                    <div class="product-desc">Maximized for your budget.</div>
+                    <div class="product-footer">
+                        <div class="product-price"><span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">est.</span> $${tier.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                        <a href="${directLink}" target="_blank" class="buy-btn">View on Amazon</a>
+                    </div>
+                `;
+            }
+
+            function generateKitListHTML(activeCategoryNames) {
                 categoriesContainer.innerHTML = ''; 
                 grandTotalContainer.innerHTML = ''; 
                 let globalItemIndex = 0; 
 
                 activeCategoryNames.forEach((catName) => {
-                    const items = finalKit.kitByCategory[catName];
-                    const catTotal = finalKit.catTotals[catName];
+                    const items = currentLiveKit.kitByCategory[catName];
+                    const catTotal = currentLiveKit.catTotals[catName];
                     const color = categoryColors[catName];
+                    const safeCatId = catName.replace(/[^a-zA-Z0-9]/g, '');
                     let itemsHTML = '';
 
-                    items.forEach(product => {
-                        let displayTitle = product.title;
-
-                        const directLink = product.link || "#"; 
+                    items.forEach((itemState, itemIndex) => {
+                        const currentTier = itemState.tiers[itemState.selectedIdx];
                         const cardDelay = 0.2 + (globalItemIndex * 0.08);
-                        let imgSrc = product.img; 
-
-                        const starsHTML = product.rating ? `
-                            <div style="color: #fbbf24; font-size: 0.9rem; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
-                                <span>★</span> 
-                                <span style="color: var(--text-main); font-weight: 700;">${product.rating}</span> 
-                                <span style="color: var(--text-muted); font-size: 0.8rem;">(${product.reviews.toLocaleString()})</span>
-                            </div>
-                        ` : '';
-
-                        const crashTestHTML = product.crashTest ? `
-                            <div style="background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 12px; display: inline-block;">
-                                🛡️ <strong>Safety Rating:</strong> ${product.crashTest}
-                            </div>
-                        ` : '';
 
                         itemsHTML += `
-                            <div class="product-card" style="animation: slideInRight 0.6s ${cardDelay}s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
-                                <img src="${imgSrc}" alt="" class="product-thumb" 
-                                     onload="if(this.naturalWidth <= 1 && !this.src.includes('dummyimage')) this.src='https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Unavailable';"
-                                     onerror="this.onerror=null;this.src='https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Unavailable';">
-                                <div>
-                                    <span class="tier-badge">${product.tier} Choice</span>
-                                </div>
-                                <div class="product-name">${displayTitle}</div>
-                                ${starsHTML}
-                                ${crashTestHTML}
-                                <div class="product-desc">Maximized for your budget.</div>
-                                <div class="product-footer">
-                                    <div class="product-price"><span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">est.</span> $${product.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
-                                    <a href="${directLink}" target="_blank" class="buy-btn">View on Amazon</a>
-                                </div>
+                            <div class="product-card" id="card-${safeCatId}-${itemIndex}" style="animation: slideInRight 0.6s ${cardDelay}s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
+                                ${getCardInnerHtml(currentTier, catName, itemIndex)}
                             </div>
                         `;
                         globalItemIndex++;
                     }); 
 
-                    const fractionDisplay = `${catName} utilizes ${((catTotal / finalKit.grandTotal) * 100).toFixed(0)}% of your actual spend.`;
-                    const catExplanation = getCategoryExplanation(catName, selectedProfileId);
+                    const catExplanation = getCategoryExplanation(catName, currentLiveKit.selectedProfileId);
                     
                     categoriesContainer.insertAdjacentHTML('beforeend', `
                         <div class="category-section">
@@ -680,12 +681,12 @@
                                 <div class="category-title" style="color: ${color}; text-shadow: 0 0 20px ${color}40;">${catName}</div>
                                 <div style="text-align: right;">
                                     <div class="category-allocation-wrapper">
-                                        <div class="category-allocation" style="color: ${color}; border-color: ${color}50; background: ${color}15;">
+                                        <div class="category-allocation" id="subtotal-${safeCatId}" style="color: ${color}; border-color: ${color}50; background: ${color}15;">
                                             Subtotal: $${catTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                                         </div>
                                         <div class="subtotal-tooltip">
-                                            <strong style="color: ${color}; display: block; margin-bottom: 8px; font-size: 1rem;">${fractionDisplay}</strong>
-                                            <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 12px;">Engine Target: $${finalKit.targetBudgets[catName].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
+                                            <strong style="color: ${color}; display: block; margin-bottom: 8px; font-size: 1rem;">${catName} utilizes <span id="fraction-text-${safeCatId}">${((catTotal / currentLiveKit.grandTotal) * 100).toFixed(0)}</span>% of your actual spend.</strong>
+                                            <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 12px;">Engine Target: $${currentLiveKit.targetBudgets[catName].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</span>
                                             ${catExplanation}
                                         </div>
                                     </div>
@@ -698,15 +699,23 @@
                     `);
                 }); 
 
-                const overrideNoteHTML = finalKit.hadToOverride 
+                const overrideNoteHTML = currentLiveKit.hadToOverride 
                     ? `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 15px; padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);"><strong>Safety First:</strong> The minimum safe requirements exceeded your target limits. We automatically upgraded your list to the lowest-priced safe options available.</div>` 
                     : '';
+
+                let warningStyle = "opacity: 0; transform: translateY(-10px); display: none;";
+                let warningText = "";
+                if (currentLiveKit.grandTotal > currentLiveKit.targetBudget) {
+                    warningStyle = "opacity: 1; transform: translateY(0); display: inline-block;";
+                    warningText = `⚠️ $${(currentLiveKit.grandTotal - currentLiveKit.targetBudget).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} over budget limit`;
+                }
 
                 grandTotalContainer.innerHTML = `
                     <div class="grand-total-card">
                         <div class="gt-label">Actual Kit Cost</div>
                         <div class="gt-value" id="animatedTotal">$0.00</div>
-                        <div class="gt-target">Based on your target budget of <span>$${targetBudget.toLocaleString()}</span></div>
+                        <div class="gt-target">Based on your target budget of <span>$${currentLiveKit.targetBudget.toLocaleString()}</span></div>
+                        <div id="overBudgetWarning" class="over-budget-warning" style="${warningStyle}">${warningText}</div>
                         <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.9rem;">Optimized using the <strong>${document.querySelector('input[name="priority_profile"]:checked').nextElementSibling.innerText}</strong> profile.</p>
                         ${overrideNoteHTML}
                     </div>
@@ -714,8 +723,35 @@
 
                 setTimeout(() => {
                     const animatedTotalEl = document.getElementById('animatedTotal');
-                    if(animatedTotalEl) animateValue(animatedTotalEl, 0, finalKit.grandTotal, 1500);
+                    if(animatedTotalEl) animateValue(animatedTotalEl, 0, currentLiveKit.grandTotal, 1500);
                 }, 400);
+            }
+
+            function updateGrandTotalDOM() {
+                const gtEl = document.getElementById('animatedTotal');
+                if (gtEl) gtEl.innerHTML = `$${currentLiveKit.grandTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+                const warningEl = document.getElementById('overBudgetWarning');
+                if (warningEl) {
+                    if (currentLiveKit.grandTotal > currentLiveKit.targetBudget) {
+                        const diff = currentLiveKit.grandTotal - currentLiveKit.targetBudget;
+                        warningEl.innerHTML = `⚠️ $${diff.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} over budget limit`;
+                        warningEl.style.display = "inline-block";
+                        
+                        setTimeout(() => {
+                            warningEl.style.opacity = 1;
+                            warningEl.style.transform = "translateY(0)";
+                        }, 10);
+                    } else {
+                        warningEl.style.opacity = 0;
+                        warningEl.style.transform = "translateY(-10px)";
+                        setTimeout(() => {
+                            if (currentLiveKit.grandTotal <= currentLiveKit.targetBudget) {
+                                warningEl.style.display = "none";
+                            }
+                        }, 300);
+                    }
+                }
             }
 
             function updateSliderBounds() {
@@ -869,9 +905,12 @@
                 activeCategoryNames.forEach(cat => { kitByCategory[cat] = []; catTotals[cat] = 0; });
 
                 itemsList.forEach(i => {
-                    let selectedProduct = i.baseItem.tiers[i.currentTierIdx];
-                    kitByCategory[i.catName].push(selectedProduct);
-                    catTotals[i.catName] += selectedProduct.price;
+                    kitByCategory[i.catName].push({
+                        name: i.baseItem.name,
+                        tiers: i.baseItem.tiers,
+                        selectedIdx: i.currentTierIdx
+                    });
+                    catTotals[i.catName] += i.baseItem.tiers[i.currentTierIdx].price;
                 });
 
                 return { kitByCategory, catTotals, grandTotal: currentGlobalTotal, hadToOverride, targetBudgets };
@@ -881,26 +920,79 @@
                 if(buildBtn.disabled) return;
 
                 const totalBudget = parseInt(budgetSlider.value);
-                
                 const activeCategoryNames = Array.from(document.querySelectorAll('.category-toggle:checked'))
                     .map(cb => cb.value)
                     .filter(val => Object.keys(categoryColors).includes(val)); 
-                
                 const selectedProfileId = document.querySelector('input[name="priority_profile"]:checked').value;
                 
                 goToResults();
-                
                 const finalKit = calculateOptimalKit(totalBudget, activeCategoryNames, selectedProfileId);
                 
-                renderDonutChart(finalKit.catTotals, activeCategoryNames);
-                generateKitListHTML(finalKit, activeCategoryNames, totalBudget, selectedProfileId);
+                // Lock state into the Global Tracker
+                currentLiveKit = {
+                    targetBudget: totalBudget,
+                    grandTotal: finalKit.grandTotal,
+                    catTotals: finalKit.catTotals,
+                    kitByCategory: finalKit.kitByCategory,
+                    hadToOverride: finalKit.hadToOverride,
+                    targetBudgets: finalKit.targetBudgets,
+                    selectedProfileId: selectedProfileId
+                };
+                
+                renderDonutChart(currentLiveKit.catTotals, activeCategoryNames);
+                generateKitListHTML(activeCategoryNames);
             });
 
+            // NEW: Unified Event Listener for Modals AND the Swap Button
             let modalHasBeenShown = false;
             document.getElementById('categories-container').addEventListener('click', function(e) {
+                // Email Request Catch
                 if (e.target.classList.contains('buy-btn') && !modalHasBeenShown) {
                     document.getElementById('email-modal').classList.add('show-modal');
                     modalHasBeenShown = true;
+                }
+                
+                // Swap Action Catch
+                const swapBtn = e.target.closest('.swap-btn');
+                if (swapBtn) {
+                    const catName = swapBtn.dataset.cat;
+                    const itemIndex = parseInt(swapBtn.dataset.index);
+                    
+                    const itemState = currentLiveKit.kitByCategory[catName][itemIndex];
+                    const oldTier = itemState.tiers[itemState.selectedIdx];
+                    
+                    // Cycle to next tier
+                    itemState.selectedIdx = (itemState.selectedIdx + 1) % itemState.tiers.length;
+                    const newTier = itemState.tiers[itemState.selectedIdx];
+
+                    // Update math
+                    const priceDiff = newTier.price - oldTier.price;
+                    currentLiveKit.catTotals[catName] += priceDiff;
+                    currentLiveKit.grandTotal += priceDiff;
+
+                    // Update DOM (Card)
+                    const safeCatId = catName.replace(/[^a-zA-Z0-9]/g, '');
+                    const cardEl = document.getElementById(`card-${safeCatId}-${itemIndex}`);
+                    if (cardEl) {
+                        cardEl.innerHTML = getCardInnerHtml(newTier, catName, itemIndex);
+                        // Brief pop animation
+                        cardEl.style.transform = "scale(0.95)";
+                        setTimeout(() => cardEl.style.transform = "scale(1)", 150);
+                    }
+
+                    // Update DOM (Subtotals & Budget)
+                    const subtotalEl = document.getElementById(`subtotal-${safeCatId}`);
+                    if (subtotalEl) subtotalEl.textContent = `Subtotal: $${currentLiveKit.catTotals[catName].toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+                    // Update dynamic % tooltips
+                    Object.keys(currentLiveKit.catTotals).forEach(c => {
+                        const sId = c.replace(/[^a-zA-Z0-9]/g, '');
+                        const fracEl = document.getElementById(`fraction-text-${sId}`);
+                        if (fracEl) fracEl.textContent = ((currentLiveKit.catTotals[c] / currentLiveKit.grandTotal) * 100).toFixed(0);
+                    });
+
+                    updateGrandTotalDOM();
+                    renderDonutChart(currentLiveKit.catTotals, Object.keys(currentLiveKit.catTotals));
                 }
             });
 
@@ -930,7 +1022,7 @@
                     const endX = 40 + radius * Math.cos(endRads);
                     const endY = 40 + radius * Math.sin(endRads);
 
-                    svgHtml += `<path d="M40,40 L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z" fill="${color}" />`;
+                    svgHtml += `<path d="M40,40 L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z" fill="${color}" style="transition: all 0.4s ease;" />`;
 
                     chartLegend.insertAdjacentHTML('beforeend', `
                         <div class="legend-item" style="animation-delay: ${0.2 + (index * 0.1)}s;">
