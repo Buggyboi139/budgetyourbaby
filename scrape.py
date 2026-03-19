@@ -3,7 +3,7 @@ import json
 import time
 import random
 from bs4 import BeautifulSoup
-from cur_cffi import requests
+from curl_cffi import requests
 
 AFFILIATE_TAG = "1097fa-20"
 
