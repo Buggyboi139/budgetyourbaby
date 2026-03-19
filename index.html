@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabyBudget | Prep for Arrival</title>
     
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NK7X1VJ6LJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -35,6 +34,11 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+            background-color: #07090f;
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -251,7 +255,6 @@
             opacity: 0; animation: fadeIn 1s 0.5s forwards;
         }
 
-        /* Email Modal Styles */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(7, 9, 15, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -304,8 +307,7 @@
             border: 1px solid var(--border-glass);
             font-weight: 500;
         }
-
-        /* Print Styles */
+        
         @media print {
             body { background: #ffffff !important; color: #000000 !important; background-image: none !important; -webkit-print-color-adjust: exact; padding-bottom: 0 !important; padding-left: 0 !important; }
             body::before { display: none !important; }
@@ -348,6 +350,9 @@
             .subtotal-tooltip::after { display: none; }
             .grand-total-card { padding: 30px 20px; }
             .gt-value { font-size: 3rem; }
+            .product-card {
+                transform: translateY(40px);
+            }
         }
     </style>
 </head>
@@ -526,7 +531,6 @@
 
             let productDatabase = {};
 
-            // Render category checkboxes first so they exist when we check Local Storage
             Object.keys(categoryColors).forEach(cat => {
                 const labelHtml = `
                     <label>
@@ -537,7 +541,6 @@
                 categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
             });
 
-            // --- SESSION MEMORY (LOCAL STORAGE) ---
             function saveUserPreferences() {
                 const state = {
                     budget: budgetSlider.value,
@@ -576,17 +579,14 @@
                 }
             }
 
-            // Bind memory save to all inputs
             document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
                 input.addEventListener('change', saveUserPreferences);
             });
             budgetSlider.addEventListener('change', saveUserPreferences); 
-            // -------------------------------------
 
             buildBtn.disabled = true;
             buildBtn.textContent = "Loading live prices...";
 
-            // Load memory before fetching
             loadUserPreferences();
 
             fetch('products.json')
@@ -595,10 +595,9 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Extract and display metadata timestamp if it exists
                     if(data._metadata && data._metadata.last_updated) {
                         timestampBadge.textContent = `Prices last verified: ${data._metadata.last_updated}`;
-                        delete data._metadata; // Remove it so it doesn't break the calculator loop
+                        delete data._metadata;
                     } else {
                         timestampBadge.style.display = 'none';
                     }
