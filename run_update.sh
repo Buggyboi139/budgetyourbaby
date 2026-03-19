@@ -2,6 +2,8 @@
 
 cd ~/budgetyourbaby || exit
 
+git pull origin main --rebase
+
 ~/budgetyourbaby/scraper_env/bin/python update_prices.py
 
 if [[ -n $(git status --porcelain products.json) ]]; then
