@@ -14,7 +14,6 @@
       gtag('config', 'G-NK7X1VJ6LJ');
     </script>
 
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -53,8 +52,7 @@
             flex-direction: column;
         }
 
-        body::before {
-            content: "";
+        #left-color-bar {
             position: fixed;
             top: 0;
             left: 0;
@@ -63,6 +61,7 @@
             background: var(--gradient-primary);
             z-index: 200; 
             box-shadow: 2px 0 15px rgba(161, 140, 209, 0.5); 
+            transition: background 0.4s ease, box-shadow 0.4s ease;
         }
 
         nav {
@@ -110,7 +109,6 @@
         
         .toggles-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         
-        /* Category Checkboxes (Strikethrough style) */
         .cat-label {
             background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px;
             cursor: pointer; font-size: 0.95rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.05);
@@ -120,7 +118,6 @@
         .cat-checkbox:checked + .cat-label { background: var(--text-main); color: #0f172a; border-color: var(--text-main); }
         .cat-checkbox:not(:checked) + .cat-label { opacity: 0.4; text-decoration: line-through; }
 
-        /* Priority Radio Buttons (Pastel Outline style) */
         .priority-label {
             background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px;
             cursor: pointer; font-size: 0.95rem; font-weight: 600; border: 2px solid transparent;
@@ -285,7 +282,6 @@
         }
         .skip-btn:hover { color: var(--text-main); }
 
-        /* Site Footer */
         .site-footer {
             text-align: center;
             padding: 40px 20px;
@@ -309,7 +305,7 @@
         
         @media print {
             body { background: #ffffff !important; color: #000000 !important; background-image: none !important; -webkit-print-color-adjust: exact; padding-bottom: 0 !important; padding-left: 0 !important; }
-            body::before { display: none !important; }
+            #left-color-bar { display: none !important; }
             * { filter: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; text-shadow: none !important; }
             nav, .header-actions, .engine-disclaimer, #setup-view, #email-modal, .site-footer { display: none !important; }
             .container { padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
@@ -331,7 +327,7 @@
 
         @media (max-width: 768px) {
             body { padding-left: 10px; }
-            body::before { width: 3px; }
+            #left-color-bar { width: 3px; }
             nav { padding: 15px 20px; }
             .container { padding: 30px 15px; }
             h1 { font-size: 2.2rem; letter-spacing: -0.5px; }
@@ -349,13 +345,13 @@
             .subtotal-tooltip::after { display: none; }
             .grand-total-card { padding: 30px 20px; }
             .gt-value { font-size: 3rem; }
-            .product-card {
-                transform: translateY(40px);
-            }
+            .product-card { transform: translateY(40px); }
         }
     </style>
 </head>
 <body>
+
+    <div id="left-color-bar"></div>
 
     <nav>
         <div class="logo" id="logoBtn">BabyBudget</div>
@@ -540,6 +536,36 @@
                 categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
             });
 
+            // NEW FUNCTION: Dynamically update the left bar based on active toggles
+            function updateDynamicBar() {
+                const activeToggles = Array.from(document.querySelectorAll('.category-toggle:checked'))
+                    .map(cb => cb.value)
+                    .filter(val => Object.keys(categoryColors).includes(val));
+                
+                const colorBar = document.getElementById('left-color-bar');
+                if(!colorBar) return;
+                
+                if (activeToggles.length === 0) {
+                    colorBar.style.background = 'var(--gradient-primary)';
+                    colorBar.style.boxShadow = '2px 0 15px rgba(161, 140, 209, 0.5)';
+                    return;
+                }
+
+                const activeColors = activeToggles.map(cat => categoryColors[cat]);
+                
+                if (activeColors.length === 1) {
+                    colorBar.style.background = activeColors[0];
+                    colorBar.style.boxShadow = `2px 0 15px ${activeColors[0]}80`;
+                } else {
+                    colorBar.style.background = `linear-gradient(to bottom, ${activeColors.join(', ')})`;
+                    // Grab the first color for the drop shadow glow
+                    colorBar.style.boxShadow = `2px 0 15px ${activeColors[0]}80`; 
+                }
+            }
+
+            // Call it right away so the default checked boxes set the gradient
+            updateDynamicBar();
+
             function saveUserPreferences() {
                 const state = {
                     budget: budgetSlider.value,
@@ -571,6 +597,8 @@
                             document.querySelectorAll('.category-toggle').forEach(cb => {
                                 cb.checked = state.categories.includes(cb.value);
                             });
+                            // Re-run the dynamic bar update since memory may have unchecked some boxes
+                            updateDynamicBar();
                         }
                     } catch (e) {
                         console.log("Memory load error, starting fresh.");
@@ -757,7 +785,10 @@
                 budgetDisplay.textContent = '$' + parseInt(budgetSlider.value).toLocaleString();
             }
 
-            categoryTogglesContainer.addEventListener('change', updateSliderBounds);
+            categoryTogglesContainer.addEventListener('change', () => {
+                updateSliderBounds();
+                updateDynamicBar(); // Call this when the user clicks a checkbox!
+            });
 
             budgetSlider.addEventListener('input', (e) => {
                 budgetDisplay.textContent = '$' + parseInt(e.target.value).toLocaleString();
