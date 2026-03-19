@@ -222,7 +222,6 @@ if os.path.exists('products.json'):
     try:
         with open('products.json', 'r') as f:
             old_db = json.load(f)
-            # Map old data by link so we can easily look it up if a scrape fails
             for cat_name, cat_items in old_db.items():
                 if cat_name == "_metadata": continue
                 for item in cat_items:
@@ -254,25 +253,20 @@ def get_amazon_data(url, max_retries=3):
             rating = 0.0
             reviews = 0
 
-            # 1. Scrape Title
             title_tag = soup.find(id="productTitle")
-            if title_tag:
-                title = title_tag.text.strip()
+            if title_tag: title = title_tag.text.strip()
 
-            # 2. Scrape Price
             price_whole = soup.find("span", class_="a-price-whole")
             price_fraction = soup.find("span", class_="a-price-fraction")
             if price_whole and price_fraction:
                 clean_price = price_whole.text.replace(',', '').replace('.', '') + '.' + price_fraction.text
                 price = float(clean_price)
 
-            # 3. Scrape Rating
             rating_tag = soup.find("span", class_="a-icon-alt")
             if rating_tag:
                 try: rating = float(rating_tag.text.split()[0])
                 except: pass
 
-            # 4. Scrape Reviews
             review_tag = soup.find("span", id="acrCustomerReviewText") or soup.find("span", {"data-hook": "total-review-count"})
             if review_tag:
                 try:
@@ -280,7 +274,6 @@ def get_amazon_data(url, max_retries=3):
                     reviews = int(''.join(filter(str.isdigit, review_text)))
                 except: pass
 
-            # 5. Scrape Image
             img_tag = soup.find("img", id="landingImage") or soup.find("img", id="imgBlkFront")
             if img_tag:
                 temp_img = None
@@ -329,10 +322,12 @@ for category, items in input_catalog.items():
         for tier_name, link in tiers.items():
             print(f"  Scraping {item_name} ({tier_name})...")
             
-            title, price, img, rating, reviews = get_amazon_data(link)
+            # Remove affiliate tag before scraping
+            clean_url = link.split('?')[0]
+            
+            title, price, img, rating, reviews = get_amazon_data(clean_url)
             
             # --- THE SAFETY NET ---
-            # If Amazon blocked us, check if we have old valid data to use instead
             if price == 0.0 or title == "Amazon Product" or title == "Failed to Load":
                 if link in old_data and old_data[link].get("price", 0) > 0.0:
                     print(f"    [!] Scrape failed. Rescuing previous valid data for {tier_name}.")
@@ -351,7 +346,7 @@ for category, items in input_catalog.items():
                 "price": price,
                 "rating": rating,
                 "reviews": reviews,
-                "link": link,
+                "link": link, # Original link saved to JSON with tag
                 "img": img
             }
             
@@ -363,7 +358,6 @@ for category, items in input_catalog.items():
 
             item_block["tiers"].append(tier_data)
             
-            # Increased delay to avoid angering Amazon's bot detection
             time.sleep(random.uniform(4, 9))
             
         final_database[category].append(item_block)
