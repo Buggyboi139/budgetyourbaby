@@ -2,6 +2,7 @@ import datetime
 import json
 import time
 import random
+import os
 from bs4 import BeautifulSoup
 from curl_cffi import requests
 
@@ -34,12 +35,12 @@ input_catalog = {
             "Budget": "https://www.amazon.com/dp/B00JEV5UI8/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B09GM8JZM9/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08FF4GV5C/?tag=1097fa-20",
-            "Luxury": "https://www.amazon.com/dp/B0FDT7KQTH/?tag=1097fa-20"
+            "Luxury": "https://www.amazon.com/dp/B08QMWP5V8/?tag=1097fa-20"
         },
         "Sound Machine": {
             "Budget": "https://www.amazon.com/dp/B01D50RYSC/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B0F7C6XJ3P/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B06XMRCC94/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B06XMRCC94/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0F7C6XJ3P/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B0D6SX8VLQ/?tag=1097fa-20"
         }
     },
@@ -52,7 +53,7 @@ input_catalog = {
         },
         "Travel Stroller": {
             "Budget": "https://www.amazon.com/dp/B019DHBCXE/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B0C5463NVT/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B08ZJTNY7Y/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08VWWQ96T/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B0D9XS9VXL/?tag=1097fa-20"
         },
@@ -64,9 +65,9 @@ input_catalog = {
         },
         "Diaper Bag": {
             "Budget": "https://www.amazon.com/dp/B0FSLB42V3/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B07C3SWZXK/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B074HXT4W2/?tag=1097fa-20",
-            "Luxury": "https://www.amazon.com/dp/B0DNWZ1KV8/?tag=1097fa-20"
+            "Standard": "https://www.amazon.com/dp/B07C3SWZ1C/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B00J4N04EA/?tag=1097fa-20",
+            "Luxury": "https://www.amazon.com/dp/B01MT2G6D8/?tag=1097fa-20"
         }
     },
     "Feeding & Nursing": {
@@ -78,7 +79,7 @@ input_catalog = {
         },
         "Nursing Pillow": {
             "Budget": "https://www.amazon.com/dp/B0F8LDHL26/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B0F6T5VNRX/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B0B5P2RXYN/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08J54C2Y8/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B08SMT92PK/?tag=1097fa-20"
         },
@@ -150,7 +151,7 @@ input_catalog = {
             "Budget": "https://www.amazon.com/dp/B077G8FMBY/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B07C8L4CTZ/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B0B75QS1RF/?tag=1097fa-20",
-            "Organic": "https://www.amazon.com/dp/B08MDYFTS1/?tag=1097fa-20"
+            "Organic": "https://www.amazon.com/dp/B09Y8SNJ15/?tag=1097fa-20"
         },
         "Socks": {
             "Budget": "https://www.amazon.com/dp/B00X21MRHI/?tag=1097fa-20",
@@ -161,28 +162,28 @@ input_catalog = {
     },
     "Bath & Health": {
         "Baby Bathtub": {
-            "Budget": "https://www.amazon.com/dp/B0BFVBMM2Y/?tag=1097fa-20",
+            "Budget": "https://www.amazon.com/dp/B000067EH7/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B099FM4W4H/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B0DVLQN538/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B07RJ3C7DX/?tag=1097fa-20"
         },
         "Healthcare Kit": {
             "Budget": "https://www.amazon.com/dp/B00VXMXN30/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B01J8C1VVC/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B0DP4TXLP9/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B00MUK6M82/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B01J8C1VVC/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B075G6XMSF/?tag=1097fa-20"
         },
         "Towels & Washcloths": {
             "Budget": "https://www.amazon.com/dp/B07ZSCJB4K/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B00X22L0AC/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B0FP5DJ4RC/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0B46RBFBD/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B081SFS6SW/?tag=1097fa-20"
         },
         "Baby Wash": {
             "Budget": "https://www.amazon.com/dp/B07D2JMJPS/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B004L5JCZ4/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B0FY3YPZCG/?tag=1097fa-20",
-            "Organic": "https://www.amazon.com/dp/B09JL8D41T/?tag=1097fa-20"
+            "Organic": "https://www.amazon.com/dp/B000P7M26I/?tag=1097fa-20"
         },
         "Nasal Aspirator": {
             "Budget": "https://www.amazon.com/dp/B001OTK6JG/?tag=1097fa-20",
@@ -210,16 +211,30 @@ input_catalog = {
             "Premium": "https://www.amazon.com/dp/B08L9HV8JC/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B09X1YTHWS/?tag=1097fa-20"
         }
-    },
-    "Organic and or Luxury": {
-        "Example Item Name": {
-            "Premium": "https://www.amazon.com/dp/EXAMPLE_ASIN_HERE/?tag=1097fa-20"
-        }
     }
 }
 
 # ==========================================
-# 2. THE SCRAPER ENGINE (Upgraded for .jpgs and Reviews)
+# 2. LOAD PREVIOUS DATA (The Safety Net)
+# ==========================================
+old_data = {}
+if os.path.exists('products.json'):
+    try:
+        with open('products.json', 'r') as f:
+            old_db = json.load(f)
+            # Map old data by link so we can easily look it up if a scrape fails
+            for cat_name, cat_items in old_db.items():
+                if cat_name == "_metadata": continue
+                for item in cat_items:
+                    for tier in item.get('tiers', []):
+                        if "link" in tier:
+                            old_data[tier["link"]] = tier
+        print("[+] Successfully loaded previous products.json for backup data.")
+    except Exception as e:
+        print(f"[!] Could not load backup data: {e}")
+
+# ==========================================
+# 3. THE SCRAPER ENGINE
 # ==========================================
 def get_amazon_data(url, max_retries=3):
     if url == "#" or "EXAMPLE_ASIN" in url: 
@@ -257,7 +272,7 @@ def get_amazon_data(url, max_retries=3):
                 try: rating = float(rating_tag.text.split()[0])
                 except: pass
 
-            # 4. Scrape Reviews (Upgraded: Aggressive text stripping)
+            # 4. Scrape Reviews
             review_tag = soup.find("span", id="acrCustomerReviewText") or soup.find("span", {"data-hook": "total-review-count"})
             if review_tag:
                 try:
@@ -265,7 +280,7 @@ def get_amazon_data(url, max_retries=3):
                     reviews = int(''.join(filter(str.isdigit, review_text)))
                 except: pass
 
-            # 5. Scrape Image (Upgraded: Ignores .gif and dynamic JSON bypass)
+            # 5. Scrape Image
             img_tag = soup.find("img", id="landingImage") or soup.find("img", id="imgBlkFront")
             if img_tag:
                 temp_img = None
@@ -297,7 +312,7 @@ def get_amazon_data(url, max_retries=3):
     return "Failed to Load", 0.00, "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Error", 0.0, 0
 
 # ==========================================
-# 3. JSON BUILDER
+# 4. JSON BUILDER WITH SAFETY NET
 # ==========================================
 final_database = {}
 
@@ -316,6 +331,20 @@ for category, items in input_catalog.items():
             
             title, price, img, rating, reviews = get_amazon_data(link)
             
+            # --- THE SAFETY NET ---
+            # If Amazon blocked us, check if we have old valid data to use instead
+            if price == 0.0 or title == "Amazon Product" or title == "Failed to Load":
+                if link in old_data and old_data[link].get("price", 0) > 0.0:
+                    print(f"    [!] Scrape failed. Rescuing previous valid data for {tier_name}.")
+                    title = old_data[link].get("title", title)
+                    price = old_data[link].get("price", price)
+                    img = old_data[link].get("img", img)
+                    rating = old_data[link].get("rating", rating)
+                    reviews = old_data[link].get("reviews", reviews)
+                else:
+                    print(f"    [!] Scrape failed and no valid backup found for {tier_name}.")
+            # ----------------------
+
             tier_data = {
                 "tier": tier_name,
                 "title": title,
@@ -326,7 +355,6 @@ for category, items in input_catalog.items():
                 "img": img
             }
             
-            # Inject Crash Test info specifically for Car Seats
             if category == "Travel & Gear" and item_name == "Infant Car Seat":
                 if tier_name == "Budget": tier_data["crashTest"] = "ProtectPlus Engineered"
                 elif tier_name == "Standard": tier_data["crashTest"] = "EPS Energy-Absorbing Foam"
@@ -335,7 +363,8 @@ for category, items in input_catalog.items():
 
             item_block["tiers"].append(tier_data)
             
-            time.sleep(random.uniform(2, 5))
+            # Increased delay to avoid angering Amazon's bot detection
+            time.sleep(random.uniform(4, 9))
             
         final_database[category].append(item_block)
 
