@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BabyBudget | Blog & Guides</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NK7X1VJ6LJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NK7X1VJ6LJ');
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --surface-glass: rgba(30, 41, 59, 0.4);
+            --surface-solid: rgba(15, 23, 42, 0.6);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.2);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.6);
+            --gradient-primary: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            --gradient-hover: linear-gradient(135deg, #b5a3df 0%, #fcd3f2 100%);
+            --radius-lg: 32px;
+            --radius-md: 20px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { overflow-x: hidden; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+            background-color: #07090f;
+            background-image: radial-gradient(at 0% 0%, rgba(161, 140, 209, 0.15) 0, transparent 40%), 
+                              radial-gradient(at 100% 0%, rgba(251, 194, 235, 0.1) 0, transparent 40%), 
+                              radial-gradient(at 50% 100%, rgba(132, 250, 176, 0.05) 0, transparent 50%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-left: 20px; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        #left-color-bar {
+            position: fixed; top: 0; left: 0; bottom: 0; width: 4px; 
+            background: var(--gradient-primary); z-index: 200; 
+            box-shadow: 2px 0 15px rgba(161, 140, 209, 0.5); 
+        }
+
+        nav {
+            padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.6rem; font-weight: 800; background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-decoration: none; transition: transform 0.3s ease;
+        }
+        .logo:hover { transform: scale(1.05); }
+
+        .nav-link {
+            color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-glass);
+            transition: all 0.2s ease; background: rgba(255,255,255,0.05);
+        }
+        .nav-link:hover { background: rgba(255,255,255,0.1); border-color: var(--border-highlight); transform: translateY(-2px); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; flex: 1; width: 100%; }
+
+        .hero-section { text-align: center; margin-bottom: 60px; }
+        
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass);
+            padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+            color: var(--text-muted); margin-bottom: 25px;
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -1.5px; }
+        .subtitle { color: var(--text-muted); font-size: 1.25rem; max-width: 700px; margin: 0 auto; font-weight: 500; line-height: 1.6;}
+
+        /* Blog Grid System */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: var(--surface-solid); border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); backdrop-filter: blur(10px);
+            transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+            text-decoration: none; color: inherit;
+        }
+        .blog-card:hover {
+            box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-8px);
+        }
+
+        .blog-thumb {
+            width: 100%; height: 220px; object-fit: cover;
+            border-bottom: 1px solid var(--border-glass);
+            background-color: #1e293b;
+        }
+
+        .blog-content { padding: 25px; display: flex; flex-direction: column; flex: 1; }
+
+        .category-badge {
+            display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; 
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;
+            background: rgba(161, 140, 209, 0.15); color: #c4b5fd; border: 1px solid rgba(161, 140, 209, 0.3);
+            width: fit-content;
+        }
+
+        .blog-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; color: var(--text-main); }
+        .blog-excerpt { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 25px; flex: 1; }
+
+        .blog-meta {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid var(--border-glass); padding-top: 15px; font-size: 0.85rem; color: var(--text-muted); font-weight: 500;
+        }
+
+        .read-more { color: #fbc2eb; font-weight: 700; transition: color 0.2s; }
+        .blog-card:hover .read-more { color: #fff; }
+
+        .site-footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid var(--border-glass); color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+        .site-footer a { color: var(--text-muted); text-decoration: underline; }
+        .site-footer a:hover { color: var(--text-main); }
+
+        @media (max-width: 768px) {
+            body { padding-left: 10px; }
+            #left-color-bar { width: 3px; }
+            nav { padding: 15px 20px; }
+            .container { padding: 40px 15px; }
+            h1 { font-size: 2.5rem; }
+            .blog-grid { grid-template-columns: 1fr; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="left-color-bar"></div>
+
+    <nav>
+        <a href="/" class="logo">BabyBudget</a>
+        <a href="/" class="nav-link">← Back to Calculator</a>
+    </nav>
+
+    <div class="container">
+        <div class="hero-section">
+            <div class="hero-pill">
+                <span>📚</span>
+                <span>The First 40 Weeks</span>
+            </div>
+            <h1>Guides & Real Talk.</h1>
+            <p class="subtitle">No fluff, no sponsored mommy-blogger bias. Just math, safety, and unapologetic advice on surviving the cost of a new baby.</p>
+        </div>
+
+        <div class="blog-grid">
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/a18cd1.png&text=Minimalist+Nursery" alt="Minimalist Nursery" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">The Basics</span>
+                    <h2 class="blog-title">The 5 Pieces of Baby Gear You Actually Need (And What to Skip)</h2>
+                    <p class="blog-excerpt">The baby industry wants you to buy 100 items before your due date. Here is the realistic breakdown of the only 5 things you need to bring them home safely.</p>
+                    <div class="blog-meta">
+                        <span>March 15, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/fbc2eb.png&text=Car+Seats" alt="Car Seats" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">Safety First</span>
+                    <h2 class="blog-title">The Truth About Infant Car Seats: Safety vs. Price</h2>
+                    <p class="blog-excerpt">Does a $500 car seat protect your baby better than a $100 one? We dive into NHTSA crash test standards to show you where your money is actually going.</p>
+                    <div class="blog-meta">
+                        <span>March 12, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/84fab0.png&text=Organic+Gear" alt="Organic Gear" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">Deep Dive</span>
+                    <h2 class="blog-title">Organic vs. Standard: When Is It Actually Worth the Premium?</h2>
+                    <p class="blog-excerpt">Organic cotton looks great on a registry, but when you are on a tight budget, which items actually matter for your baby's health and which are just marketing?</p>
+                    <div class="blog-meta">
+                        <span>March 08, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/a18cd1.png&text=Diaper+Math" alt="Diaper Math" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">Budget Hacks</span>
+                    <h2 class="blog-title">Diapering Math: Disposables, Cloth, and the True First-Year Cost</h2>
+                    <p class="blog-excerpt">Before you commit to a diapering system, run the numbers. We break down the exact cost of wiping butts for 12 months, including the hidden water and energy costs of cloth.</p>
+                    <div class="blog-meta">
+                        <span>March 02, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/fbc2eb.png&text=Used+Gear" alt="Used Gear" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">Safety First</span>
+                    <h2 class="blog-title">Secondhand Baby Gear: What Is (And Isn't) Safe to Buy Used</h2>
+                    <p class="blog-excerpt">Facebook Marketplace is a goldmine for expecting parents, but some items degrade over time. Here is the definitive list of what to buy used, and what to buy brand new.</p>
+                    <div class="blog-meta">
+                        <span>February 26, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/84fab0.png&text=Breast+Pumping" alt="Breast Pumping" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">Feeding</span>
+                    <h2 class="blog-title">Breast Pumping on a Budget: Insurance, Hacks, and Gear</h2>
+                    <p class="blog-excerpt">Feeding your baby is expensive no matter how you do it. Learn how to maximize your insurance benefits to get a premium pump without touching your savings.</p>
+                    <div class="blog-meta">
+                        <span>February 18, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/a18cd1.png&text=Hidden+Costs" alt="Hidden Costs" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">The Basics</span>
+                    <h2 class="blog-title">The Hidden Costs of the First Year: A Parent's Breakdown</h2>
+                    <p class="blog-excerpt">Everyone plans for the crib and the stroller, but what about the incidentals? From extra laundry detergent to emergency pharmacy runs, here is what catches parents off guard.</p>
+                    <div class="blog-meta">
+                        <span>February 10, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/fbc2eb.png&text=Monitors" alt="Monitors" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">Deep Dive</span>
+                    <h2 class="blog-title">Why We Usually Don't Recommend Wi-Fi Baby Monitors</h2>
+                    <p class="blog-excerpt">Tech companies want you to track every breath your baby takes on an app. We look at why standard radio-frequency monitors are often safer, cheaper, and better for your anxiety.</p>
+                    <div class="blog-meta">
+                        <span>January 29, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/84fab0.png&text=Baby+Clothes" alt="Baby Clothes" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">Budget Hacks</span>
+                    <h2 class="blog-title">A Minimalist's Guide to Baby Clothes (They Grow Too Fast)</h2>
+                    <p class="blog-excerpt">Those tiny shoes are cute, but they will never stay on. How to build a functional, comfortable capsule wardrobe for the first six months without burning cash.</p>
+                    <div class="blog-meta">
+                        <span>January 22, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <img src="https://dummyimage.com/600x400/1e293b/a18cd1.png&text=Hospital+Bag" alt="Hospital Bag" class="blog-thumb">
+                <div class="blog-content">
+                    <span class="category-badge">The Basics</span>
+                    <h2 class="blog-title">What to Actually Pack in Your Hospital Bag</h2>
+                    <p class="blog-excerpt">Spoiler alert: You don't need to bring your own diapers or wipes. The ultimate, stripped-down list of what you actually need for labor and recovery.</p>
+                    <div class="blog-meta">
+                        <span>January 15, 2026</span>
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>BabyBudget is a free tool built to help parents plan smartly and safely.</p>
+        <p>As an Amazon Associate, we earn from qualifying purchases. This helps keep the engine running.</p>
+        <div style="margin-top: 15px;">
+            <a href="/">Calculator</a> &nbsp;|&nbsp; 
+            <a href="/blog">Guides & Blog</a>
+        </div>
+    </footer>
+
+</body>
+</html>
