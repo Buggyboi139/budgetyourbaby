@@ -93,17 +93,6 @@
             box-shadow: var(--shadow-soft); max-width: 800px; margin: 0 auto;
         }
 
-        .gender-selector { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; }
-        .gender-label {
-            background: rgba(255,255,255,0.05); padding: 14px 32px; border-radius: 40px;
-            cursor: pointer; font-weight: 600; font-size: 1.05rem; border: 2px solid transparent;
-            transition: all 0.3s ease; color: var(--text-muted);
-        }
-        .gender-radio { display: none; }
-        input[value="boy"]:checked + .gender-label { border-color: #a1c4fd; color: #a1c4fd; background: rgba(161, 196, 253, 0.1); box-shadow: 0 10px 20px rgba(161, 196, 253, 0.1); transform: translateY(-2px); }
-        input[value="girl"]:checked + .gender-label { border-color: #fbc2eb; color: #fbc2eb; background: rgba(251, 194, 235, 0.1); box-shadow: 0 10px 20px rgba(251, 194, 235, 0.1); transform: translateY(-2px); }
-        input[value="neutral"]:checked + .gender-label { border-color: #fbd38d; color: #fbd38d; background: rgba(251, 211, 141, 0.1); box-shadow: 0 10px 20px rgba(251, 211, 141, 0.1); transform: translateY(-2px); }
-
         .category-selector { margin-bottom: 40px; }
         .category-title-label { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
         
@@ -333,8 +322,6 @@
             h1 { font-size: 2.2rem; letter-spacing: -0.5px; }
             .control-panel { padding: 30px 20px; }
             .budget-display { font-size: 3.5rem; }
-            .gender-selector { flex-direction: column; align-items: stretch; gap: 10px; }
-            .gender-label { text-align: center; }
             .results-header { flex-direction: column; align-items: flex-start; gap: 20px; }
             .header-actions { width: 100%; justify-content: space-between; }
             .pie-chart-container { flex-direction: column; padding: 25px 20px; gap: 25px; align-items: center; text-align: left; }
@@ -363,11 +350,6 @@
             <p class="subtitle">Set your budget and tell us what matters most. We'll balance the rest so you don't have to.</p>
             
             <div class="control-panel">
-                <div class="gender-selector">
-                    <label><input type="radio" name="gender" value="boy" class="gender-radio"><div class="gender-label">Boy</div></label>
-                    <label><input type="radio" name="gender" value="girl" class="gender-radio"><div class="gender-label">Girl</div></label>
-                    <label><input type="radio" name="gender" value="neutral" class="gender-radio" checked><div class="gender-label">Neutral</div></label>
-                </div>
 
                 <div class="category-selector" style="margin-bottom: 35px;">
                     <div class="category-title-label">Parenting Priority</div>
@@ -536,7 +518,6 @@
                 categoryTogglesContainer.insertAdjacentHTML('beforeend', labelHtml);
             });
 
-            // NEW FUNCTION: Dynamically update the left bar based on active toggles
             function updateDynamicBar() {
                 const activeToggles = Array.from(document.querySelectorAll('.category-toggle:checked'))
                     .map(cb => cb.value)
@@ -558,18 +539,15 @@
                     colorBar.style.boxShadow = `2px 0 15px ${activeColors[0]}80`;
                 } else {
                     colorBar.style.background = `linear-gradient(to bottom, ${activeColors.join(', ')})`;
-                    // Grab the first color for the drop shadow glow
                     colorBar.style.boxShadow = `2px 0 15px ${activeColors[0]}80`; 
                 }
             }
 
-            // Call it right away so the default checked boxes set the gradient
             updateDynamicBar();
 
             function saveUserPreferences() {
                 const state = {
                     budget: budgetSlider.value,
-                    gender: document.querySelector('input[name="gender"]:checked').value,
                     profile: document.querySelector('input[name="priority_profile"]:checked').value,
                     categories: Array.from(document.querySelectorAll('.category-toggle:checked')).map(cb => cb.value)
                 };
@@ -585,10 +563,6 @@
                             budgetSlider.value = state.budget;
                             budgetDisplay.textContent = '$' + parseInt(state.budget).toLocaleString();
                         }
-                        if(state.gender) {
-                            const g = document.querySelector(`input[name="gender"][value="${state.gender}"]`);
-                            if(g) g.checked = true;
-                        }
                         if(state.profile) {
                             const p = document.querySelector(`input[name="priority_profile"][value="${state.profile}"]`);
                             if(p) p.checked = true;
@@ -597,7 +571,6 @@
                             document.querySelectorAll('.category-toggle').forEach(cb => {
                                 cb.checked = state.categories.includes(cb.value);
                             });
-                            // Re-run the dynamic bar update since memory may have unchecked some boxes
                             updateDynamicBar();
                         }
                     } catch (e) {
@@ -645,7 +618,7 @@
                 return "Maintained at a standard allocation to keep your budget balanced.";
             }
 
-            function generateKitListHTML(finalKit, gender, activeCategoryNames, targetBudget, selectedProfileId) {
+            function generateKitListHTML(finalKit, activeCategoryNames, targetBudget, selectedProfileId) {
                 categoriesContainer.innerHTML = ''; 
                 grandTotalContainer.innerHTML = ''; 
                 let globalItemIndex = 0; 
@@ -658,10 +631,6 @@
 
                     items.forEach(product => {
                         let displayTitle = product.title;
-                        if (catName === "Clothing & Basics") {
-                            const prefix = gender === 'neutral' ? 'Neutral' : gender.charAt(0).toUpperCase() + gender.slice(1);
-                            displayTitle = `${prefix} ${displayTitle}`;
-                        }
 
                         const directLink = product.link || "#"; 
                         const cardDelay = 0.2 + (globalItemIndex * 0.08);
@@ -787,7 +756,7 @@
 
             categoryTogglesContainer.addEventListener('change', () => {
                 updateSliderBounds();
-                updateDynamicBar(); // Call this when the user clicks a checkbox!
+                updateDynamicBar(); 
             });
 
             budgetSlider.addEventListener('input', (e) => {
@@ -912,8 +881,6 @@
                 if(buildBtn.disabled) return;
 
                 const totalBudget = parseInt(budgetSlider.value);
-                const selectedGenderInput = document.querySelector('input[name="gender"]:checked');
-                const gender = selectedGenderInput ? selectedGenderInput.value : "neutral";
                 
                 const activeCategoryNames = Array.from(document.querySelectorAll('.category-toggle:checked'))
                     .map(cb => cb.value)
@@ -926,7 +893,7 @@
                 const finalKit = calculateOptimalKit(totalBudget, activeCategoryNames, selectedProfileId);
                 
                 renderDonutChart(finalKit.catTotals, activeCategoryNames);
-                generateKitListHTML(finalKit, gender, activeCategoryNames, totalBudget, selectedProfileId);
+                generateKitListHTML(finalKit, activeCategoryNames, totalBudget, selectedProfileId);
 
                 setTimeout(() => {
                     document.getElementById('email-modal').classList.add('show-modal');
