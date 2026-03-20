@@ -35,7 +35,7 @@ input_catalog = {
             "Budget": "https://www.amazon.com/dp/B00JEV5UI8/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B09GM8JZM9/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08FF4GV5C/?tag=1097fa-20",
-            "Luxury": "https://www.amazon.com/dp/B08QMWP5V8/?tag=1097fa-20"
+            "Luxury": "https://www.amazon.com/dp/B0B5283WSZ/?tag=1097fa-20"
         },
         "Sound Machine": {
             "Budget": "https://www.amazon.com/dp/B01D50RYSC/?tag=1097fa-20",
@@ -65,9 +65,9 @@ input_catalog = {
         },
         "Diaper Bag": {
             "Budget": "https://www.amazon.com/dp/B0FSLB42V3/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B07C3SWZ1C/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B00J4N04EA/?tag=1097fa-20",
-            "Luxury": "https://www.amazon.com/dp/B01MT2G6D8/?tag=1097fa-20"
+            "Standard": "https://www.amazon.com/dp/B07C3SWZXK/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0BSKZFV8Z/?tag=1097fa-20",
+            "Luxury": "https://www.amazon.com/dp/B0DNWZ1KV8/?tag=1097fa-20"
         }
     },
     "Feeding & Nursing": {
@@ -79,7 +79,7 @@ input_catalog = {
         },
         "Nursing Pillow": {
             "Budget": "https://www.amazon.com/dp/B0F8LDHL26/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B0B5P2RXYN/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B0F6T5VNRX/?tag=1097fa-20",
             "Premium": "https://www.amazon.com/dp/B08J54C2Y8/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B08SMT92PK/?tag=1097fa-20"
         },
@@ -169,14 +169,14 @@ input_catalog = {
         },
         "Healthcare Kit": {
             "Budget": "https://www.amazon.com/dp/B00VXMXN30/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B00MUK6M82/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B01J8C1VVC/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B01J8C1VVC/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0DP4TXLP9/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B075G6XMSF/?tag=1097fa-20"
         },
         "Towels & Washcloths": {
             "Budget": "https://www.amazon.com/dp/B07ZSCJB4K/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B00X22L0AC/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B0B46RBFBD/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0992BFRRF/?tag=1097fa-20",
             "Organic": "https://www.amazon.com/dp/B081SFS6SW/?tag=1097fa-20"
         },
         "Baby Wash": {
