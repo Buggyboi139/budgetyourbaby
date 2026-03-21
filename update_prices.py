@@ -39,22 +39,22 @@ input_catalog = {
         },
         "Sound Machine": {
             "Budget": "https://www.amazon.com/dp/B01D50RYSC/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B06XMRCC94/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B0F7C6XJ3P/?tag=1097fa-20",
-            "Luxury": "https://www.amazon.com/dp/B0D6SX8VLQ/?tag=1097fa-20"
+            "Standard": "https://www.amazon.com/dp/B0C5S8VB2K/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0D6SX8VLQ/?tag=1097fa-20",
+            "Luxury": "https://www.amazon.com/dp/B06XMRCC94/?tag=1097fa-20"
         }
     },
     "Travel & Gear": {
         "Infant Car Seat": {
             "Budget": "https://www.amazon.com/dp/B07Y5S4VWT/?tag=1097fa-20",
             "Standard": "https://www.amazon.com/dp/B09LKZFKGD/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B0DTYGNBR3/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0DHLQL58Y/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B0987YSHNY/?tag=1097fa-20"
         },
         "Travel Stroller": {
-            "Budget": "https://www.amazon.com/dp/B019DHBCXE/?tag=1097fa-20",
-            "Standard": "https://www.amazon.com/dp/B08ZJTNY7Y/?tag=1097fa-20",
-            "Premium": "https://www.amazon.com/dp/B08VWWQ96T/?tag=1097fa-20",
+            "Budget": "https://www.amazon.com/dp/B07P1YSC18/?tag=1097fa-20",
+            "Standard": "https://www.amazon.com/dp/B019DHBCXE/?tag=1097fa-20",
+            "Premium": "https://www.amazon.com/dp/B0BYTKYGZ3/?tag=1097fa-20",
             "Luxury": "https://www.amazon.com/dp/B0D9XS9VXL/?tag=1097fa-20"
         },
         "Baby Carrier": {
