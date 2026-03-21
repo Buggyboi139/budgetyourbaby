@@ -212,6 +212,23 @@
         }
         .product-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-highlight); transform: translateY(-6px) !important; }
         
+        .qty-control {
+            position: absolute; top: 15px; left: 15px;
+            background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-highlight); border-radius: 20px;
+            display: flex; align-items: center; gap: 8px;
+            padding: 4px 10px; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .qty-btn {
+            background: transparent; color: var(--text-main); border: none;
+            cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px; border-radius: 50%; transition: 0.2s;
+        }
+        .qty-btn:hover { background: rgba(255,255,255,0.1); }
+        .qty-display { font-weight: 700; font-size: 0.95rem; min-width: 14px; text-align: center; }
+        
+        .product-card.qty-zero { opacity: 0.5; filter: grayscale(80%); border-color: transparent; }
+        
         .swap-btn {
             position: absolute;
             top: 15px; right: 15px;
@@ -312,7 +329,7 @@
         .site-footer a:hover { color: var(--text-main); }
         .timestamp-badge { display: inline-block; background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 12px; margin-top: 10px; border: 1px solid var(--border-glass); font-weight: 500; }
         
-        @@media print {
+        @media print {
             body, .container, .view-section, #results-content { 
                 display: block !important; 
                 height: auto !important;
@@ -332,9 +349,12 @@
                 margin: 0 1% 15px 1% !important; 
                 vertical-align: top;
                 background: #fff !important; border: 1px solid #ccc !important; box-shadow: none !important; color: #000 !important; 
-                page-break-inside: avoid !important; break-inside: avoid !important; /* Now this actually works */
+                page-break-inside: avoid !important; break-inside: avoid !important;
                 padding: 15px !important; opacity: 1 !important; transform: none !important; 
             }
+            
+            .qty-control { display: none !important; }
+            .product-card.qty-zero { display: none !important; }
             
             .product-name, .product-price { color: #000 !important; }
             .tier-badge { background: #f1f5f9 !important; color: #475569 !important; border: 1px solid #cbd5e1; }
@@ -668,7 +688,9 @@
                 return "Maintained at a standard allocation to keep your budget balanced.";
             }
 
-            function getCardInnerHtml(tier, catName, itemIndex) {
+            function getCardInnerHtml(itemState, catName, itemIndex) {
+                const tier = itemState.tiers[itemState.selectedIdx];
+                const qty = itemState.quantity;
                 const directLink = tier.link || "#"; 
                 let imgSrc = tier.img; 
 
@@ -686,7 +708,14 @@
                     </div>
                 ` : '';
 
+                const displayPrice = tier.price * qty;
+
                 return `
+                    <div class="qty-control">
+                        <button class="qty-btn qty-minus" data-cat="${catName}" data-index="${itemIndex}">-</button>
+                        <span class="qty-display">${qty}</span>
+                        <button class="qty-btn qty-plus" data-cat="${catName}" data-index="${itemIndex}">+</button>
+                    </div>
                     <button class="swap-btn" data-cat="${catName}" data-index="${itemIndex}" title="Swap with next tier">⟳</button>
                     <img src="${imgSrc}" alt="" class="product-thumb" 
                          onload="if(this.naturalWidth <= 1 && !this.src.includes('dummyimage')) this.src='https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Image+Unavailable';"
@@ -698,7 +727,7 @@
                     ${starsHTML}
                     ${crashTestHTML}
                     <div class="product-footer">
-                        <div class="product-price"><span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">est.</span> $${tier.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                        <div class="product-price"><span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">est.</span> $${displayPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                         <a href="${directLink}" target="_blank" class="buy-btn">View on Amazon</a>
                     </div>
                 `;
@@ -717,12 +746,11 @@
                     let itemsHTML = '';
 
                     items.forEach((itemState, itemIndex) => {
-                        const currentTier = itemState.tiers[itemState.selectedIdx];
                         const cardDelay = 0.2 + (globalItemIndex * 0.08);
 
                         itemsHTML += `
                             <div class="product-card" id="card-${safeCatId}-${itemIndex}" style="animation: slideInRight 0.6s ${cardDelay}s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
-                                ${getCardInnerHtml(currentTier, catName, itemIndex)}
+                                ${getCardInnerHtml(itemState, catName, itemIndex)}
                             </div>
                         `;
                         globalItemIndex++;
@@ -963,7 +991,8 @@
                     kitByCategory[i.catName].push({
                         name: i.baseItem.name,
                         tiers: i.baseItem.tiers,
-                        selectedIdx: i.currentTierIdx
+                        selectedIdx: i.currentTierIdx,
+                        quantity: 1
                     });
                     catTotals[i.catName] += i.baseItem.tiers[i.currentTierIdx].price;
                 });
@@ -1004,6 +1033,53 @@
                     modalHasBeenShown = true;
                 }
                 
+                const minusBtn = e.target.closest('.qty-minus');
+                const plusBtn = e.target.closest('.qty-plus');
+                
+                if (minusBtn || plusBtn) {
+                    const btn = minusBtn || plusBtn;
+                    const catName = btn.dataset.cat;
+                    const itemIndex = parseInt(btn.dataset.index);
+                    const itemState = currentLiveKit.kitByCategory[catName][itemIndex];
+                    const currentTier = itemState.tiers[itemState.selectedIdx];
+                    
+                    let oldQty = itemState.quantity;
+                    let newQty = oldQty;
+
+                    if (plusBtn) newQty++;
+                    if (minusBtn && oldQty > 0) newQty--;
+
+                    if (oldQty !== newQty) {
+                        itemState.quantity = newQty;
+                        const priceDiff = (newQty - oldQty) * currentTier.price;
+                        
+                        currentLiveKit.catTotals[catName] += priceDiff;
+                        currentLiveKit.grandTotal += priceDiff;
+
+                        const safeCatId = catName.replace(/[^a-zA-Z0-9]/g, '');
+                        const cardEl = document.getElementById(`card-${safeCatId}-${itemIndex}`);
+                        
+                        if (cardEl) {
+                            cardEl.innerHTML = getCardInnerHtml(itemState, catName, itemIndex);
+                            if (newQty === 0) cardEl.classList.add('qty-zero');
+                            else cardEl.classList.remove('qty-zero');
+                        }
+
+                        const subtotalEl = document.getElementById(`subtotal-${safeCatId}`);
+                        if (subtotalEl) subtotalEl.textContent = `Subtotal: $${currentLiveKit.catTotals[catName].toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+                        Object.keys(currentLiveKit.catTotals).forEach(c => {
+                            const sId = c.replace(/[^a-zA-Z0-9]/g, '');
+                            const fracEl = document.getElementById(`fraction-text-${sId}`);
+                            if (fracEl) fracEl.textContent = currentLiveKit.grandTotal > 0 ? ((currentLiveKit.catTotals[c] / currentLiveKit.grandTotal) * 100).toFixed(0) : 0;
+                        });
+
+                        updateGrandTotalDOM();
+                        renderDonutChart(currentLiveKit.catTotals, Object.keys(currentLiveKit.catTotals));
+                    }
+                    return;
+                }
+
                 const swapBtn = e.target.closest('.swap-btn');
                 if (swapBtn) {
                     const catName = swapBtn.dataset.cat;
@@ -1015,7 +1091,7 @@
                     itemState.selectedIdx = (itemState.selectedIdx + 1) % itemState.tiers.length;
                     const newTier = itemState.tiers[itemState.selectedIdx];
 
-                    const priceDiff = newTier.price - oldTier.price;
+                    const priceDiff = (newTier.price - oldTier.price) * itemState.quantity;
                     currentLiveKit.catTotals[catName] += priceDiff;
                     currentLiveKit.grandTotal += priceDiff;
 
@@ -1025,7 +1101,7 @@
                         cardEl.style.opacity = "0";
                         
                         setTimeout(() => {
-                            cardEl.innerHTML = getCardInnerHtml(newTier, catName, itemIndex);
+                            cardEl.innerHTML = getCardInnerHtml(itemState, catName, itemIndex);
                             
                             cardEl.style.transform = "scale(0.98)";
                             cardEl.style.opacity = "1"; 
@@ -1040,7 +1116,7 @@
                     Object.keys(currentLiveKit.catTotals).forEach(c => {
                         const sId = c.replace(/[^a-zA-Z0-9]/g, '');
                         const fracEl = document.getElementById(`fraction-text-${sId}`);
-                        if (fracEl) fracEl.textContent = ((currentLiveKit.catTotals[c] / currentLiveKit.grandTotal) * 100).toFixed(0);
+                        if (fracEl) fracEl.textContent = currentLiveKit.grandTotal > 0 ? ((currentLiveKit.catTotals[c] / currentLiveKit.grandTotal) * 100).toFixed(0) : 0;
                     });
 
                     updateGrandTotalDOM();
