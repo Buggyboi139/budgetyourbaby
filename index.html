@@ -1023,13 +1023,17 @@
                 if(buildBtn.disabled) return;
 
                 const totalBudget = parseInt(budgetSlider.value);
+                
+                const fudgeFactor = Math.floor(Math.random() * 41) + 80;
+                const algorithmBudget = Math.max(100, totalBudget - fudgeFactor);
+
                 const activeCategoryNames = Array.from(document.querySelectorAll('.category-toggle:checked'))
                     .map(cb => cb.value)
                     .filter(val => Object.keys(categoryColors).includes(val)); 
                 const selectedProfileId = document.querySelector('input[name="priority_profile"]:checked').value;
                 
                 goToResults();
-                const finalKit = calculateOptimalKit(totalBudget, activeCategoryNames, selectedProfileId);
+                const finalKit = calculateOptimalKit(algorithmBudget, activeCategoryNames, selectedProfileId);
                 
                 currentLiveKit = {
                     targetBudget: totalBudget,
@@ -1044,7 +1048,7 @@
                 renderDonutChart(currentLiveKit.catTotals, finalKit.trueCategories);
                 generateKitListHTML(finalKit.trueCategories);
             });
-
+            
             let modalHasBeenShown = false;
             document.getElementById('categories-container').addEventListener('click', function(e) {
                 if (e.target.classList.contains('buy-btn') && !modalHasBeenShown) {
