@@ -370,3 +370,4 @@ with open('products.json', 'w') as f:
     json.dump(final_database, f, indent=4)
 
 print("\nUpdate complete. Dynamically built products.json.")
+
