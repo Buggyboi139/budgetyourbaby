@@ -919,15 +919,23 @@
                 let itemsList = [];
                 const profileWeights = profiles[selectedProfileId].weights;
                 
+                const allowLuxury = activeCategoryNames.includes("Organic and or Luxury");
+                const trueCategories = activeCategoryNames.filter(cat => cat !== "Organic and or Luxury");
+                
                 let totalWeight = 0;
-                activeCategoryNames.forEach(cat => totalWeight += (profileWeights[cat] || 0));
+                trueCategories.forEach(cat => totalWeight += (profileWeights[cat] || 0));
                 
                 let targetBudgets = {};
-                activeCategoryNames.forEach(cat => {
+                trueCategories.forEach(cat => {
                     targetBudgets[cat] = ((profileWeights[cat] || 0) / totalWeight) * totalBudget;
                     const items = productDatabase[cat] || [];
+                    
                     items.forEach(item => {
-                        itemsList.push({ catName: cat, baseItem: item, currentTierIdx: 0 });
+                        let validTiers = item.tiers;
+                        if (!allowLuxury) {
+                            validTiers = item.tiers.filter(t => t.tier !== "Organic" && t.tier !== "Luxury");
+                        }
+                        itemsList.push({ catName: cat, baseItem: { ...item, tiers: validTiers }, currentTierIdx: 0 });
                     });
                 });
 
@@ -936,19 +944,30 @@
                 let canUpgradePhase1 = true;
                 while(canUpgradePhase1) {
                     canUpgradePhase1 = false;
-                    activeCategoryNames.forEach(cat => {
+                    
+                    let currentGlobalTotal = itemsList.reduce((sum, i) => sum + i.baseItem.tiers[i.currentTierIdx].price, 0);
+
+                    trueCategories.forEach(cat => {
                         let catItems = itemsList.filter(i => i.catName === cat);
                         let currentCatTotal = catItems.reduce((sum, i) => sum + i.baseItem.tiers[i.currentTierIdx].price, 0);
                         
                         let candidates = catItems.filter(i => {
                             if (i.currentTierIdx >= i.baseItem.tiers.length - 1) return false;
                             let costToUpgrade = i.baseItem.tiers[i.currentTierIdx + 1].price - i.baseItem.tiers[i.currentTierIdx].price;
-                            return (currentCatTotal + costToUpgrade) <= targetBudgets[cat];
+                            
+                            let localOk = (currentCatTotal + costToUpgrade) <= targetBudgets[cat];
+                            let globalOk = (currentGlobalTotal + costToUpgrade) <= totalBudget;
+                            
+                            return localOk && globalOk;
                         });
 
                         if (candidates.length > 0) {
                             candidates.sort((a,b) => (a.baseItem.tiers[a.currentTierIdx + 1].price - a.baseItem.tiers[a.currentTierIdx].price) - (b.baseItem.tiers[b.currentTierIdx + 1].price - b.baseItem.tiers[b.currentTierIdx].price));
+                            
+                            let costToUpgrade = candidates[0].baseItem.tiers[candidates[0].currentTierIdx + 1].price - candidates[0].baseItem.tiers[candidates[0].currentTierIdx].price;
+                            
                             candidates[0].currentTierIdx++;
+                            currentGlobalTotal += costToUpgrade;
                             canUpgradePhase1 = true; 
                         }
                     });
@@ -985,7 +1004,7 @@
 
                 let kitByCategory = {};
                 let catTotals = {};
-                activeCategoryNames.forEach(cat => { kitByCategory[cat] = []; catTotals[cat] = 0; });
+                trueCategories.forEach(cat => { kitByCategory[cat] = []; catTotals[cat] = 0; });
 
                 itemsList.forEach(i => {
                     kitByCategory[i.catName].push({
@@ -997,7 +1016,7 @@
                     catTotals[i.catName] += i.baseItem.tiers[i.currentTierIdx].price;
                 });
 
-                return { kitByCategory, catTotals, grandTotal: currentGlobalTotal, hadToOverride, targetBudgets };
+                return { kitByCategory, catTotals, grandTotal: currentGlobalTotal, hadToOverride, targetBudgets, trueCategories };
             }
 
             buildBtn.addEventListener('click', () => {
@@ -1022,8 +1041,8 @@
                     selectedProfileId: selectedProfileId
                 };
                 
-                renderDonutChart(currentLiveKit.catTotals, activeCategoryNames);
-                generateKitListHTML(activeCategoryNames);
+                renderDonutChart(currentLiveKit.catTotals, finalKit.trueCategories);
+                generateKitListHTML(finalKit.trueCategories);
             });
 
             let modalHasBeenShown = false;
