@@ -8,9 +8,6 @@ from curl_cffi import requests
 
 AFFILIATE_TAG = "1097fa-20"
 
-# ==========================================
-# 1. YOUR LINK CATALOG
-# ==========================================
 input_catalog = {
     "Nursery & Furniture": {
         "Crib or Bassinet": {
@@ -214,9 +211,6 @@ input_catalog = {
     }
 }
 
-# ==========================================
-# 2. LOAD PREVIOUS DATA (The Safety Net)
-# ==========================================
 old_data = {}
 if os.path.exists('products.json'):
     try:
@@ -232,9 +226,6 @@ if os.path.exists('products.json'):
     except Exception as e:
         print(f"[!] Could not load backup data: {e}")
 
-# ==========================================
-# 3. THE SCRAPER ENGINE
-# ==========================================
 def get_amazon_data(url, max_retries=3):
     if url == "#" or "EXAMPLE_ASIN" in url: 
         return "Placeholder Item", 0.00, "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=No+Link", 0.0, 0
@@ -256,11 +247,21 @@ def get_amazon_data(url, max_retries=3):
             title_tag = soup.find(id="productTitle")
             if title_tag: title = title_tag.text.strip()
 
-            price_whole = soup.find("span", class_="a-price-whole")
-            price_fraction = soup.find("span", class_="a-price-fraction")
+            buy_box = soup.find(id="corePriceDisplay_desktop_feature_div") or \
+                      soup.find(id="corePrice_feature_div") or \
+                      soup.find(id="centerCol")
+
+            search_area = buy_box if buy_box else soup
+
+            price_whole = search_area.find("span", class_="a-price-whole")
+            price_fraction = search_area.find("span", class_="a-price-fraction")
+            
             if price_whole and price_fraction:
-                clean_price = price_whole.text.replace(',', '').replace('.', '') + '.' + price_fraction.text
-                price = float(clean_price)
+                clean_price = price_whole.text.replace(',', '').replace('.', '').strip() + '.' + price_fraction.text.strip()
+                try:
+                    price = float(clean_price)
+                except ValueError:
+                    price = 0.00
 
             rating_tag = soup.find("span", class_="a-icon-alt")
             if rating_tag:
@@ -304,9 +305,6 @@ def get_amazon_data(url, max_retries=3):
 
     return "Failed to Load", 0.00, "https://dummyimage.com/400x300/1e293b/f8fafc.png&text=Error", 0.0, 0
 
-# ==========================================
-# 4. JSON BUILDER WITH SAFETY NET
-# ==========================================
 final_database = {}
 
 for category, items in input_catalog.items():
@@ -322,12 +320,10 @@ for category, items in input_catalog.items():
         for tier_name, link in tiers.items():
             print(f"  Scraping {item_name} ({tier_name})...")
             
-            # Remove affiliate tag before scraping
             clean_url = link.split('?')[0]
             
             title, price, img, rating, reviews = get_amazon_data(clean_url)
             
-            # --- THE SAFETY NET ---
             if price == 0.0 or title == "Amazon Product" or title == "Failed to Load":
                 if link in old_data and old_data[link].get("price", 0) > 0.0:
                     print(f"    [!] Scrape failed. Rescuing previous valid data for {tier_name}.")
@@ -338,7 +334,6 @@ for category, items in input_catalog.items():
                     reviews = old_data[link].get("reviews", reviews)
                 else:
                     print(f"    [!] Scrape failed and no valid backup found for {tier_name}.")
-            # ----------------------
 
             tier_data = {
                 "tier": tier_name,
@@ -346,7 +341,7 @@ for category, items in input_catalog.items():
                 "price": price,
                 "rating": rating,
                 "reviews": reviews,
-                "link": link, # Original link saved to JSON with tag
+                "link": link,
                 "img": img
             }
             
@@ -370,4 +365,3 @@ with open('products.json', 'w') as f:
     json.dump(final_database, f, indent=4)
 
 print("\nUpdate complete. Dynamically built products.json.")
-
