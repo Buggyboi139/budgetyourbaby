@@ -426,7 +426,7 @@
                 </div>
 
                 <div class="category-selector" style="margin-bottom: 40px;">
-                    <div class="category-title-label">Select Your Needs</div>
+                    <div class="category-title-label">What do you still need? <span style="text-transform: none; opacity: 0.7; font-weight: 500; letter-spacing: normal;">(Uncheck what you already own)</span></div>
                     <div class="toggles-grid" id="categoryTogglesContainer"></div>
                 </div>
 
@@ -580,9 +580,11 @@
             };
 
             Object.keys(categoryColors).forEach(cat => {
+                const isChecked = cat === "Organic and or Luxury" ? "" : "checked";
+                
                 const labelHtml = `
                     <label>
-                        <input type="checkbox" value="${cat}" class="cat-checkbox category-toggle" checked>
+                        <input type="checkbox" value="${cat}" class="cat-checkbox category-toggle" ${isChecked}>
                         <div class="cat-label">${cat}</div>
                     </label>
                 `;
