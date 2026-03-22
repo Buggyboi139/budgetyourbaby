@@ -404,16 +404,10 @@
                 <span style="opacity: 0.7;">✨</span>
                 <span>How do I use this?</span>
             </div>
-            <h1>Plan your baby's arrival.</h1>
-            <p class="subtitle">Set your budget and we'll balance the rest so you don't have to.</p>
+            <h1>Plan your baby's arrival with confidence.</h1>
+            <p class="subtitle">Set your budget and tell us what matters most. We'll balance the rest so you don't have to.</p>
             
             <div class="control-panel">
-                <div class="category-title-label" style="text-align: center; margin-bottom: 5px;">Your Target Budget</div>
-                <div class="budget-display" id="budgetDisplay">$1,000</div>
-                <div class="slider-wrapper" style="margin-top: 10px; margin-bottom: 50px;">
-                    <input type="range" id="budgetSlider" min="800" max="7500" step="50" value="1000">
-                </div>
-
                 <div class="category-selector" style="margin-bottom: 35px;">
                     <div class="category-title-label">Parenting Priority</div>
                     <div class="toggles-grid" id="profileSelector">
@@ -425,14 +419,19 @@
                     </div>
                 </div>
 
-                <div class="category-selector" style="margin-bottom: 40px;">
-                    <div class="category-title-label">What do you still need? <span style="text-transform: none; opacity: 0.7; font-weight: 500; letter-spacing: normal;">(Uncheck what you already own)</span></div>
+                <div class="category-selector">
+                    <div class="category-title-label">Select Your Needs</div>
                     <div class="toggles-grid" id="categoryTogglesContainer"></div>
                 </div>
 
+                <div class="budget-display" id="budgetDisplay">$1,000</div>
+                <div class="slider-wrapper">
+                    <input type="range" id="budgetSlider" min="800" max="7500" step="50" value="1000">
+                </div>
                 <button class="primary-btn" id="buildBtn">Generate My Recommendations</button>
             </div>
-            
+        </div>
+
         <div id="results-view" class="view-section hidden-view">
             <div class="results-header">
                 <div>
@@ -580,11 +579,9 @@
             };
 
             Object.keys(categoryColors).forEach(cat => {
-                const isChecked = cat === "Organic and or Luxury" ? "" : "checked";
-                
                 const labelHtml = `
                     <label>
-                        <input type="checkbox" value="${cat}" class="cat-checkbox category-toggle" ${isChecked}>
+                        <input type="checkbox" value="${cat}" class="cat-checkbox category-toggle" checked>
                         <div class="cat-label">${cat}</div>
                     </label>
                 `;
