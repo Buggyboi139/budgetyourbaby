@@ -1,3 +1,6 @@
+================================================
+FILE: blog/wipe-warmers.html
+================================================
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wipe Warmers Are a Scam | BabyBudget</title>
     
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NK7X1VJ6LJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer ||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NK7X1VJ6LJ');
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -101,6 +112,8 @@
         <img src="https://images.unsplash.com/photo-1633265484557-e298493cb162?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wipe Warmers" class="hero-image">
 
         <div class="article-body">
+            <p style="font-size: 0.9rem; font-style: italic; color: var(--text-muted); margin-bottom: 25px;">We may earn a commission from links on this page at no cost to you. As an Amazon Associate, we earn from qualifying purchases.</p>
+
             <p>If there is one product that perfectly captures the absurdity of the modern baby industry, it is the wipe warmer. It is a plastic box that plugs into your wall, sits on your dresser, and completely ruins your life.</p>
             
             <h2>The Science is Gross</h2>
@@ -114,14 +127,22 @@
             <p>Babies are resilient. Room temperature wipes are fine. If it’s the dead of winter and the wipes are freezing cold, hold the wipe in your closed fist for three seconds before you use it. Save the $30 and the counter space.</p>
         </div>
     </div>
+    
     <footer class="site-footer">
         <p>BabyBudget is a free tool built to help parents plan smartly and safely.</p>
         <p>As an Amazon Associate, we earn from qualifying purchases.</p>
         <div style="margin-top: 15px;">
             <a href="/">Calculator</a> &nbsp;|&nbsp; 
-            <a href="/blog">Guides & Blog</a>
+            <a href="/blog">Guides & Blog</a> &nbsp;|&nbsp; 
+            <a href="/privacy.html">Privacy Policy</a> &nbsp;|&nbsp; 
+            <a href="/terms.html">Terms of Service</a>
         </div>
     </footer>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; border-top: 1px solid rgba(255,255,255,0.1); padding: 15px 20px; display: flex; justify-content: center; gap: 20px; align-items: center; z-index: 1000; font-size: 0.85rem;">
+        <span>We use cookies and Google Analytics to improve your experience. By continuing, you agree to our <a href="/privacy.html" style="color: #fbc2eb;">Privacy Policy</a>.</span>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background: #fbc2eb; color: #07090f; border: none; padding: 6px 16px; border-radius: 20px; font-weight: bold; cursor: pointer;">Got it</button>
+    </div>
 
 </body>
 </html>
