@@ -1,3 +1,6 @@
+================================================
+FILE: blog/index.html
+================================================
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,7 @@
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NK7X1VJ6LJ"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer ||[];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-NK7X1VJ6LJ');
@@ -165,6 +168,7 @@
             </div>
             <h1>Save Your Money.</h1>
             <p class="subtitle">No ads or sponsorships. We're here to help navigate the cost of a new baby.</p>
+            <p style="font-size: 0.85rem; font-style: italic; color: var(--text-muted); margin-top: 15px;">We may earn a commission from links on this site. As an Amazon Associate, we earn from qualifying purchases.</p>
         </div>
 
         <div class="blog-grid">
@@ -292,9 +296,16 @@
         <p>As an Amazon Associate, we earn from qualifying purchases. This helps keep the engine running.</p>
         <div style="margin-top: 15px;">
             <a href="/">Calculator</a> &nbsp;|&nbsp; 
-            <a href="/blog">Guides & Blog</a>
+            <a href="/blog">Guides & Blog</a> &nbsp;|&nbsp; 
+            <a href="/privacy.html">Privacy Policy</a> &nbsp;|&nbsp; 
+            <a href="/terms.html">Terms of Service</a>
         </div>
     </footer>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; border-top: 1px solid rgba(255,255,255,0.1); padding: 15px 20px; display: flex; justify-content: center; gap: 20px; align-items: center; z-index: 1000; font-size: 0.85rem;">
+        <span>We use cookies and Google Analytics to improve your experience. By continuing, you agree to our <a href="/privacy.html" style="color: #fbc2eb;">Privacy Policy</a>.</span>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background: #fbc2eb; color: #07090f; border: none; padding: 6px 16px; border-radius: 20px; font-weight: bold; cursor: pointer;">Got it</button>
+    </div>
 
 </body>
 </html>
