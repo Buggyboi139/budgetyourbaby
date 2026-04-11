@@ -1,7 +1,7 @@
 # BudgetYourBaby
 
 ## Overview
-BudgetYourBaby is a dynamic web application engineered to aggregate, calculate, and manage localized pricing data for consumer goods. The application processes financial metrics and inventory data to provide real-time budget forecasting.
+Live at https://budgetyourbaby.com BudgetYourBaby is a dynamic web application engineered to aggregate, calculate, and manage localized pricing data for consumer goods. The application processes financial metrics and inventory data to provide real-time budget forecasting.
 
 ## Architecture & Data Flow
 The application operates on a decoupled architecture, utilizing automated backend scripts to maintain a sanitized data store that the frontend client consumes.
